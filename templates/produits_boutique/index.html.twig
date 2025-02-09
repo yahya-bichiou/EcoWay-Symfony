@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitsBoutique index{% endblock %}
+
+{% block body %}
+    <h1>ProduitsBoutique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ProductName</th>
+                <th>ProductDesc</th>
+                <th>ProductCategory</th>
+                <th>ProductPrice</th>
+                <th>ProductStock</th>
+                <th>ProductImage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produits_boutique in produits_boutiques %}
+            <tr>
+                <td>{{ produits_boutique.id }}</td>
+                <td>{{ produits_boutique.productName }}</td>
+                <td>{{ produits_boutique.productDesc }}</td>
+                <td>{{ produits_boutique.productCategory }}</td>
+                <td>{{ produits_boutique.productPrice }}</td>
+                <td>{{ produits_boutique.productStock }}</td>
+                <td>{{ produits_boutique.productImage }}</td>
+                <td>
+                    <a href="{{ path('app_produits_boutique_show', {'id': produits_boutique.id}) }}">show</a>
+                    <a href="{{ path('app_produits_boutique_edit', {'id': produits_boutique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produits_boutique_new') }}">Create new</a>
+{% endblock %}
