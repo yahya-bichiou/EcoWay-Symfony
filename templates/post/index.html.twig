@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Posts{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Liste des Posts</h1>
+
+        <table class="table table-striped table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Créateur</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.titre }}</td>
+                        <td>{{ post.description|length > 50 ? post.description|slice(0, 50) ~ '...' : post.description }}</td>
+                        <td>{{ post.createur }}</td>
+                        <td>
+                            {% if post.image %}
+                                <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Image" class="img-thumbnail" style="width: 70px; height: 70px;">
+                            {% else %}
+                                <span class="text-muted">Aucune image</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_post_show', {'id': post.id}) }}" class="btn btn-info btn-sm">Afficher</a>
+                            <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Aucun post trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('app_post_new') }}" class="btn btn-success">+ Nouveau Post</a>
+        </div>
+    </div>
+{% endblock %}
