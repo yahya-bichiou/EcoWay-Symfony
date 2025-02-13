@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Collecte{% endblock %}
+
+{% block body %}
+    <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                  <h6>Collecte</h6>
+                  <h2>Modifier Collecte</h2>
+                </div>
+              </div>
+              <div class="col-lg-4 offset-lg-4">
+                    {{ include('collecte/_form.html.twig', {'button_label': 'Update'}) }}
+                    <form action="{{ path('app_depot_index') }}">
+                    <button class="btn">Retour</button>
+                    {{ include('collecte/_delete_form.html.twig') }}
+                    </form>
+
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -3,11 +3,28 @@
 {% block title %}Edit ProduitsBoutique{% endblock %}
 
 {% block body %}
-    <h1>Edit ProduitsBoutique</h1>
-
-    {{ include('produits_boutique/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_produits_boutique_index') }}">back to list</a>
-
-    {{ include('produits_boutique/_delete_form.html.twig') }}
+    <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                  <h6>Boutique</h6>
+                  <h2>Modifier Produit</h2>
+                </div>
+              </div>
+              <div class="col-lg-4 offset-lg-4">
+                    {{ include('produits_boutique/_form.html.twig', {'button_label': 'Update'}) }}
+                    <form action="{{ path('app_produits_boutique_index') }}">
+                    <button class="btn">Retour</button>
+                    {{ include('produits_boutique/_delete_form.html.twig') }}
+                    </form>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

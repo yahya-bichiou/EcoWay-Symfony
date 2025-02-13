@@ -1,0 +1,36 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <table class="table">
+        <thead>
+          
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ form_label(form.quantite_entrante) }}</td>
+                 <td>   {{ form_widget(form.quantite_entrante, {'attr': {'class': 'form-control'}}) }} </td>
+                   <td>  {{ form_errors(form.quantite_entrante) }} </td>
+            </tr>
+
+             <tr>
+                   <td> {{ form_label(form.quantite_sortante) }} </td>
+                   <td>  {{ form_widget(form.quantite_sortante, {'attr': {'class': 'form-control'}}) }} </td>
+                   <td>  {{ form_errors(form.quantite_sortante) }} </td>
+            </tr>
+            
+            <tr>
+                   <td>  {{ form_label(form.quantite_actuelle) }}</td>
+                  <td>{{ form_widget(form.quantite_actuelle, {'attr': {'class': 'form-control'}}) }} </td>
+                 <td>{{ form_errors(form.quantite_actuelle) }} </td>
+             </tr>
+
+             <tr>   
+                     <td>{{ form_label(form.date_operation) }} </td>
+                     <td>{{ form_widget(form.date_operation, {'attr': {'class': 'form-control'}}) }} </td>
+                     <td>{{ form_errors(form.date_operation) }} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+    </div>
+{{ form_end(form) }}

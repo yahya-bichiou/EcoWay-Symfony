@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la Bande Réception{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Détails de la Bande Réception</h1>
+
+        <div class="card shadow-lg p-4 border-0">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row">ID</th>
+                            <td>{{ bande_reception.id }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Référence</th>
+                            <td>{{ bande_reception.reference }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Date de Réception</th>
+                            <td>{{ bande_reception.dateReception ? bande_reception.dateReception|date('Y-m-d H:i') : 'N/A' }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fournisseur</th>
+                            <td>{{ bande_reception.fournisseur }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Quantité Reçue</th>
+                            <td>{{ bande_reception.quantiteRecue }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ path('app_bande_reception_index') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </a>
+
+                    <a href="{{ path('app_bande_reception_edit', {'id': bande_reception.id}) }}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Modifier
+                    </a>
+
+                    {{ include('bande_reception/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

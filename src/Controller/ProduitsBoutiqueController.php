@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ProduitsBoutique;
 use App\Form\ProduitsBoutiqueType;
 use App\Repository\ProduitsBoutiqueRepository;
+use App\Repository\CommandesBoutiqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProduitsBoutiqueController extends AbstractController
 {
     #[Route(name: 'app_produits_boutique_index', methods: ['GET'])]
-    public function index(ProduitsBoutiqueRepository $produitsBoutiqueRepository): Response
+    public function index(ProduitsBoutiqueRepository $produitsBoutiqueRepository, CommandesBoutiqueRepository $commandesBoutiqueRepository): Response
     {
         return $this->render('produits_boutique/index.html.twig', [
             'produits_boutiques' => $produitsBoutiqueRepository->findAll(),
+            'commandes_boutiques' => $commandesBoutiqueRepository->findAll(),
         ]);
     }
 

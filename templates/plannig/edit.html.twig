@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Plannig</title>
+
+{% block body %}
+    <h1>Edit Plannig</h1>
+
+    {{ include('plannig/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_plannig_index') }}">back to list</a>
+
+    {{ include('plannig/_delete_form.html.twig') }}
+{% endblock %}

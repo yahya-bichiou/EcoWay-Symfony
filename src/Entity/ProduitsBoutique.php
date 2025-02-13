@@ -14,40 +14,36 @@ class ProduitsBoutique
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Length(min: 2, minMessage: 'Min lenght 2')]
-    #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'Invalid name')]
     private ?string $productName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Length(min: 5)]
-    #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'Invalid description')]
     private ?string $productDesc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Length(min: 2)]
-    #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'Invalid category')]
     private ?string $productCategory = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Positive]
     #[Assert\Regex('/^[0-9]+(?:-[0-9]+)*$/', message: 'Invalid price')]
     private ?float $productPrice = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Positive]
     #[Assert\Regex('/^[0-9]+(?:-[0-9]+)*$/', message: 'Invalid stock')]
     private ?float $productStock = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Length(min: 2)]
-    #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'Invalid image link')]
     private ?string $productImage = null;
 
 
@@ -61,7 +57,7 @@ class ProduitsBoutique
         return $this->productName;
     }
 
-    public function setProductName(string $productName): static
+    public function setProductName(?string $productName): static
     {
         $this->productName = $productName;
 
@@ -73,7 +69,7 @@ class ProduitsBoutique
         return $this->productDesc;
     }
 
-    public function setProductDesc(string $productDesc): static
+    public function setProductDesc(?string $productDesc): static
     {
         $this->productDesc = $productDesc;
 
@@ -85,7 +81,7 @@ class ProduitsBoutique
         return $this->productCategory;
     }
 
-    public function setProductCategory(string $productCategory): static
+    public function setProductCategory(?string $productCategory): static
     {
         $this->productCategory = $productCategory;
 
@@ -97,7 +93,7 @@ class ProduitsBoutique
         return $this->productPrice;
     }
 
-    public function setProductPrice(float $productPrice): static
+    public function setProductPrice(?float $productPrice): static
     {
         $this->productPrice = $productPrice;
 
@@ -109,7 +105,7 @@ class ProduitsBoutique
         return $this->productStock;
     }
 
-    public function setProductStock(float $productStock): static
+    public function setProductStock(?float $productStock): static
     {
         $this->productStock = $productStock;
 
@@ -121,7 +117,7 @@ class ProduitsBoutique
         return $this->productImage;
     }
 
-    public function setProductImage(string $productImage): static
+    public function setProductImage(?string $productImage): static
     {
         $this->productImage = $productImage;
 

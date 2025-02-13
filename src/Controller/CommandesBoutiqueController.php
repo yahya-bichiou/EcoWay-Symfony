@@ -33,7 +33,7 @@ final class CommandesBoutiqueController extends AbstractController
             $entityManager->persist($commandesBoutique);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_commandes_boutique_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_produits_boutique_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('commandes_boutique/new.html.twig', [
@@ -59,7 +59,7 @@ final class CommandesBoutiqueController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_commandes_boutique_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_produits_boutique_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('commandes_boutique/edit.html.twig', [
@@ -76,6 +76,6 @@ final class CommandesBoutiqueController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_commandes_boutique_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_produits_boutique_index', [], Response::HTTP_SEE_OTHER);
     }
 }
