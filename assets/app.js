@@ -1,4 +1,6 @@
 import './bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap'; // Import Bootstrap JavaScript (for dropdowns, modals, etc.)
 /*
  * Welcome to your app's main JavaScript file!
  *
