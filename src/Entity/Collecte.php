@@ -13,10 +13,10 @@ class Collecte
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    
+
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Regex('/^[0-9]+(?:-[0-9]+)*$/', message: 'Invalid quantite')]
@@ -28,7 +28,7 @@ class Collecte
 
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255 , nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
     #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'Invalid nom_Responsable')]
@@ -49,7 +49,7 @@ class Collecte
         return $this->quantite;
     }
 
-    public function setQuantite(float $quantite): static
+    public function setQuantite(?float $quantite): static
     {
         $this->quantite = $quantite;
 
@@ -73,7 +73,7 @@ class Collecte
         return $this->responsable;
     }
 
-    public function setResponsable(string $responsable): static
+    public function setResponsable(?string $responsable): static
     {
         $this->responsable = $responsable;
 

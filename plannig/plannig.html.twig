@@ -1,0 +1,54 @@
+
+{% block body %}
+
+    <h1>Créer un nouveau planning</h1>
+
+   {{ form_start(form) }}
+    <div>
+        {{ form_row(form.num) }}
+    </div>
+    <div>
+        {{ form_row(form.date_debut) }}  
+    </div>
+    <div>
+        {{ form_row(form.date_fin) }}
+    </div>
+    <div>
+        {{ form_row(form.etapes) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+{{ form_end(form) }}
+
+    <h2 class="mt-4">Liste des plannings</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Numéro</th>             
+                <th>Étapes</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for planning in plannings %}
+                <tr>
+                    <td>{{ planning.id }}</td>
+                    <td>{{ planning.num }}</td>
+                    <td>{{ planning.etapes }}</td>
+                    <td>
+                        <a href="{{ path('planning_edit', { id: planning.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('planning_delete', { id: planning.id }) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce planning ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ planning.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun planning trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

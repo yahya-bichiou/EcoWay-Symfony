@@ -16,23 +16,26 @@ class Depot
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
     #[Assert\Regex('/^[a-z]+(?:-[a-z0]+)*$/', message: 'Invalid nom')]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255 , nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2)]
     #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Invalid adresse')]
     private ?string $adresse = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     #[Assert\NotBlank]
     #[Assert\Positive]
     #[Assert\Regex('/^[0-9]+(?:-[0-9]+)*$/', message: 'Invalid capacite')]
     private ?int $capacite = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     /**
      * @var Collection<int, Collecte>
@@ -55,7 +58,7 @@ class Depot
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(?string $nom): static
     {
         $this->nom = $nom;
 
@@ -67,7 +70,7 @@ class Depot
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): static
+    public function setAdresse(?string $adresse): static
     {
         $this->adresse = $adresse;
 
@@ -79,9 +82,21 @@ class Depot
         return $this->capacite;
     }
 
-    public function setCapacite(int $capacite): static
+    public function setCapacite(?int $capacite): static
     {
         $this->capacite = $capacite;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -114,5 +129,10 @@ class Depot
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom; // Replace `nom` with the field you want to use as the string representation
     }
 }
