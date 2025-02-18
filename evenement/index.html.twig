@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}evenement {% endblock %}
+
+{% block body %}
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <img src="{{ asset('logo.png') }}" alt="">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="index.html">Home</a></li>
+              <li class="scroll-to-section"><a href="/evenement" class="active">evenement</a></li>
+              <li class="scroll-to-section"><a href="/depots" >dépots</a></li>
+              <li class="scroll-to-section"><a href="/produits/boutique">Boutique</a></li>
+              <li class="scroll-to-section"><a href="/bande/commande">Achat</a></li>
+              <li class="scroll-to-section"><a href="/phase">Production</a></li>
+              <li class="scroll-to-section"><a href="/utilisateur">Users</a></li>
+            </ul>
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+  <div>
+    <img src="{{ asset('bg1.png')}}" >
+  </div>
+  <div id="services" class="our-services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+            <h6>Evenement</h6>
+            <h2>Nos Evenement</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+      {% for evenement in evenements %}
+        <div class="col-lg-4">
+          <div class="service-item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="right-content">
+                  <h4>{{ evenement.titre }}</h4>
+                  <p>Adresse: {{ evenement.localisation}}</p>
+                  <p>recompanse: {{ evenement.recomponse  }}</p>
+                  <table>
+                  <tr>
+                  <td>
+                  <form action="{{ path('app_evenement_show', {'id': evenement.id}) }}">
+                    <button class="btn">show</button>
+                  </form>
+                  </td>
+                  </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+    {% endfor %}
+      </div>
+    </div>
+{% endblock %}

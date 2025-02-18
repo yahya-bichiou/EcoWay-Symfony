@@ -1,0 +1,26 @@
+
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}} )}}
+<table>
+    <tr>
+        <td> {{form_label(form.num_p,"numero")}} </td> 
+        <td> {{ form_widget(form.num_p) }} </td>
+        <td> {{ form_errors(form.num_p) }} </td> 
+    </tr> 
+    <tr>
+        <td> {{form_label(form.description,"description")}} </td> 
+        <td> {{ form_widget(form.description) }} </td>
+        <td> {{ form_errors(form.description) }} </td> 
+    </tr> 
+    <tr>
+    <td> {{form_label(form.date_p,"date")}} </td> 
+    <td> {{ form_widget(form.date_p) }} </td>
+    <td> {{ form_errors(form.date_p) }} </td> 
+    </tr> 
+    <tr>
+    <td> {{form_label(form.status,"Status")}} </td> 
+    <td> {{ form_widget(form.status) }} </td>
+    <td> {{ form_errors(form.status) }} </td> 
+    </tr> 
+</table>
+{{ form_widget(form.save) }}
+{{ form_end(form) }}

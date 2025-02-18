@@ -1,0 +1,20 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<table>
+<tr>
+    <td> {{ form_label(form.orderOwner, "Nom du produit") }} </td>
+    <td> {{ form_widget(form.orderOwner) }} </td>
+    <td> {{ form_errors(form.orderOwner) }} </td>
+</tr>
+<tr>
+    <td> {{ form_label(form.orderStatus, "Description du produit") }} </td>
+    <td> {{ form_widget(form.orderStatus) }} </td>
+    <td> {{ form_errors(form.orderStatus) }} </td>
+</tr>
+<tr>
+    <td> {{ form_label(form.orderProducts, "Description du produit") }} </td>
+    <td> {{ form_widget(form.orderProducts) }} </td>
+    <td> {{ form_errors(form.orderProducts) }} </td>
+</tr>
+</table>
+    {{ form_widget(form.save) }}
+{{ form_end(form) }}

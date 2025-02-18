@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>OrderOwner</th>
+                <th>OrderStatus</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commandes_boutique in commandes_boutiques %}
+            <tr>
+                <td>{{ commandes_boutique.id }}</td>
+                <td>{{ commandes_boutique.orderOwner }}</td>
+                <td>{{ commandes_boutique.orderStatus }}</td>
+                <td>
+                    <a href="{{ path('app_commandes_boutique_show', {'id': commandes_boutique.id}) }}">show</a>
+                    <a href="{{ path('app_commandes_boutique_edit', {'id': commandes_boutique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commandes_boutique_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ evenement.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ evenement.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ evenement.contact }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ evenement.dateDebut }}</td>
+            </tr>
+            <tr>
+                <th>Recomponse</th>
+                <td>{{ evenement.recomponse }}</td>
+            </tr>
+        </tbody>
+    </table>     
+                    <a href="{{ path('app_participant_new', {'id': evenement.id}) }}" class="btn">Participer</a>
+
+{% endblock %}

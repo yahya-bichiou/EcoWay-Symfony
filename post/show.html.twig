@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Post{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Détails du Post</h1>
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td>{{ post.id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Titre</th>
+                    <td>{{ post.titre }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Description</th>
+                    <td>{{ post.description }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Créateur</th>
+                    <td>{{ post.createur }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Image</th>
+                    <td>
+                        {% if post.image %}
+                            <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Image du post" class="img-fluid rounded" style="max-width: 300px;">
+                        {% else %}
+                            <em>Aucune image disponible</em>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a href="{{ path('app_post_index') }}" class="btn btn-secondary">⬅ Retour à la liste</a>
+            <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="btn btn-warning">✏ Modifier</a>
+
+            <!-- Bouton de suppression avec confirmation -->
+            <form method="post" action="{{ path('app_post_delete', {'id': post.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ? Cette action est irréversible.');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                <button type="submit" class="btn btn-danger">🗑 Supprimer</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

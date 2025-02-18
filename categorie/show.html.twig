@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{{ asset('logo.png') }}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="index.html">Home</a></li>
+                        <li class="scroll-to-section"><a href="/depot">Dépots</a></li>
+                        <li class="scroll-to-section"><a href="/produitcon" >Produits</a></li>
+                        <li class="scroll-to-section"><a href="/produits/boutique" class="active">Boutique</a></li>
+                        <li class="scroll-to-section"><a href="/bande/commande">Blog</a></li>
+                        <li class="scroll-to-section"><a href="/phase">Event</a></li>
+                        <li class="scroll-to-section"><a href="/utilisateur">Users</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+<div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post" novalidate>
+            <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+
+<section class="single-category mt-10" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row mt-20">
+            <div class="col-md-12">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ categorie.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nom</th>
+                                <td>{{ categorie.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ categorie.description }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-lg-4 offset-lg-4">
+                        <table>
+                            <tr>
+                                <td>
+                                    <form action="{{ path('app_categorie_index') }}">
+                                        <button class="btn btn-primary">Retour</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ path('app_categorie_edit', {'id': categorie.id}) }}">
+                                        <button class="btn btn-warning">Modifier</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    {{ include('categorie/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

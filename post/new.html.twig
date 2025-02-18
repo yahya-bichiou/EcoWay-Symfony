@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Post{% endblock %}
+
+{% block body %}
+<div id="blog" class="blog-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+                <form id="blog-form" action="" method="post" novalidate>
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="section-heading">
+                                <h6>Blog</h6>
+                                <h2>Créer un Nouveau Post</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            {{ include('post/_form.html.twig') }}
+                            <form action="{{ path('app_post_index') }}">
+                                <button class="btn">Retour</button>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
