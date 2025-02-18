@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Depot;
 use App\Form\DepotType;
-use App\Repository\DepotRepository;
+use App\Entity\Collecte;
+use App\Form\CollecteType;
 use App\Repository\CollecteRepository;
+use App\Repository\DepotRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,32 +29,55 @@ final class DepotController extends AbstractController
     }
 
     #[Route('/new', name: 'app_depot_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%uploads_directory%')] string $imageDir): Response
     {
-        $depot = new Depot();
-        $form = $this->createForm(DepotType::class, $depot);
-        $form->handleRequest($request);
+    $depot = new Depot();
+    $form = $this->createForm(DepotType::class, $depot);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($depot);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_depot_index', [], Response::HTTP_SEE_OTHER);
+    if ($form->isSubmitted() && $form->isValid()) {
+        $depot = $form->getData();
+        if($image = $form['image']->getData()){
+            $fileName = uniqid().'.'.$image->guessExtension();
+            $image->move($imageDir, $fileName);
+            $depot->setImage($fileName);
         }
+        $entityManager->persist($depot);
+        $entityManager->flush();
 
-        return $this->render('depot/new.html.twig', [
-            'depot' => $depot,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('app_depot_index');
     }
 
-    #[Route('/{id}', name: 'app_depot_show', methods: ['GET'])]
-    public function show(Depot $depot): Response
-    {
-        return $this->render('depot/show.html.twig', [
-            'depot' => $depot,
-        ]);
+    return $this->render('depot/new.html.twig', [
+        'form' => $form->createView(),
+    ]);
     }
+
+    #[Route('/{id}', name: 'app_depot_show', methods: ['GET', 'POST'])]
+public function show(Depot $depot, Request $request, EntityManagerInterface $entityManager): Response
+{
+    // Create a new Collecte entity and set the depot
+    $collecte = new Collecte();
+    $collecte->setDepot($depot); // Set the depot BEFORE handling the form
+
+    // Create the form
+    $form = $this->createForm(CollecteType::class, $collecte);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Save the Collecte entity
+        $entityManager->persist($collecte);
+        $entityManager->flush();
+
+        // Redirect to a success page or the same page
+        return $this->redirectToRoute('app_depot_show', ['id' => $depot->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+    return $this->render('depot/show.html.twig', [
+        'depot' => $depot,
+        'form' => $form->createView(),
+    ]);
+}
 
     #[Route('/{id}/edit', name: 'app_depot_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Depot $depot, EntityManagerInterface $entityManager): Response
@@ -61,7 +88,7 @@ final class DepotController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_depot_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('back_dropoff', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('depot/edit.html.twig', [
@@ -78,6 +105,6 @@ final class DepotController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_depot_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('back_dropoff', [], Response::HTTP_SEE_OTHER);
     }
 }

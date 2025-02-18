@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Produit;
 use App\Form\Produit1Type;
 use App\Repository\ProduitRepository;
-use App\Repository\StockProduitRepository;
+use App\Repository\CategorieRepository; 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +15,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/produitcon')]
 final class ProduitconController extends AbstractController
 {
+ 
     #[Route(name: 'app_produitcon_index', methods: ['GET'])]
-    public function index(ProduitRepository $produitRepository, StockProduitRepository $stockProduitRepository): Response
+    public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository): Response
     {
         return $this->render('produitcon/index.html.twig', [
             'produits' => $produitRepository->findAll(),
-            'stock_produits' => $stockProduitRepository->findAll(),
+            'categories' => $categorieRepository->findAll(),
         ]);
     }
 

@@ -59,7 +59,7 @@ final class CollecteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_depot_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('back_dropoff', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('collecte/edit.html.twig', [
@@ -76,6 +76,6 @@ final class CollecteController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_depot_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('back_dropoff', [], Response::HTTP_SEE_OTHER);
     }
 }
