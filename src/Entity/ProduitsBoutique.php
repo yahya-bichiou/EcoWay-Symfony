@@ -123,4 +123,5 @@ class ProduitsBoutique
 
         return $this;
     }
+
 }

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/produitcon')]
 final class ProduitconController extends AbstractController
@@ -24,7 +25,7 @@ final class ProduitconController extends AbstractController
             'categories' => $categorieRepository->findAll(),
         ]);
     }
-
+  
     #[Route('/new', name: 'app_produitcon_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -35,13 +36,24 @@ final class ProduitconController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($produit);
             $entityManager->flush();
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+                $imageFile->move($this->getParameter('uploads_directory'), $newFilename);
+                $post->setImage($newFilename);
+            }
+
+            // Sauvegarder l'entité dans la base de données
+            $entityManager->persist($produit);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_produitcon_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('produitcon/new.html.twig', [
             'produit' => $produit,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

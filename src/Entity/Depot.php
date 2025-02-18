@@ -34,6 +34,9 @@ class Depot
     #[Assert\Regex('/^[0-9]+(?:-[0-9]+)*$/', message: 'Invalid capacite')]
     private ?int $capacite = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     /**
      * @var Collection<int, Collecte>
      */
@@ -86,6 +89,18 @@ class Depot
         return $this;
     }
 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Collecte>
      */
@@ -114,5 +129,10 @@ class Depot
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom; // Replace `nom` with the field you want to use as the string representation
     }
 }

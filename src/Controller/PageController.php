@@ -13,6 +13,7 @@ use App\Repository\CommandeRepository;
 use App\Entity\Collecte;
 use App\Entity\Depot;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Commande;
 use App\Form\CommandeType;
@@ -103,7 +104,7 @@ final class PageController extends AbstractController
 
     //Change controller
     #[Route('/back/dropoff', name: 'back_dropoff')]
-    public function indexd(CollecteRepository $collecteRepository, DepotRepository $depotRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function indexd(CollecteRepository $collecteRepository, DepotRepository $depotRepository, Request $request, EntityManagerInterface $entityManager, #[Autowire('%uploads_directory%')] string $imageDir): Response
     {
         $depot = new Depot();
         $depotForm = $this->createForm(DepotType::class, $depot);
@@ -111,6 +112,13 @@ final class PageController extends AbstractController
 
         if ($depotForm->isSubmitted()) {
             if ($depotForm->isValid()) {
+                $depot = $depotForm->getData();
+                $image = $depotForm->get('image')->getData();
+                if($image){
+                    $fileName = uniqid().'.'.$image->guessExtension();
+                    $image->move($imageDir, $fileName);
+                    $depot->setImage($fileName);
+                }
                 $entityManager->persist($depot);
                 $entityManager->flush();
                 return $this->redirectToRoute('back_dropoff');

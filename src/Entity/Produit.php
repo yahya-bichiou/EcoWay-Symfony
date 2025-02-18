@@ -60,11 +60,15 @@ class Produit
     #[Assert\Type(\DateTimeInterface::class, message: "La date doit être valide.")]
     private ?\DateTimeInterface $date_ajout = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produit')]
-    private ?StockProduit $stockProduit = null;
+    #[ORM\ManyToOne(targetEntity: Categorie::class)]
+    #[ORM\JoinColumn(name: "catégorie_id", referencedColumnName: "id")]
+    private ?Categorie $catégorie = null;
+    
+    #[ORM\Column(length: 255,nullable: true)]
+    #[Assert\NotBlank(message: 'Should not be blank')]
+    #[Assert\Length(min: 2)]
+    private ?string $image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'produits')]
-    private ?StockProduit $stock = null;
 
     // Getters et Setters
     public function getId(): ?int
@@ -148,28 +152,27 @@ class Produit
         $this->date_ajout = $date_ajout;
         return $this;
     }
-
-    public function getStockProduit(): ?StockProduit
+  
+    public function getCatégorie(): ?Categorie
     {
-        return $this->stockProduit;
+        return $this->catégorie;  // Correction ici
     }
-
-    public function setStockProduit(?StockProduit $stockProduit): static
+    
+    public function setCatégorie(?Categorie $catégorie): static
     {
-        $this->stockProduit = $stockProduit;
-
+        $this->catégorie = $catégorie;  // Correction ici
+    
         return $this;
     }
-
-    public function getStock(): ?StockProduit
+    public function getImage(): ?string
     {
-        return $this->stock;
+        return $this->image;
     }
-
-    public function setStock(?StockProduit $stock): static
+    
+    public function setImage(?string $image): static
     {
-        $this->stock = $stock;
-
+        $this->image = $image;
         return $this;
     }
+    
 }

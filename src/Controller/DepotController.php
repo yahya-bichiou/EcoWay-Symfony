@@ -37,6 +37,7 @@ final class DepotController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
         $depot = $form->getData();
+        $image = $form->get('image')->getData();
         if($image = $form['image']->getData()){
             $fileName = uniqid().'.'.$image->guessExtension();
             $image->move($imageDir, $fileName);
