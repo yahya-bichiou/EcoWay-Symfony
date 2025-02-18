@@ -22,7 +22,7 @@ use App\Form\DepotType;
 
 final class PageController extends AbstractController
 {
-    #[Route('/back/order', name: 'back_order')]
+    /*#[Route('/back/order', name: 'back_order')]
     public function indexo(
         CommandeRepository $commandeRepository,
         LivraisonRepository $livraisonRepository,
@@ -40,13 +40,13 @@ final class PageController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('back_order');
             }
-        }
+        }*/
         // Handling Livraison Form
-        $livraison = new Livraison();
-        $livraisonForm = $this->createForm(LivraisonType::class, $livraison);
-        $livraisonForm->handleRequest($request);
+        //$livraison = new Livraison();
+        //$livraisonForm = $this->createForm(LivraisonType::class, $livraison);
+        //$livraisonForm->handleRequest($request);
 
-        if ($livraisonForm->isSubmitted() && $livraisonForm->isValid()) {
+       /* if ($livraisonForm->isSubmitted() && $livraisonForm->isValid()) {
             // Assign Commande to Livraison (Ensure it's linked)
             $commandeId = $request->request->get('commande_id'); // Get selected Commande ID from form
             if ($commandeId) {
@@ -68,17 +68,17 @@ final class PageController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
-        }
+        }*/
 
-        return $this->render('backend/order.html.twig', [
+        /*return $this->render('backend/order.html.twig', [
             'controller_name' => 'PageController',
             'commandes' => $commandeRepository->findAll(),
             'livraisons' => $livraisonRepository->findAll(),
             'commandeForm' => $commandeForm->createView(),
             'livraisonForm' => $livraisonForm->createView(),
         ]);
-    }
-    #[Route('l/{id}', name: 'livraison_delete', methods: ['POST'])]
+    }*/
+    /*#[Route('l/{id}', name: 'livraison_delete', methods: ['POST'])]
     public function delete(Request $request, Livraison $livraison, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$livraison->getId(), $request->getPayload()->getString('_token'))) {
@@ -87,9 +87,9 @@ final class PageController extends AbstractController
         }
 
         return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
 
-    #[Route('c/{id}', name: 'commande_delete', methods: ['POST'])]
+    /*#[Route('c/{id}', name: 'commande_delete', methods: ['POST'])]
     public function deletec(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->getPayload()->getString('_token'))) {
@@ -98,7 +98,7 @@ final class PageController extends AbstractController
         }
 
         return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
 
 
     //Change controller
@@ -195,7 +195,7 @@ final class PageController extends AbstractController
 
 
     //front
-    #[Route('/front/order', name: 'front_order')]
+   /* #[Route('/front/order', name: 'front_order')]
     public function indexof(CommandeRepository $commandeRepository, LivraisonRepository $livraisonRepository): Response
     {
         // Fetch commandes with userId = 0 and status = 'non_confirmée'
@@ -207,7 +207,7 @@ final class PageController extends AbstractController
             'commandes' => $commandes,
         ]);
 
-    }
+    }*/
 
     //Change controller
     #[Route('/front/dropoff', name: 'front_dropoff')]
