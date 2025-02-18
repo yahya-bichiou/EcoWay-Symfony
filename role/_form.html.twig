@@ -1,0 +1,17 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+    <table>
+    <tr>
+        <td> {{ form_label (form.nomR,"nom du role")}}</td>
+        <td> {{ form_widget(form.nomR) }}</td>
+        <td> {{ form_errors(form.nomR) }}</td>
+    </tr>
+    <tr>
+        <td> {{ form_label (form.perm,"permission")}}</td>
+        <td> {{ form_widget(form.perm) }}</td>
+        <td> {{ form_errors(form.perm) }}</td>
+    </tr>
+        </table>
+
+
+    {{ form_widget(form.save) }}
+{{ form_end(form) }}
