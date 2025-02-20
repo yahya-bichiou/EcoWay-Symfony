@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+<section class="single-product mt-10" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row mt-20">
+            <div class="col-md-5">
+                <div class="single-product-slider">
+                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                        <div class='item active'>
+                            <img src="{{ produit.image }}" alt="Image du produit" data-zoom-image="{{ produit.image }}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-details">
+                    <h2>{{ produit.nom }}</h2>
+                    <p class="product-price">{{ produit.prix|number_format(2, ',', ' ') }} DT</p>
+
+                    <p class="product-description mt-20">
+                        {{ produit.description }}
+                    </p>
+                    <p>Type: {{ produit.type }}</p>
+                    <p>Qualité: {{ produit.qualite }}</p>
+                    <div class="product-quantity">
+                        <span>En Stock: {{ produit.quantiteDisponible }}</span>
+                    </div>
+                    <p>Date d'ajout: {{ produit.dateAjout ? produit.dateAjout|date('Y-m-d H:i:s') : '' }}</p>
+
+                    <div class="col-lg-4 offset-lg-4">
+                        <table>
+                            <tr>
+                                <td>
+                                    <form action="{{ path('app_produitcon_index') }}">
+                                        <button class="btn btn-primary">Retour</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ path('app_produitcon_edit', {'id': produit.id}) }}">
+                                        <button class="btn btn-warning">Modifier</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    {{ include('produitcon/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

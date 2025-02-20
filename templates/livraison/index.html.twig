@@ -1,0 +1,38 @@
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Livreur</th>
+                <th>Adresse</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Mode</th>
+                <th>Prix</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livraison in livraisons %}
+            <tr>
+                <td>{{ livraison.id }}</td>
+                <td>{{ livraison.livreur }}</td>
+                <td>{{ livraison.adresse }}</td>
+                <td>{{ livraison.date ? livraison.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ livraison.status }}</td>
+                <td>{{ livraison.mode }}</td>
+                <td>{{ livraison.prix }}</td>
+                <td>
+                    {{ include('/livraison/_delete_form.html.twig') }}
+                </td>
+                <td>
+                    <a href="{{ path('app_livraison_edit', {'id': livraison.id}) }}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

@@ -1,0 +1,48 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<table>
+    <tr>
+        <td>{{ form_label(form.nom, "Nom du Produit") }}</td>
+        <td>{{ form_widget(form.nom) }}</td>
+        <td>{{ form_errors(form.nom) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.description, "Description") }}</td>
+        <td>{{ form_widget(form.description) }}</td>
+        <td>{{ form_errors(form.description) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.type, "Type") }}</td>
+        <td>{{ form_widget(form.type) }}</td>
+        <td>{{ form_errors(form.type) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.qualite, "Qualité") }}</td>
+        <td>{{ form_widget(form.qualite) }}</td>
+        <td>{{ form_errors(form.qualite) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.quantite_disponible, "Quantité Disponible") }}</td>
+        <td>{{ form_widget(form.quantite_disponible) }}</td>
+        <td>{{ form_errors(form.quantite_disponible) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.prix, "Prix") }}</td>
+        <td>{{ form_widget(form.prix) }}</td>
+        <td>{{ form_errors(form.prix) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.date_ajout, "Date d'Ajout") }}</td>
+        <td>{{ form_widget(form.date_ajout) }}</td>
+        <td>{{ form_errors(form.date_ajout) }}</td>
+    </tr>
+    <tr>
+    <td> {{ form_label(form.image, "Lien Image du produit") }} </td>
+    <td> {{ form_widget(form.image) }} </td>
+    <td> {{ form_errors(form.image) }} </td>
+</tr>
+</table>
+
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
