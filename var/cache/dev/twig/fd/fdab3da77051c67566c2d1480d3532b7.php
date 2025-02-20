@@ -232,6 +232,6 @@ class __TwigTemplate_b094c64dc940d142d1efed6d67941981 extends Template
 
     <a href=\"{{ path('app_role_new') }}\">Create new</a>
 {% endblock %}
-", "role/index.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\role\\index.html.twig");
+", "role/index.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\role\\index.html.twig");
     }
 }

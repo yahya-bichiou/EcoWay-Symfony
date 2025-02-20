@@ -167,6 +167,6 @@ class __TwigTemplate_38a450c8799a105cfa461085e606c1e8 extends Template
 <div class=\"text-center mt-4\">
     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 </div>
-{{ form_end(form) }}", "collecte/_form.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\collecte\\_form.html.twig");
+{{ form_end(form) }}", "collecte/_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\_form.html.twig");
     }
 }

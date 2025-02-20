@@ -125,6 +125,6 @@ class __TwigTemplate_22cb41af52f5616e4edbce5293e9efc7 extends Template
 
     <a href=\"{{ path('app_plannig_index') }}\">back to list</a>
 {% endblock %}
-", "plannig/new.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\plannig\\new.html.twig");
+", "plannig/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\plannig\\new.html.twig");
     }
 }

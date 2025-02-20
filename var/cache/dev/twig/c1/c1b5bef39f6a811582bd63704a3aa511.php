@@ -204,6 +204,6 @@ class __TwigTemplate_4f2b6b6610b2abf8bfa954ba4a309a22 extends Template
 
     <a href=\"{{ path('app_plannig_new') }}\">Create new</a>
 {% endblock %}
-", "plannig/index.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\plannig\\index.html.twig");
+", "plannig/index.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\plannig\\index.html.twig");
     }
 }

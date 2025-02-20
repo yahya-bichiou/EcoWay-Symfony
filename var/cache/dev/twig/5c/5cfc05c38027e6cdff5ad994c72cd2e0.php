@@ -94,6 +94,6 @@ class __TwigTemplate_9a4a78505c23dda4026b5d9038d48211 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ utilisateur.id) }}\">
     <button class=\"btn\">Delete</button>
 </form>
-", "utilisateur/_delete_form.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\utilisateur\\_delete_form.html.twig");
+", "utilisateur/_delete_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\utilisateur\\_delete_form.html.twig");
     }
 }

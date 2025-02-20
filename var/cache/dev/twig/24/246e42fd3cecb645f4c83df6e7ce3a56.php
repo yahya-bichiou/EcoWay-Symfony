@@ -235,6 +235,6 @@ class __TwigTemplate_8fa312f80d7aa007fb270d0d30801d43 extends Template
 
     <a href=\"{{ path('app_categorie_new') }}\">Create new</a>
 {% endblock %}
-", "categorie/index.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\categorie\\index.html.twig");
+", "categorie/index.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\categorie\\index.html.twig");
     }
 }

@@ -212,6 +212,6 @@ class __TwigTemplate_6fd8af672e639a50df9d95fc69996206 extends Template
 </table>
     {{ form_widget(form.save) }}
 {{ form_end(form) }}
-", "produits_boutique/_form.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\produits_boutique\\_form.html.twig");
+", "produits_boutique/_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\produits_boutique\\_form.html.twig");
     }
 }

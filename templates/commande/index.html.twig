@@ -7,6 +7,7 @@
                 <th>Status</th>
                 <th>Prix</th>
                 <th>ModePaiement</th>
+                <th>Produits</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -20,6 +21,13 @@
                 <td>{{ commande.status }}</td>
                 <td>{{ commande.prix }}</td>
                 <td>{{ commande.modePaiement }}</td>
+                <td>
+                    {% for produit in commande.produits %}
+                        {{ produit.nom }}{% if not loop.last %}, {% endif %}
+                    {% else %}
+                        <span class="text-muted">No products</span>
+                    {% endfor %}
+                </td>
                 <td>
                     {{ include('/commande/_delete_form.html.twig') }}
                 </td>

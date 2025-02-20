@@ -143,6 +143,6 @@ class __TwigTemplate_445ce4f5643645745ef65fc0371936e3 extends Template
 {% block body %}
   {{ include('collecte/_form.html.twig') }}
 {% endblock %}
-", "collecte/new.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\collecte\\new.html.twig");
+", "collecte/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\new.html.twig");
     }
 }

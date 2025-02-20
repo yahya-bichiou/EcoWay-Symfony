@@ -328,6 +328,6 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
       </div>
     </div>
   </footer>
-{% endblock %}", "depot/show.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\depot\\show.html.twig");
+{% endblock %}", "depot/show.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\depot\\show.html.twig");
     }
 }

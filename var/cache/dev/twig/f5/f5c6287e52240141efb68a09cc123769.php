@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* /depot/_delete_form.html.twig */
+/* depot/_delete_form.html.twig */
 class __TwigTemplate_6c5e1c03a5e03a55d5041ddc626a63c4 extends Template
 {
     private Source $source;
@@ -39,10 +39,10 @@ class __TwigTemplate_6c5e1c03a5e03a55d5041ddc626a63c4 extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/depot/_delete_form.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "depot/_delete_form.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/depot/_delete_form.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "depot/_delete_form.html.twig"));
 
         // line 1
         yield "<form method=\"post\" action=\"";
@@ -69,7 +69,7 @@ class __TwigTemplate_6c5e1c03a5e03a55d5041ddc626a63c4 extends Template
      */
     public function getTemplateName(): string
     {
-        return "/depot/_delete_form.html.twig";
+        return "depot/_delete_form.html.twig";
     }
 
     /**
@@ -94,6 +94,6 @@ class __TwigTemplate_6c5e1c03a5e03a55d5041ddc626a63c4 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ depot.id) }}\">
     <button class=\"btn btn-primary\">Delete</button>
 </form>
-", "/depot/_delete_form.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\depot\\_delete_form.html.twig");
+", "depot/_delete_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\depot\\_delete_form.html.twig");
     }
 }

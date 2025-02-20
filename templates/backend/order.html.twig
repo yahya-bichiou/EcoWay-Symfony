@@ -2,6 +2,34 @@
 
 {% block title %}Commande index{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let collectionHolder = document.querySelector("#commande_produits");
+            if (!collectionHolder) {
+                console.error("Commande produits collection not found!");
+                return;
+            }
+
+            let addButton = document.createElement("button");
+            addButton.textContent = "Add Product";
+            addButton.type = "button";
+            addButton.classList.add("btn", "btn-primary", "mt-2");
+            collectionHolder.after(addButton);
+
+            addButton.addEventListener("click", function() {
+                let prototype = collectionHolder.dataset.prototype;
+                let index = collectionHolder.children.length;
+                let newForm = prototype.replace(/__name__/g, index);
+                let newElement = document.createElement("div");
+                newElement.innerHTML = newForm;
+                collectionHolder.appendChild(newElement);
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
 <body class="navbar-fixed sidebar-fixed" id="body">
     <script>

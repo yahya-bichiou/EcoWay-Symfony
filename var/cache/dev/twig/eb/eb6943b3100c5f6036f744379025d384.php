@@ -155,6 +155,6 @@ class __TwigTemplate_4bcdd5a01eb8dadb5e089698bc10eb30 extends Template
 
     <a href=\"{{ path('app_commande_index') }}\">back to list</a>
 {% endblock %}
-", "commande/new.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\commande\\new.html.twig");
+", "commande/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\commande\\new.html.twig");
     }
 }

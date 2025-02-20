@@ -142,6 +142,6 @@ class __TwigTemplate_a02ae26d2d5224a797f808b3cdeb4e01 extends Template
 <button class=\"btn btn-primary\">{{ button_label|default('Enregistrer') }}</button>
 
 {{ form_end(form) }}
-", "categorie/_form.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\categorie\\_form.html.twig");
+", "categorie/_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\categorie\\_form.html.twig");
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -63,11 +65,22 @@ class Produit
     #[ORM\ManyToOne(targetEntity: Categorie::class)]
     #[ORM\JoinColumn(name: "catégorie_id", referencedColumnName: "id")]
     private ?Categorie $catégorie = null;
-    
+
     #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Should not be blank')]
     #[Assert\Length(min: 2)]
     private ?string $image = null;
+
+    /**
+     * @var Collection<int, Commande>
+     */
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'produit')]
+    private Collection $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
 
     // Getters et Setters
@@ -152,27 +165,54 @@ class Produit
         $this->date_ajout = $date_ajout;
         return $this;
     }
-  
+
     public function getCatégorie(): ?Categorie
     {
         return $this->catégorie;  // Correction ici
     }
-    
+
     public function setCatégorie(?Categorie $catégorie): static
     {
         $this->catégorie = $catégorie;  // Correction ici
-    
+
         return $this;
     }
     public function getImage(): ?string
     {
         return $this->image;
     }
-    
+
     public function setImage(?string $image): static
     {
         $this->image = $image;
         return $this;
     }
-    
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeProduit($this);
+        }
+
+        return $this;
+    }
+
 }

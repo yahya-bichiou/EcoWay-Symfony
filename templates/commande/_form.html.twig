@@ -31,6 +31,12 @@
                                 {{ form_label(form.modePaiement) }}
                                 {{ form_widget(form.modePaiement, {'attr': {'class': 'form-control'}}) }}
                             </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.produits) }}
+                                {{ form_widget(form.produits, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.produits) }}
+                            </div>
                         </div>
                     </div>
                     {{ form_widget(form.save, {'attr': {'style': 'display: none;'}}) }}

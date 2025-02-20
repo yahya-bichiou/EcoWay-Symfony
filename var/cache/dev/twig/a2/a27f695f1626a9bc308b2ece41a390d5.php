@@ -155,6 +155,6 @@ class __TwigTemplate_8f1af27b5629e3f29c98e0364f77ab52 extends Template
 
     <a href=\"{{ path('app_livraison_index') }}\">back to list</a>
 {% endblock %}
-", "livraison/new.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\livraison\\new.html.twig");
+", "livraison/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\livraison\\new.html.twig");
     }
 }

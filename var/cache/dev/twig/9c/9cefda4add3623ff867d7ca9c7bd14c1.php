@@ -230,6 +230,6 @@ class __TwigTemplate_30727b07fb4a8b9bda4a2f802bb5edde extends Template
 
     <a href=\"{{ path('app_commandes_boutique_new') }}\">Create new</a>
 {% endblock %}
-", "commandes_boutique/index.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\commandes_boutique\\index.html.twig");
+", "commandes_boutique/index.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\commandes_boutique\\index.html.twig");
     }
 }

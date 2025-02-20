@@ -1998,6 +1998,6 @@ class __TwigTemplate_cb7b6f4c32a6417824b421216d510cb7 extends Template
 
   </body>
 {% endblock %}
-", "frontend/blog.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\frontend\\blog.html.twig");
+", "frontend/blog.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\frontend\\blog.html.twig");
     }
 }

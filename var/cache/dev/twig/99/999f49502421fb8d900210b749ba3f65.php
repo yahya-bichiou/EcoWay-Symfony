@@ -211,6 +211,6 @@ class __TwigTemplate_eb0f28198bc8b99c4fea1d7dd46b805c extends Template
         <button type=\"submit\">Enregistrer</button>
     {{ form_end(form) }}
 {% endblock %}
-", "role/edit.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\role\\edit.html.twig");
+", "role/edit.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\role\\edit.html.twig");
     }
 }

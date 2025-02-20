@@ -342,6 +342,6 @@ class __TwigTemplate_8d094351942ecacb9d471070d330b775 extends Template
     </div>
   </footer>
 {% endblock %}
-", "frontend/dropoff.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\frontend\\dropoff.html.twig");
+", "frontend/dropoff.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\frontend\\dropoff.html.twig");
     }
 }

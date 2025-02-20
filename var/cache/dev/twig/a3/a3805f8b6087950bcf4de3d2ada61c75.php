@@ -216,6 +216,6 @@ class __TwigTemplate_99d539800f193aacb39e678178759776 extends Template
 
     {{ include('collecte/_delete_form.html.twig') }}
 {% endblock %}
-", "collecte/show.html.twig", "C:\\Users\\User\\Downloads\\EcoWay-produit (1)\\EcoWay-produit\\templates\\collecte\\show.html.twig");
+", "collecte/show.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\show.html.twig");
     }
 }
