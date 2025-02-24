@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use App\Entity\Produit;
 
@@ -29,7 +29,10 @@ class CommandeType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
             ])
-            ->add('prix')
+            ->add('prix', NumberType::class, [
+                'required' => false,
+                'disabled' => true,
+            ])
             ->add('modePaiement', ChoiceType::class, [
                 'choices'  => [
                     'Carte' => 'carte',

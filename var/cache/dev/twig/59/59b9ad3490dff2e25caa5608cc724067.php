@@ -104,9 +104,42 @@ class __TwigTemplate_38a450c8799a105cfa461085e606c1e8 extends Template
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 24, $this->source); })()), "save", [], "any", false, false, false, 24), 'widget', ["attr" => ["class" => "btn btn-primary"]]);
         yield "
 </div>
+
 ";
-        // line 26
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 26, $this->source); })()), 'form_end');
+        // line 27
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 27, $this->source); })()), "flashes", ["error"], "method", false, false, false, 27));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 28
+            yield "    <div class=\"alert alert-danger\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+            yield "</div>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 30
+        yield "
+";
+        // line 31
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 31, $this->source); })()), "flashes", ["success"], "method", false, false, false, 31));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 32
+            yield "    <div class=\"alert alert-success\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+            yield "</div>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 34
+        yield "
+";
+        // line 35
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 35, $this->source); })()), 'form_end');
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -137,7 +170,7 @@ class __TwigTemplate_38a450c8799a105cfa461085e606c1e8 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  109 => 26,  104 => 24,  97 => 20,  91 => 17,  87 => 16,  83 => 15,  77 => 12,  73 => 11,  69 => 10,  63 => 7,  59 => 6,  55 => 5,  48 => 1,);
+        return array (  142 => 35,  139 => 34,  130 => 32,  126 => 31,  123 => 30,  114 => 28,  110 => 27,  104 => 24,  97 => 20,  91 => 17,  87 => 16,  83 => 15,  77 => 12,  73 => 11,  69 => 10,  63 => 7,  59 => 6,  55 => 5,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -167,6 +200,15 @@ class __TwigTemplate_38a450c8799a105cfa461085e606c1e8 extends Template
 <div class=\"text-center mt-4\">
     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 </div>
+
+{% for message in app.flashes('error') %}
+    <div class=\"alert alert-danger\">{{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('success') %}
+    <div class=\"alert alert-success\">{{ message }}</div>
+{% endfor %}
+
 {{ form_end(form) }}", "collecte/_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\_form.html.twig");
     }
 }

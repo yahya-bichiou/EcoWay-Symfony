@@ -1,0 +1,9 @@
+.progress {
+    height: 20px; /* Adjust height of the progress bar */
+    margin-bottom: 0px;
+}
+.progress-bar {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

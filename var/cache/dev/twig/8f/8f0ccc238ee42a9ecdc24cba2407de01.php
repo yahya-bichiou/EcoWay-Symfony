@@ -14,7 +14,7 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* collecte/new.html.twig */
+/* /collecte/new.html.twig */
 class __TwigTemplate_445ce4f5643645745ef65fc0371936e3 extends Template
 {
     private Source $source;
@@ -45,12 +45,12 @@ class __TwigTemplate_445ce4f5643645745ef65fc0371936e3 extends Template
     {
         $macros = $this->macros;
         $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "collecte/new.html.twig"));
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/collecte/new.html.twig"));
 
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "collecte/new.html.twig"));
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "/collecte/new.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "collecte/new.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "/collecte/new.html.twig", 1);
         yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -115,7 +115,7 @@ class __TwigTemplate_445ce4f5643645745ef65fc0371936e3 extends Template
      */
     public function getTemplateName(): string
     {
-        return "collecte/new.html.twig";
+        return "/collecte/new.html.twig";
     }
 
     /**
@@ -143,6 +143,6 @@ class __TwigTemplate_445ce4f5643645745ef65fc0371936e3 extends Template
 {% block body %}
   {{ include('collecte/_form.html.twig') }}
 {% endblock %}
-", "collecte/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\new.html.twig");
+", "/collecte/new.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\collecte\\new.html.twig");
     }
 }

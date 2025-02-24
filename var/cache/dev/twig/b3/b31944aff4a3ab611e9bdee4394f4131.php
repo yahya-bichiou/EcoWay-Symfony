@@ -252,7 +252,10 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
                 yield " DT</h6>
                           </div>
                           <div class=\"col-md-1 col-lg-1 col-xl-1 text-end\">
-                            <a href=\"#!\" class=\"text-muted\"><i class=\"fas fa-times\"></i></a>
+                            <a href=\"";
+                // line 87
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("front_order_remove_product", ["commandeId" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 87), "productId" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 87)]), "html", null, true);
+                yield "\" class=\"btn btn-danger\"><i class=\"fas fa-times\"></i></a>
                           </div>
                         </div>
                       ";
@@ -342,10 +345,25 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 137, $this->source); })()), "html", null, true);
         yield " DT</h5>
                     </div>
-
-                    <button type=\"button\" class=\"btn btn-dark btn-block btn-lg\">
-                      Checkout
-                    </button>
+                    <span class=\"checkout\"></span>
+                    ";
+        // line 140
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 140, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
+            // line 141
+            yield "                    <a href=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("commande_invoice", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 141)]), "html", null, true);
+            yield "\">
+                      <span class=\"export\"></span>
+                    </a>
+                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 145
+        yield "
 
                   </div>
                 </div>
@@ -361,8 +379,8 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
 <script>
 document.addEventListener(\"DOMContentLoaded\", function() {
     let totalPrice = ";
-        // line 157
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 157, $this->source); })()), "html", null, true);
+        // line 160
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 160, $this->source); })()), "html", null, true);
         yield "; // Get total price from Twig
     let shippingSelect = document.getElementById(\"shippingMethod\");
     let finalPriceElement = document.getElementById(\"finalPrice\");
@@ -390,6 +408,47 @@ document.addEventListener(\"DOMContentLoaded\", function() {
       </div>
     </div>
   </footer>
+
+  <style>
+    .checkout {
+        width: 50px;
+        height: 50px;
+        background: url(\"";
+        // line 192
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .checkout:hover {
+        background: url(\"";
+        // line 198
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out-hover.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+    }
+
+        .export {
+        width: 50px;
+        height: 50px;
+        background: url(\"";
+        // line 205
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .export:hover {
+        background: url(\"";
+        // line 211
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export-hover.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+    }
+</style>
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -421,7 +480,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  365 => 157,  342 => 137,  319 => 117,  315 => 116,  311 => 114,  305 => 113,  302 => 112,  297 => 111,  295 => 110,  277 => 94,  270 => 92,  268 => 93,  264 => 91,  251 => 84,  245 => 81,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  446 => 211,  437 => 205,  427 => 198,  418 => 192,  383 => 160,  366 => 145,  355 => 141,  351 => 140,  345 => 137,  322 => 117,  318 => 116,  314 => 114,  308 => 113,  305 => 112,  300 => 111,  298 => 110,  280 => 94,  273 => 92,  271 => 93,  267 => 91,  257 => 87,  251 => 84,  245 => 81,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -512,7 +571,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
                             <h6 class=\"mb-0\">{{ produit.prix * produit.quantity }} DT</h6>
                           </div>
                           <div class=\"col-md-1 col-lg-1 col-xl-1 text-end\">
-                            <a href=\"#!\" class=\"text-muted\"><i class=\"fas fa-times\"></i></a>
+                            <a href=\"{{ path('front_order_remove_product', {'commandeId': commande.id, 'productId': produit.id}) }}\" class=\"btn btn-danger\"><i class=\"fas fa-times\"></i></a>
                           </div>
                         </div>
                       {% endfor %}
@@ -564,10 +623,13 @@ document.addEventListener(\"DOMContentLoaded\", function() {
                       <h5 class=\"text-uppercase\">Total price</h5>
                       <h5 id=\"finalPrice\">{{ totalPrice }} DT</h5>
                     </div>
+                    <span class=\"checkout\"></span>
+                    {% for commande in commandes %}
+                    <a href=\"{{ path('commande_invoice', {'id': commande.id}) }}\">
+                      <span class=\"export\"></span>
+                    </a>
+                    {% endfor %}
 
-                    <button type=\"button\" class=\"btn btn-dark btn-block btn-lg\">
-                      Checkout
-                    </button>
 
                   </div>
                 </div>
@@ -609,6 +671,35 @@ document.addEventListener(\"DOMContentLoaded\", function() {
       </div>
     </div>
   </footer>
+
+  <style>
+    .checkout {
+        width: 50px;
+        height: 50px;
+        background: url(\"{{ asset('icons/check-out.png') }}\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .checkout:hover {
+        background: url(\"{{ asset('icons/check-out-hover.png') }}\") no-repeat center;
+        background-size: contain;
+    }
+
+        .export {
+        width: 50px;
+        height: 50px;
+        background: url(\"{{ asset('icons/export.png') }}\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .export:hover {
+        background: url(\"{{ asset('icons/export-hover.png') }}\") no-repeat center;
+        background-size: contain;
+    }
+</style>
+
 {% endblock %}
 ", "frontend/order.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\frontend\\order.html.twig");
     }

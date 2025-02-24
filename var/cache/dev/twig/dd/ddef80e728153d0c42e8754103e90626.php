@@ -76,15 +76,16 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
                 <th>Adresse</th>
                 <th>Capacité</th>
                 <th>Image</th>
+                <th>Progress</th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
         ";
-        // line 14
+        // line 15
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["depots"]) || array_key_exists("depots", $context) ? $context["depots"] : (function () { throw new RuntimeError('Variable "depots" does not exist.', 14, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["depots"]) || array_key_exists("depots", $context) ? $context["depots"] : (function () { throw new RuntimeError('Variable "depots" does not exist.', 15, $this->source); })()));
         $context['_iterated'] = false;
         $context['loop'] = [
           'parent' => $context['_parent'],
@@ -100,38 +101,82 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
             $context['loop']['last'] = 1 === $length;
         }
         foreach ($context['_seq'] as $context["_key"] => $context["depot"]) {
-            // line 15
+            // line 16
             yield "            <tr>
                 <td>";
-            // line 16
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "id", [], "any", false, false, false, 16), "html", null, true);
-            yield "</td>
-                <td>";
             // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "nom", [], "any", false, false, false, 17), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "id", [], "any", false, false, false, 17), "html", null, true);
             yield "</td>
                 <td>";
             // line 18
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "adresse", [], "any", false, false, false, 18), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "nom", [], "any", false, false, false, 18), "html", null, true);
             yield "</td>
                 <td>";
             // line 19
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "capacite", [], "any", false, false, false, 19), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "adresse", [], "any", false, false, false, 19), "html", null, true);
             yield "</td>
                 <td>";
             // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "image", [], "any", false, false, false, 20), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "capacite", [], "any", false, false, false, 20), "html", null, true);
+            yield "</td>
+                <td>";
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "image", [], "any", false, false, false, 21), "html", null, true);
             yield "</td>
                 <td>
                     ";
-            // line 22
+            // line 23
+            $context["percentageUsed"] = CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "usagePercentage", [], "any", false, false, false, 23);
+            // line 24
+            yield "
+        <div class=\"progress\">
+            <div class=\"progress-bar\"
+                 role=\"progressbar\"
+                 style=\"width: ";
+            // line 28
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["percentageUsed"]) || array_key_exists("percentageUsed", $context) ? $context["percentageUsed"] : (function () { throw new RuntimeError('Variable "percentageUsed" does not exist.', 28, $this->source); })()), "html", null, true);
+            yield "%; background-color:
+                    ";
+            // line 29
+            if (((isset($context["percentageUsed"]) || array_key_exists("percentageUsed", $context) ? $context["percentageUsed"] : (function () { throw new RuntimeError('Variable "percentageUsed" does not exist.', 29, $this->source); })()) < 50)) {
+                // line 30
+                yield "                        green
+                    ";
+            } elseif ((            // line 31
+(isset($context["percentageUsed"]) || array_key_exists("percentageUsed", $context) ? $context["percentageUsed"] : (function () { throw new RuntimeError('Variable "percentageUsed" does not exist.', 31, $this->source); })()) < 80)) {
+                // line 32
+                yield "                        yellow
+                    ";
+            } else {
+                // line 34
+                yield "                        red
+                    ";
+            }
+            // line 35
+            yield ";\"
+                 aria-valuenow=\"";
+            // line 36
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["percentageUsed"]) || array_key_exists("percentageUsed", $context) ? $context["percentageUsed"] : (function () { throw new RuntimeError('Variable "percentageUsed" does not exist.', 36, $this->source); })()), "html", null, true);
+            yield "\"
+                 aria-valuemin=\"0\"
+                 aria-valuemax=\"100\">
+                ";
+            // line 39
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "remainingSpace", [], "any", false, false, false, 39), "html", null, true);
+            yield "Kg left
+            </div>
+        </div>
+    </td>
+                <td>
+                    ";
+            // line 44
             yield Twig\Extension\CoreExtension::include($this->env, $context, "/depot/_delete_form.html.twig");
             yield "
                 </td>
                 <td>
                     <a href=\"";
-            // line 25
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_depot_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "id", [], "any", false, false, false, 25)]), "html", null, true);
+            // line 47
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_depot_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "id", [], "any", false, false, false, 47)]), "html", null, true);
             yield "\" class=\"btn btn-primary\">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
                 </td>
             </tr>
@@ -146,9 +191,9 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
                 $context['loop']['last'] = 0 === $context['loop']['revindex0'];
             }
         }
-        // line 32
+        // line 54
         if (!$context['_iterated']) {
-            // line 29
+            // line 51
             yield "            <tr>
                 <td colspan=\"5\">no records found</td>
             </tr>
@@ -157,7 +202,7 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['depot'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 33
+        // line 55
         yield "        </tbody>
 ";
         
@@ -182,7 +227,7 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  161 => 33,  152 => 29,  150 => 32,  134 => 25,  128 => 22,  123 => 20,  119 => 19,  115 => 18,  111 => 17,  107 => 16,  104 => 15,  86 => 14,  72 => 2,  49 => 1,);
+        return array (  206 => 55,  197 => 51,  195 => 54,  179 => 47,  173 => 44,  165 => 39,  159 => 36,  156 => 35,  152 => 34,  148 => 32,  146 => 31,  143 => 30,  141 => 29,  137 => 28,  131 => 24,  129 => 23,  124 => 21,  120 => 20,  116 => 19,  112 => 18,  108 => 17,  105 => 16,  87 => 15,  72 => 2,  49 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -195,6 +240,7 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
                 <th>Adresse</th>
                 <th>Capacité</th>
                 <th>Image</th>
+                <th>Progress</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -207,6 +253,27 @@ class __TwigTemplate_2fcf720d9d1d948bb9ac89a383c781e7 extends Template
                 <td>{{ depot.adresse}}</td>
                 <td>{{ depot.capacite }}</td>
                 <td>{{ depot.image }}</td>
+                <td>
+                    {% set percentageUsed = depot.usagePercentage %}
+
+        <div class=\"progress\">
+            <div class=\"progress-bar\"
+                 role=\"progressbar\"
+                 style=\"width: {{ percentageUsed }}%; background-color:
+                    {% if percentageUsed < 50 %}
+                        green
+                    {% elseif percentageUsed < 80 %}
+                        yellow
+                    {% else %}
+                        red
+                    {% endif %};\"
+                 aria-valuenow=\"{{ percentageUsed }}\"
+                 aria-valuemin=\"0\"
+                 aria-valuemax=\"100\">
+                {{ depot.remainingSpace }}Kg left
+            </div>
+        </div>
+    </td>
                 <td>
                     {{ include('/depot/_delete_form.html.twig') }}
                 </td>

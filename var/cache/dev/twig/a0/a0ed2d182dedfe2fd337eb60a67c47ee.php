@@ -1079,283 +1079,87 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                     </a>
                   </li>
                   <li class=\"custom-dropdown\">
-                    <button class=\"notify-toggler custom-dropdown-toggler\">
-                      <i class=\"mdi mdi-bell-outline icon\"></i>
-                      <span class=\"badge badge-xs rounded-circle\">21</span>
-                    </button>
-                    <div class=\"dropdown-notify\">
+    <button class=\"notify-toggler custom-dropdown-toggler\">
+        <i class=\"mdi mdi-bell-outline icon\"></i>
+        <span class=\"badge badge-xs rounded-circle\">";
+        // line 987
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["fullDepots"]) || array_key_exists("fullDepots", $context) ? $context["fullDepots"] : (function () { throw new RuntimeError('Variable "fullDepots" does not exist.', 987, $this->source); })())), "html", null, true);
+        yield "</span>
+    </button>
+    <div class=\"dropdown-notify\">
+        <header>
+            <div class=\"nav nav-underline\" id=\"nav-tab\" role=\"tablist\">
+                <a class=\"nav-item nav-link active\" id=\"all-tabs\" data-toggle=\"tab\" href=\"#all\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">All (";
+        // line 992
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["fullDepots"]) || array_key_exists("fullDepots", $context) ? $context["fullDepots"] : (function () { throw new RuntimeError('Variable "fullDepots" does not exist.', 992, $this->source); })())), "html", null, true);
+        yield ")</a>
+            </div>
+        </header>
 
-                      <header>
-                        <div class=\"nav nav-underline\" id=\"nav-tab\" role=\"tablist\">
-                          <a class=\"nav-item nav-link active\" id=\"all-tabs\" data-toggle=\"tab\" href=\"#all\" role=\"tab\" aria-controls=\"nav-home\"
-                            aria-selected=\"true\">All (5)</a>
-                          <a class=\"nav-item nav-link\" id=\"message-tab\" data-toggle=\"tab\" href=\"#message\" role=\"tab\" aria-controls=\"nav-profile\"
-                            aria-selected=\"false\">Msgs (4)</a>
-                          <a class=\"nav-item nav-link\" id=\"other-tab\" data-toggle=\"tab\" href=\"#other\" role=\"tab\" aria-controls=\"nav-contact\"
-                            aria-selected=\"false\">Others (3)</a>
+        <div class=\"\" data-simplebar style=\"height: 325px;\">
+            <div class=\"tab-content\" id=\"myTabContent\">
+                <div class=\"tab-pane fade show active\" id=\"all\" role=\"tabpanel\" aria-labelledby=\"all-tabs\">
+                    ";
+        // line 999
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["fullDepots"]) || array_key_exists("fullDepots", $context) ? $context["fullDepots"] : (function () { throw new RuntimeError('Variable "fullDepots" does not exist.', 999, $this->source); })()));
+        $context['_iterated'] = false;
+        foreach ($context['_seq'] as $context["_key"] => $context["depot"]) {
+            // line 1000
+            yield "                        <div class=\"media media-sm bg-danger p-4 mb-0\">
+                            <div class=\"media-sm-wrapper\">
+                                <a href=\"#\">
+                                    <i class=\"mdi mdi-alert-circle-outline\"></i>
+                                </a>
+                            </div>
+                            <div class=\"media-body\">
+                                <a href=\"#\">
+                                    <span class=\"title mb-0\">Depot Full!</span>
+                                    <span class=\"discribe\">The depot ";
+            // line 1009
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["depot"], "nom", [], "any", false, false, false, 1009), "html", null, true);
+            yield " is full, please empty it.</span>
+                                    <span class=\"time\">
+                                        <time>Just now</time>...
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                      </header>
-
-                      <div class=\"\" data-simplebar style=\"height: 325px;\">
-                        <div class=\"tab-content\" id=\"myTabContent\">
-
-                          <div class=\"tab-pane fade show active\" id=\"all\" role=\"tabpanel\" aria-labelledby=\"all-tabs\">
-
-                            <div class=\"media media-sm bg-warning-10 p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1010
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-02.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">John Doe</span>
-                                  <span class=\"discribe\">Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
+                    ";
+            $context['_iterated'] = true;
+        }
+        // line 1022
+        if (!$context['_iterated']) {
+            // line 1017
+            yield "                        <div class=\"media media-sm p-4 mb-0\">
+                            <div class=\"media-body\">
+                                <span class=\"title mb-0\">No depots are full!</span>
                             </div>
-
-                            <div class=\"media media-sm p-4 bg-light mb-0\">
-                              <div class=\"media-sm-wrapper bg-primary\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-calendar-check-outline\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">New event added</span>
-                                  <span class=\"discribe\">1/3/2014 (1pm - 2pm)</span>
-                                  <span class=\"time\">
-                                    <time>10 min ago...</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1044
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-03.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Sagge Hudson</span>
-                                  <span class=\"discribe\">On disposal of as landlord Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info-dark\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-account-multiple-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Add request</span>
-                                  <span class=\"discribe\">Add Dany Jones as your contact.</span>
-                                  <div class=\"buttons\">
-                                    <a href=\"#\" class=\"btn btn-sm btn-success shadow-none text-white\">accept</a>
-                                    <a href=\"#\" class=\"btn btn-sm shadow-none\">delete</a>
-                                  </div>
-                                  <span class=\"time\">
-                                    <time>6 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-playlist-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Task complete</span>
-                                  <span class=\"discribe\">Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
-
-                          <div class=\"tab-pane fade\" id=\"message\" role=\"tabpanel\" aria-labelledby=\"message-tab\">
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1103
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-01.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Selena Wagner</span>
-                                  <span class=\"discribe\">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                                  <span class=\"time\">
-                                    <time>15 min ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1120
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-03.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Sagge Hudson</span>
-                                  <span class=\"discribe\">On disposal of as landlord Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm bg-warning-10 p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1137
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-02.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">John Doe</span>
-                                  <span class=\"discribe\">Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
-                                    at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"";
-        // line 1155
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-04.jpg"), "html", null, true);
-        yield "\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Albrecht Straub</span>
-                                  <span class=\"discribe\"> Beatae quia natus assumenda laboriosam, nisi perferendis aliquid consectetur expedita non tenetur.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class=\"tab-pane fade\" id=\"other\" role=\"tabpanel\" aria-labelledby=\"contact-tab\">
-
-                            <div class=\"media media-sm p-4 bg-light mb-0\">
-                              <div class=\"media-sm-wrapper bg-primary\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-calendar-check-outline\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">New event added</span>
-                                  <span class=\"discribe\">1/3/2014 (1pm - 2pm)</span>
-                                  <span class=\"time\">
-                                    <time>10 min ago...</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info-dark\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-account-multiple-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Add request</span>
-                                  <span class=\"discribe\">Add Dany Jones as your contact.</span>
-                                  <div class=\"buttons\">
-                                    <a href=\"#\" class=\"btn btn-sm btn-success shadow-none text-white\">accept</a>
-                                    <a href=\"#\" class=\"btn btn-sm shadow-none\">delete</a>
-                                  </div>
-                                  <span class=\"time\">
-                                    <time>6 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-playlist-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Task complete</span>
-                                  <span class=\"discribe\">Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
                         </div>
-                      </div>
+                    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['depot'], $context['_parent'], $context['_iterated']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 1023
+        yield "                </div>
+            </div>
+        </div>
 
-                      <footer class=\"border-top dropdown-notify-footer\">
-                        <div class=\"d-flex justify-content-between align-items-center py-2 px-4\">
-                          <span>Last updated 3 min ago</span>
-                          <a id=\"refress-button\" href=\"javascript:\" class=\"btn mdi mdi-cached btn-refress\"></a>
-                        </div>
-                      </footer>
-                    </div>
-                  </li>
+        <footer class=\"border-top dropdown-notify-footer\">
+            <div class=\"d-flex justify-content-between align-items-center py-2 px-4\">
+                <span>Last updated 3 min ago</span>
+                <a id=\"refress-button\" href=\"javascript:\" class=\"btn mdi mdi-cached btn-refress\"></a>
+            </div>
+        </footer>
+    </div>
+</li>
+
                   <!-- User Account -->
                   <li class=\"dropdown user-menu\">
                     <button class=\"dropdown-toggle nav-link\" data-toggle=\"dropdown\">
                       <img src=\"";
-        // line 1242
+        // line 1039
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-xs-01.jpg"), "html", null, true);
         yield "\" class=\"user-image rounded-circle\" alt=\"User Image\" />
                       <span class=\"d-none d-lg-inline-block\">John Doe</span>
@@ -1424,9 +1228,9 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                       <div class=\"card-body\">
                         <table id=\"productsTable\" class=\"table table-hover table-product\" style=\"width:100%\">
                           ";
-        // line 1308
-        yield from $this->loadTemplate("depot/index.html.twig", "backend/dropoff.html.twig", 1308)->unwrap()->yield($context);
-        // line 1309
+        // line 1105
+        yield from $this->loadTemplate("depot/index.html.twig", "backend/dropoff.html.twig", 1105)->unwrap()->yield($context);
+        // line 1106
         yield "                        </table>
                         <a href=\"#\" class=\"btn btn-primary btn-pill\" data-toggle=\"modal\" data-target=\"#depot-modal\">Add Depot</a>
                       </div>
@@ -1454,9 +1258,9 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                       <div class=\"card-body\">
                         <table id=\"productsTable\" class=\"table table-hover table-product\" style=\"width:100%\">
                           ";
-        // line 1335
-        yield from $this->loadTemplate("collecte/index.html.twig", "backend/dropoff.html.twig", 1335)->unwrap()->yield($context);
-        // line 1336
+        // line 1132
+        yield from $this->loadTemplate("collecte/index.html.twig", "backend/dropoff.html.twig", 1132)->unwrap()->yield($context);
+        // line 1133
         yield "                        </table>
                         <a href=\"#\" class=\"btn btn-primary btn-pill\" data-toggle=\"modal\" data-target=\"#collecte-modal\">Add Collecte</a>
                       </div>
@@ -1478,54 +1282,54 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                 </div>
                 <div class=\"modal-body\">
                     ";
-        // line 1356
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1356, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
+        // line 1153
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1153, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         yield "
 
                     <div class=\"row\">
                         <div class=\"col-md-6\">
                             <div class=\"form-group\">
                                 ";
-        // line 1361
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1361, $this->source); })()), "nom", [], "any", false, false, false, 1361), 'label');
+        // line 1158
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1158, $this->source); })()), "nom", [], "any", false, false, false, 1158), 'label');
         yield "
                                 ";
-        // line 1362
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1362, $this->source); })()), "nom", [], "any", false, false, false, 1362), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1159
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1159, $this->source); })()), "nom", [], "any", false, false, false, 1159), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                                 ";
-        // line 1363
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1363, $this->source); })()), "nom", [], "any", false, false, false, 1363), 'errors');
-        yield "
-                            </div>
-
-                            <div class=\"form-group\">
-                                ";
-        // line 1367
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1367, $this->source); })()), "adresse", [], "any", false, false, false, 1367), 'label');
-        yield "
-                                ";
-        // line 1368
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1368, $this->source); })()), "adresse", [], "any", false, false, false, 1368), 'widget', ["attr" => ["class" => "form-control"]]);
-        yield "
-                                ";
-        // line 1369
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1369, $this->source); })()), "adresse", [], "any", false, false, false, 1369), 'errors');
+        // line 1160
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1160, $this->source); })()), "nom", [], "any", false, false, false, 1160), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1373
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1373, $this->source); })()), "capacite", [], "any", false, false, false, 1373), 'label');
+        // line 1164
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1164, $this->source); })()), "adresse", [], "any", false, false, false, 1164), 'label');
         yield "
                                 ";
-        // line 1374
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1374, $this->source); })()), "capacite", [], "any", false, false, false, 1374), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1165
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1165, $this->source); })()), "adresse", [], "any", false, false, false, 1165), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                                 ";
-        // line 1375
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1375, $this->source); })()), "capacite", [], "any", false, false, false, 1375), 'errors');
+        // line 1166
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1166, $this->source); })()), "adresse", [], "any", false, false, false, 1166), 'errors');
+        yield "
+                            </div>
+
+                            <div class=\"form-group\">
+                                ";
+        // line 1170
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1170, $this->source); })()), "capacite", [], "any", false, false, false, 1170), 'label');
+        yield "
+                                ";
+        // line 1171
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1171, $this->source); })()), "capacite", [], "any", false, false, false, 1171), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1172
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1172, $this->source); })()), "capacite", [], "any", false, false, false, 1172), 'errors');
         yield "
                             </div>
                         </div>
@@ -1533,20 +1337,20 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                         <div class=\"col-md-6\">
                         <div class=\"custom-file\">
                           ";
-        // line 1381
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1381, $this->source); })()), "image", [], "any", false, false, false, 1381), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1178
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1178, $this->source); })()), "image", [], "any", false, false, false, 1178), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                           <span class=\"upload-image\">Click here to <span class=\"text-primary\">add product image.</span> </span>
                         </div>
                         </div>
                     </div>
                     ";
-        // line 1386
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1386, $this->source); })()), "save", [], "any", false, false, false, 1386), 'widget', ["attr" => ["style" => "display: none;"]]);
+        // line 1183
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1183, $this->source); })()), "save", [], "any", false, false, false, 1183), 'widget', ["attr" => ["style" => "display: none;"]]);
         yield "
                     ";
-        // line 1387
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1387, $this->source); })()), 'form_end');
+        // line 1184
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1184, $this->source); })()), 'form_end');
         yield "
                 </div>
                 <div class=\"modal-footer\">
@@ -1572,69 +1376,69 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                 </div>
                 <div class=\"modal-body\">
                     ";
-        // line 1411
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1411, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
+        // line 1208
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1208, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         yield "
 
                     <div class=\"row\">
                         <div class=\"col-md-12\">
                             <div class=\"form-group\">
                                 ";
-        // line 1416
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1416, $this->source); })()), "quantite", [], "any", false, false, false, 1416), 'label');
+        // line 1213
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1213, $this->source); })()), "quantite", [], "any", false, false, false, 1213), 'label');
         yield "
                                 ";
-        // line 1417
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1417, $this->source); })()), "quantite", [], "any", false, false, false, 1417), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1214
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1214, $this->source); })()), "quantite", [], "any", false, false, false, 1214), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                                 ";
-        // line 1418
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1418, $this->source); })()), "quantite", [], "any", false, false, false, 1418), 'errors');
-        yield "
-                            </div>
-
-                            <div class=\"form-group\">
-                                ";
-        // line 1422
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1422, $this->source); })()), "date", [], "any", false, false, false, 1422), 'label');
-        yield "
-                                ";
-        // line 1423
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1423, $this->source); })()), "date", [], "any", false, false, false, 1423), 'widget', ["attr" => ["class" => "form-control"]]);
-        yield "
-                                ";
-        // line 1424
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1424, $this->source); })()), "date", [], "any", false, false, false, 1424), 'errors');
+        // line 1215
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1215, $this->source); })()), "quantite", [], "any", false, false, false, 1215), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1428
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1428, $this->source); })()), "responsable", [], "any", false, false, false, 1428), 'label');
+        // line 1219
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1219, $this->source); })()), "date", [], "any", false, false, false, 1219), 'label');
         yield "
                                 ";
-        // line 1429
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1429, $this->source); })()), "responsable", [], "any", false, false, false, 1429), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1220
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1220, $this->source); })()), "date", [], "any", false, false, false, 1220), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                                 ";
-        // line 1430
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1430, $this->source); })()), "responsable", [], "any", false, false, false, 1430), 'errors');
+        // line 1221
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1221, $this->source); })()), "date", [], "any", false, false, false, 1221), 'errors');
+        yield "
+                            </div>
+
+                            <div class=\"form-group\">
+                                ";
+        // line 1225
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1225, $this->source); })()), "responsable", [], "any", false, false, false, 1225), 'label');
+        yield "
+                                ";
+        // line 1226
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1226, $this->source); })()), "responsable", [], "any", false, false, false, 1226), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1227
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1227, $this->source); })()), "responsable", [], "any", false, false, false, 1227), 'errors');
         yield "
                             </div>
                         </div>
                     </div>
                     ";
-        // line 1434
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1434, $this->source); })()), "depot", [], "any", false, false, false, 1434), 'widget', ["attr" => ["style" => "display: none;"]]);
+        // line 1231
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1231, $this->source); })()), "depot", [], "any", false, false, false, 1231), 'widget', ["attr" => ["style" => "display: none;"]]);
         yield "
                     ";
-        // line 1435
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1435, $this->source); })()), "save", [], "any", false, false, false, 1435), 'widget', ["attr" => ["style" => "display: none;"]]);
+        // line 1232
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1232, $this->source); })()), "save", [], "any", false, false, false, 1232), 'widget', ["attr" => ["style" => "display: none;"]]);
         yield "
                     ";
-        // line 1436
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1436, $this->source); })()), 'form_end');
+        // line 1233
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1233, $this->source); })()), 'form_end');
         yield "
                 </div>
                 <div class=\"modal-footer\">
@@ -1686,7 +1490,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1486
+        // line 1283
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-01.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1704,7 +1508,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1501
+        // line 1298
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-02.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1722,7 +1526,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1516
+        // line 1313
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-03.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                             </a>
@@ -1739,7 +1543,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1530
+        // line 1327
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-04.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                             </a>
@@ -1757,7 +1561,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1545
+        // line 1342
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-05.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-danger\"></span>
@@ -1775,7 +1579,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1560
+        // line 1357
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-06.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1823,7 +1627,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  1779 => 1560,  1761 => 1545,  1743 => 1530,  1726 => 1516,  1708 => 1501,  1690 => 1486,  1637 => 1436,  1633 => 1435,  1629 => 1434,  1622 => 1430,  1618 => 1429,  1614 => 1428,  1607 => 1424,  1603 => 1423,  1599 => 1422,  1592 => 1418,  1588 => 1417,  1584 => 1416,  1576 => 1411,  1549 => 1387,  1545 => 1386,  1537 => 1381,  1528 => 1375,  1524 => 1374,  1520 => 1373,  1513 => 1369,  1509 => 1368,  1505 => 1367,  1498 => 1363,  1494 => 1362,  1490 => 1361,  1482 => 1356,  1460 => 1336,  1458 => 1335,  1430 => 1309,  1428 => 1308,  1359 => 1242,  1269 => 1155,  1248 => 1137,  1228 => 1120,  1208 => 1103,  1146 => 1044,  1109 => 1010,  126 => 30,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  1583 => 1357,  1565 => 1342,  1547 => 1327,  1530 => 1313,  1512 => 1298,  1494 => 1283,  1441 => 1233,  1437 => 1232,  1433 => 1231,  1426 => 1227,  1422 => 1226,  1418 => 1225,  1411 => 1221,  1407 => 1220,  1403 => 1219,  1396 => 1215,  1392 => 1214,  1388 => 1213,  1380 => 1208,  1353 => 1184,  1349 => 1183,  1341 => 1178,  1332 => 1172,  1328 => 1171,  1324 => 1170,  1317 => 1166,  1313 => 1165,  1309 => 1164,  1302 => 1160,  1298 => 1159,  1294 => 1158,  1286 => 1153,  1264 => 1133,  1262 => 1132,  1234 => 1106,  1232 => 1105,  1163 => 1039,  1145 => 1023,  1134 => 1017,  1132 => 1022,  1120 => 1009,  1109 => 1000,  1104 => 999,  1094 => 992,  1086 => 987,  126 => 30,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -2812,260 +2616,57 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                     </a>
                   </li>
                   <li class=\"custom-dropdown\">
-                    <button class=\"notify-toggler custom-dropdown-toggler\">
-                      <i class=\"mdi mdi-bell-outline icon\"></i>
-                      <span class=\"badge badge-xs rounded-circle\">21</span>
-                    </button>
-                    <div class=\"dropdown-notify\">
+    <button class=\"notify-toggler custom-dropdown-toggler\">
+        <i class=\"mdi mdi-bell-outline icon\"></i>
+        <span class=\"badge badge-xs rounded-circle\">{{ fullDepots|length }}</span>
+    </button>
+    <div class=\"dropdown-notify\">
+        <header>
+            <div class=\"nav nav-underline\" id=\"nav-tab\" role=\"tablist\">
+                <a class=\"nav-item nav-link active\" id=\"all-tabs\" data-toggle=\"tab\" href=\"#all\" role=\"tab\" aria-controls=\"nav-home\" aria-selected=\"true\">All ({{ fullDepots|length }})</a>
+            </div>
+        </header>
 
-                      <header>
-                        <div class=\"nav nav-underline\" id=\"nav-tab\" role=\"tablist\">
-                          <a class=\"nav-item nav-link active\" id=\"all-tabs\" data-toggle=\"tab\" href=\"#all\" role=\"tab\" aria-controls=\"nav-home\"
-                            aria-selected=\"true\">All (5)</a>
-                          <a class=\"nav-item nav-link\" id=\"message-tab\" data-toggle=\"tab\" href=\"#message\" role=\"tab\" aria-controls=\"nav-profile\"
-                            aria-selected=\"false\">Msgs (4)</a>
-                          <a class=\"nav-item nav-link\" id=\"other-tab\" data-toggle=\"tab\" href=\"#other\" role=\"tab\" aria-controls=\"nav-contact\"
-                            aria-selected=\"false\">Others (3)</a>
+        <div class=\"\" data-simplebar style=\"height: 325px;\">
+            <div class=\"tab-content\" id=\"myTabContent\">
+                <div class=\"tab-pane fade show active\" id=\"all\" role=\"tabpanel\" aria-labelledby=\"all-tabs\">
+                    {% for depot in fullDepots %}
+                        <div class=\"media media-sm bg-danger p-4 mb-0\">
+                            <div class=\"media-sm-wrapper\">
+                                <a href=\"#\">
+                                    <i class=\"mdi mdi-alert-circle-outline\"></i>
+                                </a>
+                            </div>
+                            <div class=\"media-body\">
+                                <a href=\"#\">
+                                    <span class=\"title mb-0\">Depot Full!</span>
+                                    <span class=\"discribe\">The depot {{ depot.nom }} is full, please empty it.</span>
+                                    <span class=\"time\">
+                                        <time>Just now</time>...
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                      </header>
-
-                      <div class=\"\" data-simplebar style=\"height: 325px;\">
-                        <div class=\"tab-content\" id=\"myTabContent\">
-
-                          <div class=\"tab-pane fade show active\" id=\"all\" role=\"tabpanel\" aria-labelledby=\"all-tabs\">
-
-                            <div class=\"media media-sm bg-warning-10 p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-02.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">John Doe</span>
-                                  <span class=\"discribe\">Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
+                    {% else %}
+                        <div class=\"media media-sm p-4 mb-0\">
+                            <div class=\"media-body\">
+                                <span class=\"title mb-0\">No depots are full!</span>
                             </div>
-
-                            <div class=\"media media-sm p-4 bg-light mb-0\">
-                              <div class=\"media-sm-wrapper bg-primary\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-calendar-check-outline\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">New event added</span>
-                                  <span class=\"discribe\">1/3/2014 (1pm - 2pm)</span>
-                                  <span class=\"time\">
-                                    <time>10 min ago...</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-03.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Sagge Hudson</span>
-                                  <span class=\"discribe\">On disposal of as landlord Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info-dark\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-account-multiple-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Add request</span>
-                                  <span class=\"discribe\">Add Dany Jones as your contact.</span>
-                                  <div class=\"buttons\">
-                                    <a href=\"#\" class=\"btn btn-sm btn-success shadow-none text-white\">accept</a>
-                                    <a href=\"#\" class=\"btn btn-sm shadow-none\">delete</a>
-                                  </div>
-                                  <span class=\"time\">
-                                    <time>6 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-playlist-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Task complete</span>
-                                  <span class=\"discribe\">Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
-
-                          <div class=\"tab-pane fade\" id=\"message\" role=\"tabpanel\" aria-labelledby=\"message-tab\">
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-01.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Selena Wagner</span>
-                                  <span class=\"discribe\">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                                  <span class=\"time\">
-                                    <time>15 min ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-03.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Sagge Hudson</span>
-                                  <span class=\"discribe\">On disposal of as landlord Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm bg-warning-10 p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-02.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">John Doe</span>
-                                  <span class=\"discribe\">Extremity sweetness difficult behaviour he of. On disposal of as landlord horrible. Afraid
-                                    at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper\">
-                                <a href=\"user-profile.html\">
-                                  <img src=\"{{asset('backend/images/user/user-sm-04.jpg')}}\" alt=\"User Image\">
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Albrecht Straub</span>
-                                  <span class=\"discribe\"> Beatae quia natus assumenda laboriosam, nisi perferendis aliquid consectetur expedita non tenetur.</span>
-                                  <span class=\"time\">
-                                    <time>Just now</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class=\"tab-pane fade\" id=\"other\" role=\"tabpanel\" aria-labelledby=\"contact-tab\">
-
-                            <div class=\"media media-sm p-4 bg-light mb-0\">
-                              <div class=\"media-sm-wrapper bg-primary\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-calendar-check-outline\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">New event added</span>
-                                  <span class=\"discribe\">1/3/2014 (1pm - 2pm)</span>
-                                  <span class=\"time\">
-                                    <time>10 min ago...</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info-dark\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-account-multiple-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Add request</span>
-                                  <span class=\"discribe\">Add Dany Jones as your contact.</span>
-                                  <div class=\"buttons\">
-                                    <a href=\"#\" class=\"btn btn-sm btn-success shadow-none text-white\">accept</a>
-                                    <a href=\"#\" class=\"btn btn-sm shadow-none\">delete</a>
-                                  </div>
-                                  <span class=\"time\">
-                                    <time>6 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                            <div class=\"media media-sm p-4 mb-0\">
-                              <div class=\"media-sm-wrapper bg-info\">
-                                <a href=\"user-profile.html\">
-                                  <i class=\"mdi mdi-playlist-check\"></i>
-                                </a>
-                              </div>
-                              <div class=\"media-body\">
-                                <a href=\"user-profile.html\">
-                                  <span class=\"title mb-0\">Task complete</span>
-                                  <span class=\"discribe\">Afraid at highly months do things on at.</span>
-                                  <span class=\"time\">
-                                    <time>1 hrs ago</time>...
-                                  </span>
-                                </a>
-                              </div>
-                            </div>
-
-                          </div>
                         </div>
-                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
-                      <footer class=\"border-top dropdown-notify-footer\">
-                        <div class=\"d-flex justify-content-between align-items-center py-2 px-4\">
-                          <span>Last updated 3 min ago</span>
-                          <a id=\"refress-button\" href=\"javascript:\" class=\"btn mdi mdi-cached btn-refress\"></a>
-                        </div>
-                      </footer>
-                    </div>
-                  </li>
+        <footer class=\"border-top dropdown-notify-footer\">
+            <div class=\"d-flex justify-content-between align-items-center py-2 px-4\">
+                <span>Last updated 3 min ago</span>
+                <a id=\"refress-button\" href=\"javascript:\" class=\"btn mdi mdi-cached btn-refress\"></a>
+            </div>
+        </footer>
+    </div>
+</li>
+
                   <!-- User Account -->
                   <li class=\"dropdown user-menu\">
                     <button class=\"dropdown-toggle nav-link\" data-toggle=\"dropdown\">

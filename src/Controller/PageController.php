@@ -10,6 +10,7 @@ use App\Repository\LivraisonRepository;
 use App\Repository\CollecteRepository;
 use App\Repository\DepotRepository;
 use App\Repository\CommandeRepository;
+use App\Service\PdfGeneratorService;
 use App\Entity\Collecte;
 use App\Entity\Depot;
 use Doctrine\ORM\EntityManagerInterface;
@@ -117,45 +118,75 @@ final class PageController extends AbstractController
 
     //Change controller
     #[Route('/back/dropoff', name: 'back_dropoff')]
-    public function indexd(CollecteRepository $collecteRepository, DepotRepository $depotRepository, Request $request, EntityManagerInterface $entityManager, #[Autowire('%uploads_directory%')] string $imageDir): Response
-    {
-        $depot = new Depot();
-        $depotForm = $this->createForm(DepotType::class, $depot);
-        $depotForm->handleRequest($request);
+public function indexd(
+    CollecteRepository $collecteRepository,
+    DepotRepository $depotRepository,
+    Request $request,
+    EntityManagerInterface $entityManager,
+    #[Autowire('%uploads_directory%')] string $imageDir
+): Response {
+    $depot = new Depot();
+    $depotForm = $this->createForm(DepotType::class, $depot);
+    $depotForm->handleRequest($request);
 
-        if ($depotForm->isSubmitted()) {
-            if ($depotForm->isValid()) {
-                $depot = $depotForm->getData();
-                $image = $depotForm->get('image')->getData();
-                if($image){
-                    $fileName = uniqid().'.'.$image->guessExtension();
-                    $image->move($imageDir, $fileName);
-                    $depot->setImage($fileName);
-                }
-                $entityManager->persist($depot);
-                $entityManager->flush();
-                return $this->redirectToRoute('back_dropoff');
+    $depots = $depotRepository->findAll();
+    $collectes = $collecteRepository->findAll();
+    $fullDepots = [];
+
+    foreach ($depots as $depot) {
+        $totalQuantite = 0;
+
+        // Sum the total quantity of waste collected in this depot
+        foreach ($collectes as $collecte) {
+            if ($collecte->getDepot() === $depot) {
+                $totalQuantite += $collecte->getQuantite();
             }
         }
-        // Handling Collecte Form
-        $collecte = new collecte();
-        $collecteForm = $this->createForm(CollecteType::class, $collecte);
-        $collecteForm->handleRequest($request);
-        if ($collecteForm->isSubmitted()) {
-            if ($collecteForm->isValid()) {
-                $entityManager->persist($collecte);
-                $entityManager->flush();
-                return $this->redirectToRoute('back_dropoff');
-            }
+
+        $depot->remainingSpace = $depot->getCapacite() - $totalQuantite; // Add remaining space to the depot object
+        $depot->usagePercentage = $totalQuantite / $depot->getCapacite() * 100; // Percentage of space used
+        $percentageUsed = $depot->usagePercentage;
+
+        // If the depot is full (80% usage or more), add it to the fullDepots array
+        if ($percentageUsed >= 80) {
+            $fullDepots[] = $depot;
         }
-        return $this->render('backend/dropoff.html.twig', [
-            'controller_name' => 'PageController',
-            'depots' => $depotRepository->findAll(),
-            'collectes' => $collecteRepository->findAll(),
-            'depotForm' => $depotForm->createView(),
-            'collecteForm' => $collecteForm->createView(),
-        ]);
     }
+
+    // Handling Depot Form Submission
+    if ($depotForm->isSubmitted() && $depotForm->isValid()) {
+        $depot = $depotForm->getData();
+        $image = $depotForm->get('image')->getData();
+        if ($image) {
+            $fileName = uniqid() . '.' . $image->guessExtension();
+            $image->move($imageDir, $fileName);
+            $depot->setImage($fileName);
+        }
+        $entityManager->persist($depot);
+        $entityManager->flush();
+        return $this->redirectToRoute('back_dropoff');
+    }
+
+    // Handling Collecte Form Submission
+    $collecte = new Collecte();
+    $collecteForm = $this->createForm(CollecteType::class, $collecte);
+    $collecteForm->handleRequest($request);
+    if ($collecteForm->isSubmitted() && $collecteForm->isValid()) {
+        $entityManager->persist($collecte);
+        $entityManager->flush();
+        return $this->redirectToRoute('back_dropoff');
+    }
+
+    return $this->render('backend/dropoff.html.twig', [
+        'controller_name' => 'PageController',
+        'depots' => $depots,
+        'collectes' => $collectes,
+        'fullDepots' => $fullDepots, // Pass the fullDepots array to the template
+        'depotForm' => $depotForm->createView(),
+        'collecteForm' => $collecteForm->createView(),
+    ]);
+}
+
     #[Route('/rmd/{id}', name: 'depot_delete', methods: ['POST'])]
     public function deleted(Request $request, Depot $depot, EntityManagerInterface $entityManager): Response
     {
@@ -229,6 +260,41 @@ final class PageController extends AbstractController
             'commandes' => $commandes,
         ]);
 
+    }
+    #[Route('/commande/{id}/invoice', name: 'commande_invoice')]
+    public function generateInvoice( Commande $commande, PdfGeneratorService $pdfGeneratorService ): Response {
+        // Convert Commande to an array format for the PDF
+        $commandeData = [
+            'id' => $commande->getId(),
+            'clientId' => $commande->getClientId(),
+            'date' => $commande->getDate()->format('Y-m-d'),
+            'prix' => $commande->getPrix(),
+            'produits' => $commande->getProduits(), // JSON field
+        ];
+
+        // Generate the PDF invoice
+        $pdfPath = $pdfGeneratorService->generateInvoice($commandeData);
+
+        // Return a downloadable response
+        return $this->file($this->getParameter('kernel.project_dir') . '/public/' . $pdfPath);
+    }
+    #[Route('/front/order/remove-product/{commandeId}/{productId}', name: 'front_order_remove_product')]
+    public function removeProduct(
+        int $commandeId,
+        int $productId,
+        CommandeRepository $commandeRepository,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $commande = $commandeRepository->find($commandeId);
+        $produits = $commande->getProduits();
+        $produits = array_filter($produits, function ($produit) use ($productId) {
+            return $produit['id'] !== $productId;
+        });
+        $commande->setProduits(array_values($produits));
+        $commande->calculateTotalPrice();
+        $entityManager->persist($commande);
+        $entityManager->flush();
+        return $this->redirectToRoute('front_order');
     }
 
     //Change controller

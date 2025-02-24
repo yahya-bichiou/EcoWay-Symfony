@@ -61,18 +61,18 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         ";
         // line 7
         yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
-        // line 20
+        // line 21
         yield "
         ";
-        // line 21
+        // line 22
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 61
+        // line 62
         yield "    </head>
     <body>
         ";
-        // line 63
+        // line 64
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 65
+        // line 66
         yield "    </body>
 </html>
 ";
@@ -160,6 +160,10 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         // line 18
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/favicon.png"), "html", null, true);
         yield "\" rel=\"shortcut icon\" />
+            <link rel=\"stylesheet\" href=\"";
+        // line 19
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/progress.css"), "html", null, true);
+        yield "\">
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -170,7 +174,7 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         yield from [];
     }
 
-    // line 21
+    // line 22
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -183,51 +187,51 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 22
+        // line 23
         yield "            <script src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/nprogress/nprogress.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 23
+        // line 24
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/jquery/jquery.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 24
+        // line 25
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/bootstrap/js/bootstrap.bundle.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 25
+        // line 26
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/simplebar/simplebar.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"https://unpkg.com/hotkeys-js/dist/hotkeys.min.js\"></script>
             <script src=\"https://cdn.jsdelivr.net/npm/apexcharts\"></script>
             <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>
             <script src=\"";
-        // line 29
+        // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/apexcharts/apexcharts.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 30
+        // line 31
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 31
+        // line 32
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 32
+        // line 33
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/jvectormap/jquery-jvectormap-world-mill.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 33
+        // line 34
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/jvectormap/jquery-jvectormap-us-aea.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 34
+        // line 35
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/daterangepicker/moment.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 35
+        // line 36
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/daterangepicker/daterangepicker.js"), "html", null, true);
         yield "\"></script>
             <script>
@@ -250,23 +254,23 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
             <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css\">
             <script src=\"https://cdn.quilljs.com/1.3.6/quill.js\"></script>
             <script src=\"";
-        // line 55
+        // line 56
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/plugins/toaster/toastr.min.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 56
+        // line 57
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/js/mono.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 57
+        // line 58
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/js/chart.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 58
+        // line 59
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/js/map.js"), "html", null, true);
         yield "\"></script>
             <script src=\"";
-        // line 59
+        // line 60
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/js/custom.js"), "html", null, true);
         yield "\"></script>
         ";
@@ -279,7 +283,7 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         yield from [];
     }
 
-    // line 63
+    // line 64
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -292,7 +296,7 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 64
+        // line 65
         yield "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -316,7 +320,7 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  296 => 64,  283 => 63,  270 => 59,  266 => 58,  262 => 57,  258 => 56,  254 => 55,  231 => 35,  227 => 34,  223 => 33,  219 => 32,  215 => 31,  211 => 30,  207 => 29,  200 => 25,  196 => 24,  192 => 23,  187 => 22,  174 => 21,  161 => 18,  157 => 17,  153 => 16,  148 => 14,  144 => 13,  140 => 12,  136 => 11,  132 => 10,  128 => 9,  125 => 8,  112 => 7,  89 => 5,  76 => 65,  74 => 63,  70 => 61,  68 => 21,  65 => 20,  63 => 7,  58 => 5,  52 => 1,);
+        return array (  300 => 65,  287 => 64,  274 => 60,  270 => 59,  266 => 58,  262 => 57,  258 => 56,  235 => 36,  231 => 35,  227 => 34,  223 => 33,  219 => 32,  215 => 31,  211 => 30,  204 => 26,  200 => 25,  196 => 24,  191 => 23,  178 => 22,  165 => 19,  161 => 18,  157 => 17,  153 => 16,  148 => 14,  144 => 13,  140 => 12,  136 => 11,  132 => 10,  128 => 9,  125 => 8,  112 => 7,  89 => 5,  76 => 66,  74 => 64,  70 => 62,  68 => 22,  65 => 21,  63 => 7,  58 => 5,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -339,6 +343,7 @@ class __TwigTemplate_f19348cad0742cbdfc5d2d4e57d9c883 extends Template
             <link href=\"{{asset('backend/plugins/toaster/toastr.min.css')}}\" rel=\"stylesheet\" />
             <link id=\"main-css-href\" rel=\"stylesheet\" href=\"{{asset('backend/css/style.css')}}\" />
             <link href=\"{{asset('backend/images/favicon.png')}}\" rel=\"shortcut icon\" />
+            <link rel=\"stylesheet\" href=\"{{asset('backend/progress.css')}}\">
         {% endblock %}
 
         {% block javascripts %}
