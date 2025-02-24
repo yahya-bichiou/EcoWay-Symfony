@@ -38,16 +38,8 @@ class Commande
     #[ORM\Column(length: 255)]
     private ?string $modePaiement = null;
 
-    /**
-     * @var Collection<int, Produit>
-     */
-    #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'commandes')]
-    private Collection $produit;
-
-    public function __construct()
-    {
-        $this->produit = new ArrayCollection();
-    }
+    #[ORM\Column(type: Types::JSON)]
+    private array $produits = [];
 
     public function getId(): ?int
     {
@@ -95,10 +87,9 @@ class Commande
         return $this->prix;
     }
 
-    public function setPrix(float $prix): static
+    public function setPrix(float $prix): self
     {
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -114,30 +105,27 @@ class Commande
         return $this;
     }
 
-    /**
-     * @return Collection<int, Produit>
-     */
-    public function getProduits(): Collection
+    public function getProduits(): array
     {
-        return $this->produit;
+        return $this->produits ?? [];
     }
 
-    public function addProduit(Produit $produit): static
+    public function setProduits(array $produits): self
     {
-        if (!$this->produit->contains($produit)) {
-            $this->produit->add($produit);
-            $produit->addCommande($this);
-        }
-
+        $this->produits = $produits;
         return $this;
     }
 
-    public function removeProduit(Produit $produit): static
+    public function calculateTotalPrice(): void
     {
-        if ($this->produit->removeElement($produit)) {
-            $produit->removeCommande($this);
-        }
+    $totalPrice = 0;
 
-        return $this;
+    foreach ($this->getProduits() as $produitData) {
+        // Assuming 'prix' is the product price and 'quantity' is the quantity added
+        $totalPrice += $produitData['prix'] * $produitData['quantity'];
     }
+
+    $this->setPrix($totalPrice); // Assuming your Commande entity has a `prix` field
+    }
+
 }

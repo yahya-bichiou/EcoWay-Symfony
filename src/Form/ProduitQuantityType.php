@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProduitQuantityType extends AbstractType
 {
@@ -14,13 +15,10 @@ class ProduitQuantityType extends AbstractType
         $builder
             ->add('produit', EntityType::class, [
                 'class' => Produit::class,
-                'choice_label' => 'nom', // or any property you want to display
-                'multiple' => false,
-                'expanded' => false,
+                'choice_label' => 'nom',
             ])
             ->add('quantity', IntegerType::class, [
-                'label' => 'Quantity',
-                'attr' => ['min' => 1], // You can set a minimum for quantity
+                'attr' => ['min' => 1],
             ]);
     }
 }

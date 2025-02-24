@@ -40,17 +40,10 @@ class CommandeType extends AbstractType
                 'multiple' => false,
             ])
             ->add('produits', CollectionType::class, [
-                'entry_type' => EntityType::class,
-                'entry_options' => [
-                    'class' => Produit::class,
-                    'choice_label' => 'nom', // Ensure 'nom' exists in Produit entity
-                ],
+                'entry_type' => ProduitQuantityType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label' => 'Produits associés',
-                'prototype' => true, // Allow adding new product fields dynamically
-                'prototype_name' => '__name__', // Placeholder for the dynamic form name
             ])
             ->add('save', SubmitType::class)
         ;

@@ -64,18 +64,18 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         ";
         // line 10
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
-        // line 22
+        // line 23
         yield "
         ";
-        // line 23
+        // line 24
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
-        // line 32
+        // line 33
         yield "    </head>
 
   ";
-        // line 34
-        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
         // line 35
+        yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
+        // line 36
         yield "
 </body>
 
@@ -129,26 +129,30 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         yield "        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css\">
         <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">
         <link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap\" rel=\"stylesheet\">
+        <link href=\"";
+        // line 14
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/cart.css"), "html", null, true);
+        yield "\" rel=\"stylesheet\">
         <!-- Bootstrap core CSS -->
       <link href=\"";
-        // line 15
+        // line 16
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/vendor/bootstrap/css/bootstrap.min.css"), "html", null, true);
         yield "\" rel=\"stylesheet\">
       <!-- Additional CSS Files -->
       <link rel=\"stylesheet\" href=\"";
-        // line 17
+        // line 18
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/css/fontawesome.css"), "html", null, true);
         yield "\">
       <link rel=\"stylesheet\" href=\"";
-        // line 18
+        // line 19
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/css/templatemo-seo-dream.css"), "html", null, true);
         yield "\">
       <link rel=\"stylesheet\" href=\"";
-        // line 19
+        // line 20
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/css/animated.css"), "html", null, true);
         yield "\">
      <link rel=\"stylesheet\" href=\"";
-        // line 20
+        // line 21
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/css/owl.css"), "html", null, true);
         yield "\">
         ";
@@ -161,7 +165,7 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         yield from [];
     }
 
-    // line 23
+    // line 24
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -174,30 +178,30 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 24
+        // line 25
         yield "          <!-- Scripts -->
          <script src=\"";
-        // line 25
+        // line 26
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/vendor/jquery/jquery.min.js"), "html", null, true);
         yield "\"></script>
          <script src=\"";
-        // line 26
+        // line 27
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/vendor/bootstrap/js/bootstrap.bundle.min.js"), "html", null, true);
         yield "\"></script>
          <script src=\"";
-        // line 27
+        // line 28
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/js/owl-carousel.js"), "html", null, true);
         yield "\"></script>
          <script src=\"";
-        // line 28
+        // line 29
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/js/animation.js"), "html", null, true);
         yield "\"></script>
           <script src=\"";
-        // line 29
+        // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/js/imagesloaded.js"), "html", null, true);
         yield "\"></script>
          <script src=\"";
-        // line 30
+        // line 31
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("frontend/assets/js/custom.js"), "html", null, true);
         yield "\"></script>
         ";
@@ -210,7 +214,7 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         yield from [];
     }
 
-    // line 34
+    // line 35
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -246,7 +250,7 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  214 => 34,  201 => 30,  197 => 29,  193 => 28,  189 => 27,  185 => 26,  181 => 25,  178 => 24,  165 => 23,  152 => 20,  148 => 19,  144 => 18,  140 => 17,  135 => 15,  129 => 11,  116 => 10,  93 => 9,  79 => 35,  77 => 34,  73 => 32,  71 => 23,  68 => 22,  66 => 10,  62 => 9,  52 => 1,);
+        return array (  218 => 35,  205 => 31,  201 => 30,  197 => 29,  193 => 28,  189 => 27,  185 => 26,  182 => 25,  169 => 24,  156 => 21,  152 => 20,  148 => 19,  144 => 18,  139 => 16,  134 => 14,  129 => 11,  116 => 10,  93 => 9,  79 => 36,  77 => 35,  73 => 33,  71 => 24,  68 => 23,  66 => 10,  62 => 9,  52 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -264,6 +268,7 @@ class __TwigTemplate_76dbbbc178281565daf91038e6d7b2aa extends Template
         <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css\">
         <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">
         <link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap\" rel=\"stylesheet\">
+        <link href=\"{{ asset('frontend/cart.css')}}\" rel=\"stylesheet\">
         <!-- Bootstrap core CSS -->
       <link href=\"{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}\" rel=\"stylesheet\">
       <!-- Additional CSS Files -->

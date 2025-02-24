@@ -37,6 +37,19 @@ final class PageController extends AbstractController
 
         if ($commandeForm->isSubmitted()) {
             if ($commandeForm->isValid()) {
+                $produitsData = [];
+                foreach ($commandeForm->get('produits')->getData() as $produitEntry) {
+                    $produit = $produitEntry['produit'];
+                    $produitsData[] = [
+                        'id' => $produit->getId(),
+                        'nom' => $produit->getNom(),
+                        'prix' => $produit->getPrix(),
+                        'image' => $produit->getImage(),
+                        'quantity' => $produitEntry['quantity'],
+                    ];
+                }
+                $commande->setProduits($produitsData);
+                $commande->calculateTotalPrice();
                 $entityManager->persist($commande);
                 $entityManager->flush();
                 return $this->redirectToRoute('back_order');
@@ -208,7 +221,8 @@ final class PageController extends AbstractController
     {
         // Fetch commandes with userId = 0 and status = 'non_confirmée'
         $commandes = $commandeRepository->findBy([
-            'clientId' => 1
+            'clientId' => 1,
+            'status' => "non_confirmée"
         ]);
 
         return $this->render('frontend/order.html.twig', [

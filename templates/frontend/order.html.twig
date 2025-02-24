@@ -2,6 +2,10 @@
 
 {% block title %}Depot index{% endblock %}
 
+{% block css %}
+<link href="{{ asset('frontend/cart.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 
   <!-- ***** Header Area Start ***** -->
@@ -36,54 +40,136 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
-  <div>
-    <img src="{{ asset('bg1.png')}}" >
-  </div>
-  <div id="services" class="our-services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-            <h6>Vos Commandes</h6>
-            <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>User ID</th>
-            <th>Status</th>
-            <th>Prix</th>
-            <th>Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for commande in commandes %}
-            <tr>
-                <td>{{ commande.id }}</td>
-                <td>{{ commande.clientId }}</td>
-                <td>{{ commande.status }}</td>
-                <td>{{ commande.prix }}</td>
-                <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                  <form method="post" action="{{ path('app_commande_delete', {'id': commande.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
-                    <button class="btn btn-primary">Anuler</button>
-                  </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">No commandes found.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
 
+<section class="h-100 h-custom" style="background-color:rgb(199, 255, 169);">
+  <div class="container py-5 h-100">
+    <div class="margiini">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0">Shopping Cart</h1>
+
+                      <!-- Compute total items count -->
+                      {% set totalItems = 0 %}
+                      {% for commande in commandes %}
+                        {% for produit in commande.produits %}
+                          {% set totalItems = totalItems + produit.quantity %}
+                        {% endfor %}
+                      {% endfor %}
+                      <h6 class="mb-0 text-muted">{{ totalItems }} Items</h6>
+                    </div>
+
+                    {% for commande in commandes %}
+                      {% for produit in commande.produits %}
+                        <hr class="my-4">
+
+                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                          <div class="col-md-2 col-lg-2 col-xl-2">
+                            <img
+                              src={{ produit.image }}
+                              class="img-fluid rounded-3" alt="Product Image">
+                          </div>
+                          <div class="col-md-3 col-lg-3 col-xl-3">
+                            <h6 class="mb-0">{{ produit.nom }}</h6>
+                          </div>
+                          <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                            <span class="form-control form-control-sm">{{ produit.quantity }}</span>
+                          </div>
+                          <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                            <h6 class="mb-0">{{ produit.prix * produit.quantity }} DT</h6>
+                          </div>
+                          <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p>The Cart is empty</p>
+                    {% endfor %}
+
+                    <hr class="my-4">
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="products" class="text-body">
+                        <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 bg-body-tertiary">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+
+                    <!-- Compute total price -->
+                    {% set totalPrice = 0 %}
+                    {% for commande in commandes %}
+                      {% set totalPrice = commande.prix %}
+                    {% endfor %}
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Items {{ totalItems }}</h5>
+                      <h5>{{ totalPrice }} DT</h5>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+                    <div class="mb-4 pb-2">
+                      <select id="shippingMethod" class="form-control">
+                        <option value="20">Same-Day - 20DT</option>
+                        <option value="10">Fast - 10DT</option>
+                        <option value="5">Normal - 5DT</option>
+                      </select>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Give code</h5>
+                    <div class="mb-5">
+                      <input type="text" id="discountCode" class="form-control form-control-lg" />
+                    </div>
+
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5 id="finalPrice">{{ totalPrice }} DT</h5>
+                    </div>
+
+                    <button type="button" class="btn btn-dark btn-block btn-lg">
+                      Checkout
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let totalPrice = {{ totalPrice }}; // Get total price from Twig
+    let shippingSelect = document.getElementById("shippingMethod");
+    let finalPriceElement = document.getElementById("finalPrice");
+
+    function updateFinalPrice() {
+        let shippingCost = parseFloat(shippingSelect.value);
+        let finalPrice = totalPrice + shippingCost;
+        finalPriceElement.innerText = finalPrice + " DT";
+    }
+
+    // Update price on shipping change
+    shippingSelect.addEventListener("change", updateFinalPrice);
+    updateFinalPrice();
+});
+</script>
+
 
 
   <footer>
