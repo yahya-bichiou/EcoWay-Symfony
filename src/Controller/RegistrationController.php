@@ -41,13 +41,24 @@ class RegistrationController extends AbstractController
                 );
             }
 
+            if ($user->getEmail() === 'admin@gmail.com') {
+                $user->setRoles(['ROLE_ADMIN']);
+            } else {
+                $user->setRoles(['ROLE_USER']);
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Automatically log in the user (Symfony 7 approach)
+            
             $security->login($user, AuthAuthenticator::class);
 
-            // Redirect to home page
+            if ($user->getRoles() && in_array('ROLE_ADMIN', (array) $user->getRoles())) {
+                return $this->redirectToRoute('app_user');
+            }
+            
+
+            
             return $this->redirectToRoute('profile');
         }
 

@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\LivraisonRepository;
 use App\Repository\CollecteRepository;
 use App\Repository\DepotRepository;
+use App\Repository\UserRepository; 
 use App\Repository\CommandeRepository;
 use App\Entity\Collecte;
 use App\Entity\Depot;
@@ -18,7 +19,14 @@ use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Form\CollecteType;
 use App\Form\DepotType;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\User;
+use App\Form\RegistrationFormType;
+use App\Security\AuthAuthenticator;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Core\Security;
 
 final class PageController extends AbstractController
 {
@@ -185,8 +193,14 @@ final class PageController extends AbstractController
 
     //Change controller
     #[Route('/back/user', name: 'back_user')]
-    public function index(): Response
+    public function index(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
     {
+        if ($this->getUser()) {
+            $users = $userRepository->findAll(); // Fetch all users from the database
+            return $this->render('backend/user.html.twig', [
+                'users' => $users, 
+            ]);
+        }
         return $this->render('backend/user.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -248,11 +262,186 @@ final class PageController extends AbstractController
     }
 
     //Change controller
-    #[Route('/front/user', name: 'back_user')]
+    #[Route('/front/user', name: 'front_user')]
     public function indexf(): Response
     {
         return $this->render('backend/user.html.twig', [
             'controller_name' => 'PageController',
         ]);
+    }
+
+    #[Route('/back/register', name: 'back_app_register')]
+    public function back_register(
+        Request $request, 
+        
+        UserAuthenticatorInterface $userAuthenticator,
+        AuthAuthenticator $authenticator,
+        UserPasswordHasherInterface $userPasswordHasher,
+        
+        EntityManagerInterface $entityManager
+    ): Response {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setName($form->get('name')->getData());
+            $password = $form->get('password')->getData();
+
+
+            if ($password) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user, 
+                        $password
+                    )
+                );
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            
+            return $userAuthenticator->authenticateUser(
+            $user,
+            $authenticator,
+            $request
+        ) ?? $this->redirectToRoute('profile');
+    
+
+            
+            return $this->redirectToRoute('profile');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+    #[Route('/back/verify/email', name: 'back_app_verify_email')]
+    public function back_verifyUserEmail(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            /** @var User $user */
+            $user = $this->getUser();
+            
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $exception->getReason());
+
+            return $this->redirectToRoute('app_register');
+        }
+
+        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        $this->addFlash('success', 'Your email address has been verified.');
+
+        return $this->redirectToRoute('app_register');
+    }
+    #[Route(path: '/back/login', name: 'back_app_login')]
+    public function back_login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
+    #[Route(path: '/back/logout', name: 'back_app_logout')]
+    public function back_logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+    #[Route('/front/register', name: 'app_register')]
+    public function front_register(
+        Request $request, 
+        UserPasswordHasherInterface $userPasswordHasher, 
+        EntityManagerInterface $entityManager,
+        UserAuthenticatorInterface $userAuthenticator,
+        AuthAuthenticator $authenticator
+    ): Response {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setName($form->get('name')->getData());
+            $password = $form->get('password')->getData();
+
+
+            if ($password) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user, 
+                        $password
+                    )
+                );
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            
+            return $userAuthenticator->authenticateUser(
+            $user,
+            $authenticator,
+            $request
+        ) ?? $this->redirectToRoute('profile');
+    
+
+            
+            return $this->redirectToRoute('profile');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+    #[Route('/front/verify/email', name: 'front_app_verify_email')]
+    public function front_verifyUserEmail(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            /** @var User $user */
+            $user = $this->getUser();
+            
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $exception->getReason());
+
+            return $this->redirectToRoute('app_register');
+        }
+
+        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        $this->addFlash('success', 'Your email address has been verified.');
+
+        return $this->redirectToRoute('app_register');
+    }
+    #[Route(path: '/front/login', name: 'front_app_login')]
+    public function front_login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
+    #[Route(path: '/front/logout', name: 'front_app_logout')]
+    public function front_logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

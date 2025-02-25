@@ -17,7 +17,7 @@
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome.css')}}">
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/templatemo-seo-dream.css')}}">
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/animated.css')}}">
-     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.css')}}">
+      <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.css')}}">
         {% endblock %}
 
         {% block javascripts %}
@@ -26,56 +26,42 @@
          <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
          <script src="{{ asset('frontend/assets/js/owl-carousel.js')}}"></script>
          <script src="{{ asset('frontend/assets/js/animation.js')}}"></script>
-          <script src="{{ asset('frontend/assets/js/imagesloaded.js')}}"></script>
+         <script src="{{ asset('frontend/assets/js/imagesloaded.js')}}"></script>
          <script src="{{ asset('frontend/assets/js/custom.js')}}"></script>
         {% endblock %}
     </head>
     <body>
-        {% block body %}
-          <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- ***** Header Area Start ***** -->
+        <!-- *** Header Area Start *** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
+            <!-- *** Logo Start *** -->
             <a href="index.html" class="logo">
-              <h4>SEO Dream <img src="assets/images/logo-icon.png" alt=""></h4>
+              <img src="{{ asset('logo.png') }}" alt="">
             </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
+            <!-- *** Logo End *** -->
+            <!-- *** Menu Start *** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="#features">Features</a></li>
-              <li class="scroll-to-section"><a href="#about">About Us</a></li>
-              <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><a href="#portfolio">Portfolio</a></li>
-              <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
-              <li class="scroll-to-section"><div class="main-blue-button"><a href="#contact">Get Your Quote</a></div></li>
+              <li class="scroll-to-section"><a href="index.html">Home</a></li>
+              <li class="scroll-to-section"><a href="/depot">Dépots</a></li>
+              <li class="scroll-to-section"><a href="/produitcon" >Produits</a></li>
+              <li class="scroll-to-section"><a href="/produits/boutique">Boutique</a></li>
+              <li class="scroll-to-section"><a href="/bande/commande">Blog</a></li>
+              <li class="scroll-to-section"><a href="/phase">Event</a></li>
+              <li class="scroll-to-section"><a href="/utilisateur">Users</a></li>
             </ul>
             <a class='menu-trigger'>
                 <span>Menu</span>
             </a>
-            <!-- ***** Menu End ***** -->
+            <!-- *** Menu End *** -->
           </nav>
         </div>
       </div>
     </div>
   </header>
-  <!-- ***** Header Area End ***** -->
-        {% endblock %}
+  <!-- *** Header Area End *** -->
+        {% block body %}{% endblock %}
     </body>
 </html>

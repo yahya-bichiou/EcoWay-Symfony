@@ -26,6 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $email;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^[a-z]+(?:-[a-z]+)*$/', message: 'nom invalide')]
     #[Assert\NotBlank(message: "Name is required.")]
     private ?string $name = null;
 
