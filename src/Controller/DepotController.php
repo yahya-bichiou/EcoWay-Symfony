@@ -37,6 +37,7 @@ final class DepotController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
         $depot = $form->getData();
+        $image = $form->get('image')->getData();
         if($image = $form['image']->getData()){
             $fileName = uniqid().'.'.$image->guessExtension();
             $image->move($imageDir, $fileName);
@@ -65,13 +66,30 @@ public function show(Depot $depot, Request $request, EntityManagerInterface $ent
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Save the Collecte entity
-        $entityManager->persist($collecte);
-        $entityManager->flush();
+        $collecte = $form->getData();
+        $depot = $collecte->getDepot();
 
-        // Redirect to a success page or the same page
-        return $this->redirectToRoute('app_depot_show', ['id' => $depot->getId()], Response::HTTP_SEE_OTHER);
+        // Calculate total collected quantity in the selected depot
+        $totalQuantite = array_reduce(
+            $depot->getCollectes()->toArray(),
+            fn ($total, $collecte) => $total + $collecte->getQuantite(),
+            0
+        );
+
+        $remainingSpace = $depot->getCapacite() - $totalQuantite;
+
+        if ($remainingSpace <= 0) {
+            $this->addFlash('error', 'Ce dépôt est plein. Vous ne pouvez pas ajouter une nouvelle collecte.');
+        } elseif ($collecte->getQuantite() > $remainingSpace) {
+            $this->addFlash('error', 'Quantité trop élevée ! Il ne reste que ' . $remainingSpace . ' kg disponibles.');
+        } else {
+            $entityManager->persist($collecte);
+            $entityManager->flush();
+            $this->addFlash('success', 'Collecte ajoutée avec succès !');
+            return $this->redirectToRoute('app_depot_show', ['id' => $depot->getId()], Response::HTTP_SEE_OTHER);
+        }
     }
+
 
     return $this->render('depot/show.html.twig', [
         'depot' => $depot,

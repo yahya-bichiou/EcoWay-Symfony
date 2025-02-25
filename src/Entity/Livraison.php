@@ -27,7 +27,7 @@ class Livraison
     #[Assert\NotBlank]
     #[Assert\Regex(
         pattern: '/^[^\d].*$/',
-        message: 'The mode of payment cannot start with a number.'
+        message: 'The  adress cannot start with a number.'
     )]
     private ?string $adresse = null;
 

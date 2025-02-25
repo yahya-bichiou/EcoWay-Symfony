@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,6 +37,9 @@ class Commande
 
     #[ORM\Column(length: 255)]
     private ?string $modePaiement = null;
+
+    #[ORM\Column(type: Types::JSON)]
+    private array $produits = [];
 
     public function getId(): ?int
     {
@@ -82,10 +87,9 @@ class Commande
         return $this->prix;
     }
 
-    public function setPrix(float $prix): static
+    public function setPrix(float $prix): self
     {
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -99,6 +103,29 @@ class Commande
         $this->modePaiement = $modePaiement;
 
         return $this;
+    }
+
+    public function getProduits(): array
+    {
+        return $this->produits ?? [];
+    }
+
+    public function setProduits(array $produits): self
+    {
+        $this->produits = $produits;
+        return $this;
+    }
+
+    public function calculateTotalPrice(): void
+    {
+    $totalPrice = 0;
+
+    foreach ($this->getProduits() as $produitData) {
+        // Assuming 'prix' is the product price and 'quantity' is the quantity added
+        $totalPrice += $produitData['prix'] * $produitData['quantity'];
+    }
+
+    $this->setPrix($totalPrice); // Assuming your Commande entity has a `prix` field
     }
 
 }
