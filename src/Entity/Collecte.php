@@ -35,7 +35,7 @@ class Collecte
     private ?string $responsable = null;
 
     #[ORM\ManyToOne(inversedBy: 'collectes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[Assert\NotBlank]
     private ?Depot $depot = null;
 

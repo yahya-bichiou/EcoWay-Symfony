@@ -63,7 +63,7 @@ final class CommandeController extends AbstractController
             $commande = $form->getData();
             $entityManager->flush();
 
-            return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('back_order_commandes', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('commande/edit.html.twig', [

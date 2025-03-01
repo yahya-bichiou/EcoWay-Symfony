@@ -10,6 +10,7 @@ use App\Repository\LivraisonRepository;
 use App\Repository\CollecteRepository;
 use App\Repository\DepotRepository;
 use App\Repository\CommandeRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Service\PdfGeneratorService;
 use App\Entity\Collecte;
 use App\Entity\Depot;
@@ -20,14 +21,15 @@ use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Form\CollecteType;
 use App\Form\DepotType;
-
+use Doctrine\ORM\Mapping\Id;
 
 final class PageController extends AbstractController
 {
-    #[Route('/back/order', name: 'back_order')]
-    public function indexo(
+    //-------------- ORDER ------------------//
+    //Back Commande
+    #[Route('/back/order/commandes', name: 'back_order_commandes')]
+    public function indexoc(
         CommandeRepository $commandeRepository,
-        LivraisonRepository $livraisonRepository,
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
@@ -36,26 +38,45 @@ final class PageController extends AbstractController
         $commandeForm = $this->createForm(CommandeType::class, $commande);
         $commandeForm->handleRequest($request);
 
-        if ($commandeForm->isSubmitted()) {
-            if ($commandeForm->isValid()) {
-                $produitsData = [];
-                foreach ($commandeForm->get('produits')->getData() as $produitEntry) {
-                    $produit = $produitEntry['produit'];
-                    $produitsData[] = [
-                        'id' => $produit->getId(),
-                        'nom' => $produit->getNom(),
-                        'prix' => $produit->getPrix(),
-                        'image' => $produit->getImage(),
-                        'quantity' => $produitEntry['quantity'],
-                    ];
+        if ($commandeForm->isSubmitted() && $commandeForm->isValid()) {
+            $produitsData = [];
+
+            foreach ($commandeForm->get('produits')->getData() as $produitEntry) {
+                if (!isset($produitEntry['produit'])) {
+                    dump($produitEntry); // Debug what keys are present
+                    die();
                 }
+                $produit = $produitEntry['produit'];
+                $produitsData[] = [
+                    'id' => $produit->getId(),
+                    'nom' => $produit->getNom(),
+                    'prix' => $produit->getPrix(),
+                    'image' => $produit->getImage(), // Default image fallback
+                    'quantity' => $produitEntry['quantity'],
+                ];
+            }
                 $commande->setProduits($produitsData);
                 $commande->calculateTotalPrice();
                 $entityManager->persist($commande);
                 $entityManager->flush();
-                return $this->redirectToRoute('back_order');
+                return $this->redirectToRoute('back_order_commandes');
             }
-        }
+
+        return $this->render('backend/commandes.html.twig', [
+            'controller_name' => 'PageController',
+            'commandes' => $commandeRepository->findAll(),
+            'commandeForm' => $commandeForm->createView(),
+        ]);
+    }
+
+    //Back Livraison
+    #[Route('/back/order/livraisons', name: 'back_order_livraisons')]
+    public function indexol(
+        CommandeRepository $commandeRepository,
+        LivraisonRepository $livraisonRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
         // Handling Livraison Form
         $livraison = new Livraison();
         $livraisonForm = $this->createForm(LivraisonType::class, $livraison);
@@ -82,17 +103,17 @@ final class PageController extends AbstractController
             $entityManager->persist($livraison);
             $entityManager->flush();
 
-            return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('back_order_livraisons', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('backend/order.html.twig', [
+        return $this->render('backend/livraisons.html.twig', [
             'controller_name' => 'PageController',
-            'commandes' => $commandeRepository->findAll(),
             'livraisons' => $livraisonRepository->findAll(),
-            'commandeForm' => $commandeForm->createView(),
             'livraisonForm' => $livraisonForm->createView(),
         ]);
     }
+
+    //Back Livraison Delete
     #[Route('l/{id}', name: 'livraison_delete', methods: ['POST'])]
     public function delete(Request $request, Livraison $livraison, EntityManagerInterface $entityManager): Response
     {
@@ -101,9 +122,10 @@ final class PageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('back_order_livraisons', [], Response::HTTP_SEE_OTHER);
     }
 
+    //Back Commande Delete
     #[Route('c/{id}', name: 'commande_delete', methods: ['POST'])]
     public function deletec(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
@@ -112,11 +134,16 @@ final class PageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('back_order_commandes', [], Response::HTTP_SEE_OTHER);
     }
 
 
-    //Change controller
+
+
+
+
+
+    //-------------- DROPOFF ------------------//
     #[Route('/back/dropoff', name: 'back_dropoff')]
 public function indexd(
     CollecteRepository $collecteRepository,
@@ -250,6 +277,13 @@ public function indexd(
     #[Route('/front/order', name: 'front_order')]
     public function indexof(CommandeRepository $commandeRepository, LivraisonRepository $livraisonRepository): Response
     {
+        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+
+        $paymentIntent = \Stripe\PaymentIntent::create([
+            'amount' => 10000, // Amount in cents (10 USD)
+            'currency' => 'usd',
+        ]);
+
         // Fetch commandes with userId = 0 and status = 'non_confirmée'
         $commandes = $commandeRepository->findBy([
             'clientId' => 1,
@@ -258,9 +292,41 @@ public function indexd(
 
         return $this->render('frontend/order.html.twig', [
             'commandes' => $commandes,
+            'clientSecret' => $paymentIntent->client_secret,
+            'publicKey' => $_ENV['STRIPE_PUBLIC_KEY'],
         ]);
 
     }
+
+    #[Route('/cart/update/{commandeId}/{productId}/{action}', name: 'cart_update_quantity', methods: ['POST'])]
+public function updateQuantity($commandeId, $productId, $action, CommandeRepository $commandeRepo, EntityManagerInterface $em): JsonResponse
+{
+    $commande = $commandeRepo->find($commandeId);
+    if (!$commande) {
+        return new JsonResponse(['success' => false, 'message' => 'Commande not found']);
+    }
+
+    // Get current products from JSON field
+    $produits = $commande->getProduits();
+    foreach ($produits as &$produit) {
+        if ($produit['id'] == $productId) {
+            if ($action === "increase") {
+                $produit['quantity']++;
+            } elseif ($action === "decrease" && $produit['quantity'] > 1) {
+                $produit['quantity']--;
+            }
+            break;
+        }
+    }
+
+    // Update the Commande entity
+    $commande->setProduits($produits);
+    $em->persist($commande);
+    $em->flush();
+
+    return new JsonResponse(['success' => true, 'newQuantity' => $produit['quantity']]);
+}
+
     #[Route('/commande/{id}/invoice', name: 'commande_invoice')]
     public function generateInvoice( Commande $commande, PdfGeneratorService $pdfGeneratorService ): Response {
         // Convert Commande to an array format for the PDF

@@ -52,9 +52,29 @@ class __TwigTemplate_2edaa70c7e4ff4d4dc4fcfc0e02925bc extends Template
         // line 2
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["commande"]) || array_key_exists("commande", $context) ? $context["commande"] : (function () { throw new RuntimeError('Variable "commande" does not exist.', 2, $this->source); })()), "id", [], "any", false, false, false, 2))), "html", null, true);
         yield "\">
-    <button class=\"btn btn-primary\">Delete</button>
+    <button class=\"delete\"></button>
 </form>
-";
+
+<style>
+.delete {
+        width: 40px;
+        height: 40px;
+        background: url(\"";
+        // line 10
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/delete.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .delete:hover {
+        background: url(\"";
+        // line 16
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/delete-hover.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+    }
+</style>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -85,15 +105,29 @@ class __TwigTemplate_2edaa70c7e4ff4d4dc4fcfc0e02925bc extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  53 => 2,  48 => 1,);
+        return array (  73 => 16,  64 => 10,  53 => 2,  48 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<form method=\"post\" action=\"{{ path('commande_delete', {'id': commande.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ commande.id) }}\">
-    <button class=\"btn btn-primary\">Delete</button>
+    <button class=\"delete\"></button>
 </form>
-", "commande/_delete_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\commande\\_delete_form.html.twig");
+
+<style>
+.delete {
+        width: 40px;
+        height: 40px;
+        background: url(\"{{ asset('icons/delete.png') }}\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .delete:hover {
+        background: url(\"{{ asset('icons/delete-hover.png') }}\") no-repeat center;
+        background-size: contain;
+    }
+</style>", "commande/_delete_form.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\commande\\_delete_form.html.twig");
     }
 }

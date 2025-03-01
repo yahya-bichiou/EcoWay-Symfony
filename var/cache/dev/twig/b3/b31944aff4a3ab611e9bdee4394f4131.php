@@ -239,22 +239,47 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 78), "html", null, true);
                 yield "</h6>
                           </div>
-                          <div class=\"col-md-3 col-lg-3 col-xl-2 d-flex\">
-                            <span class=\"form-control form-control-sm\">";
-                // line 81
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 81), "html", null, true);
+                          <div class=\"col-md-3 col-lg-3 col-xl-3 d-flex\">
+                            <li>
+                            <button class=\"btn\" data-commande-id=\"";
+                // line 82
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 82), "html", null, true);
+                yield "\" data-product-id=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 82), "html", null, true);
+                yield "\">
+                              <i class=\"fas fa-minus\"></i>
+                            </button>
+                            </li>
+                            <span class=\"form-control form-control-sm text-center quantity\" id=\"quantity-";
+                // line 86
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 86), "html", null, true);
+                yield "-";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 86), "html", null, true);
+                yield "\">";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 86), "html", null, true);
                 yield "</span>
+                            <li>
+                            <button class=\"btn\" data-commande-id=\"";
+                // line 88
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 88), "html", null, true);
+                yield "\" data-product-id=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 88), "html", null, true);
+                yield "\">
+                              <i class=\"fas fa-plus\"></i>
+                            </button>
+                            </li>
+
                           </div>
                           <div class=\"col-md-3 col-lg-2 col-xl-2 offset-lg-1\">
                             <h6 class=\"mb-0\">";
-                // line 84
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 84) * CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 84)), "html", null, true);
+                // line 95
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 95) * CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 95)), "html", null, true);
                 yield " DT</h6>
                           </div>
                           <div class=\"col-md-1 col-lg-1 col-xl-1 text-end\">
                             <a href=\"";
-                // line 87
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("front_order_remove_product", ["commandeId" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 87), "productId" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 87)]), "html", null, true);
+                // line 98
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("front_order_remove_product", ["commandeId" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 98), "productId" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 98)]), "html", null, true);
                 yield "\" class=\"btn btn-danger\"><i class=\"fas fa-times\"></i></a>
                           </div>
                         </div>
@@ -263,20 +288,20 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['produit'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 91
+            // line 102
             yield "                    ";
             $context['_iterated'] = true;
         }
-        // line 93
+        // line 104
         if (!$context['_iterated']) {
-            // line 92
+            // line 103
             yield "                      <p>The Cart is empty</p>
                     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 94
+        // line 105
         yield "
                     <hr class=\"my-4\">
                     <div class=\"pt-5\">
@@ -294,32 +319,32 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
 
                     <!-- Compute total price -->
                     ";
-        // line 110
+        // line 121
         $context["totalPrice"] = 0;
-        // line 111
+        // line 122
         yield "                    ";
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 111, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 122, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
-            // line 112
+            // line 123
             yield "                      ";
-            $context["totalPrice"] = CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "prix", [], "any", false, false, false, 112);
-            // line 113
+            $context["totalPrice"] = CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "prix", [], "any", false, false, false, 123);
+            // line 124
             yield "                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 114
+        // line 125
         yield "
                     <div class=\"d-flex justify-content-between mb-4\">
                       <h5 class=\"text-uppercase\">Items ";
-        // line 116
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalItems"]) || array_key_exists("totalItems", $context) ? $context["totalItems"] : (function () { throw new RuntimeError('Variable "totalItems" does not exist.', 116, $this->source); })()), "html", null, true);
+        // line 127
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalItems"]) || array_key_exists("totalItems", $context) ? $context["totalItems"] : (function () { throw new RuntimeError('Variable "totalItems" does not exist.', 127, $this->source); })()), "html", null, true);
         yield "</h5>
                       <h5>";
-        // line 117
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 117, $this->source); })()), "html", null, true);
+        // line 128
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 128, $this->source); })()), "html", null, true);
         yield " DT</h5>
                     </div>
 
@@ -337,23 +362,34 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
                       <input type=\"text\" id=\"discountCode\" class=\"form-control form-control-lg\" />
                     </div>
 
+                    <input type=\"hidden\" id=\"finalPriceInput\" name=\"finalPrice\" value=\"";
+        // line 145
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 145, $this->source); })()), "html", null, true);
+        yield "\">
                     <hr class=\"my-4\">
                     <div class=\"d-flex justify-content-between mb-5\">
                       <h5 class=\"text-uppercase\">Total price</h5>
                       <h5 id=\"finalPrice\">";
-        // line 137
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 137, $this->source); })()), "html", null, true);
+        // line 149
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 149, $this->source); })()), "html", null, true);
         yield " DT</h5>
                     </div>
-                    <span class=\"checkout\"></span>
                     ";
-        // line 140
+        // line 151
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 140, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 151, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
-            // line 141
-            yield "                    <a href=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("commande_invoice", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 141)]), "html", null, true);
+            // line 152
+            yield "                    <a id=\"payment-link\" href=\"#\"
+                    data-commande-id=\"";
+            // line 153
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 153), "html", null, true);
+            yield "\">
+                      <span class=\"checkout\"></span>
+                    </a>
+                    <a href=\"";
+            // line 156
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("commande_invoice", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 156)]), "html", null, true);
             yield "\">
                       <span class=\"export\"></span>
                     </a>
@@ -362,7 +398,7 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 145
+        // line 160
         yield "
 
                   </div>
@@ -379,21 +415,78 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
 <script>
 document.addEventListener(\"DOMContentLoaded\", function() {
     let totalPrice = ";
-        // line 160
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 160, $this->source); })()), "html", null, true);
-        yield "; // Get total price from Twig
+        // line 175
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 175, $this->source); })()), "html", null, true);
+        yield "; // Initial price from Twig
     let shippingSelect = document.getElementById(\"shippingMethod\");
     let finalPriceElement = document.getElementById(\"finalPrice\");
+    let paymentLink = document.getElementById(\"payment-link\");
+
+    // Get the commande ID from the <a> data attribute
+    let commandeId = paymentLink.getAttribute(\"data-commande-id\");
 
     function updateFinalPrice() {
         let shippingCost = parseFloat(shippingSelect.value);
         let finalPrice = totalPrice + shippingCost;
+
+        // Update displayed total price
         finalPriceElement.innerText = finalPrice + \" DT\";
+
+        // Update payment link with price and commande ID
+        paymentLink.href = \"";
+        // line 191
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("payment", ["price" => "PRICE", "id" => "ID"]), "html", null, true);
+        yield "\"
+            .replace('PRICE', finalPrice) // Replace PRICE placeholder with actual finalPrice
+            .replace('ID', commandeId); // Replace ID placeholder with actual commandeId
     }
 
     // Update price on shipping change
     shippingSelect.addEventListener(\"change\", updateFinalPrice);
-    updateFinalPrice();
+    updateFinalPrice(); // Set initial price
+});
+</script>
+
+
+
+<script>
+document.addEventListener(\"DOMContentLoaded\", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/\${commandeId}/\${productId}/\${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-\${commandeId}-\${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert(\"Error updating quantity\");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(\".plus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"increase\");
+        });
+    });
+
+    document.querySelectorAll(\".minus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"decrease\");
+        });
+    });
 });
 </script>
 
@@ -414,7 +507,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
         width: 50px;
         height: 50px;
         background: url(\"";
-        // line 192
+        // line 261
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -423,7 +516,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
     .checkout:hover {
         background: url(\"";
-        // line 198
+        // line 267
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out-hover.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -433,7 +526,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
         width: 50px;
         height: 50px;
         background: url(\"";
-        // line 205
+        // line 274
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -442,12 +535,54 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
     .export:hover {
         background: url(\"";
-        // line 211
+        // line 280
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export-hover.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
     }
 </style>
+
+<script>
+document.addEventListener(\"DOMContentLoaded\", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/\${commandeId}/\${productId}/\${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-\${commandeId}-\${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert(\"Error updating quantity\");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(\".plus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"increase\");
+        });
+    });
+
+    document.querySelectorAll(\".minus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"decrease\");
+        });
+    });
+});
+</script>
+
 
 ";
         
@@ -480,7 +615,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  446 => 211,  437 => 205,  427 => 198,  418 => 192,  383 => 160,  366 => 145,  355 => 141,  351 => 140,  345 => 137,  322 => 117,  318 => 116,  314 => 114,  308 => 113,  305 => 112,  300 => 111,  298 => 110,  280 => 94,  273 => 92,  271 => 93,  267 => 91,  257 => 87,  251 => 84,  245 => 81,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  539 => 280,  530 => 274,  520 => 267,  511 => 261,  438 => 191,  419 => 175,  402 => 160,  392 => 156,  386 => 153,  383 => 152,  379 => 151,  374 => 149,  367 => 145,  347 => 128,  343 => 127,  339 => 125,  333 => 124,  330 => 123,  325 => 122,  323 => 121,  305 => 105,  298 => 103,  296 => 104,  292 => 102,  282 => 98,  276 => 95,  264 => 88,  255 => 86,  246 => 82,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -564,8 +699,19 @@ document.addEventListener(\"DOMContentLoaded\", function() {
                           <div class=\"col-md-3 col-lg-3 col-xl-3\">
                             <h6 class=\"mb-0\">{{ produit.nom }}</h6>
                           </div>
-                          <div class=\"col-md-3 col-lg-3 col-xl-2 d-flex\">
-                            <span class=\"form-control form-control-sm\">{{ produit.quantity }}</span>
+                          <div class=\"col-md-3 col-lg-3 col-xl-3 d-flex\">
+                            <li>
+                            <button class=\"btn\" data-commande-id=\"{{ commande.id }}\" data-product-id=\"{{ produit.id }}\">
+                              <i class=\"fas fa-minus\"></i>
+                            </button>
+                            </li>
+                            <span class=\"form-control form-control-sm text-center quantity\" id=\"quantity-{{ commande.id }}-{{ produit.id }}\">{{ produit.quantity }}</span>
+                            <li>
+                            <button class=\"btn\" data-commande-id=\"{{ commande.id }}\" data-product-id=\"{{ produit.id }}\">
+                              <i class=\"fas fa-plus\"></i>
+                            </button>
+                            </li>
+
                           </div>
                           <div class=\"col-md-3 col-lg-2 col-xl-2 offset-lg-1\">
                             <h6 class=\"mb-0\">{{ produit.prix * produit.quantity }} DT</h6>
@@ -618,13 +764,17 @@ document.addEventListener(\"DOMContentLoaded\", function() {
                       <input type=\"text\" id=\"discountCode\" class=\"form-control form-control-lg\" />
                     </div>
 
+                    <input type=\"hidden\" id=\"finalPriceInput\" name=\"finalPrice\" value=\"{{ totalPrice }}\">
                     <hr class=\"my-4\">
                     <div class=\"d-flex justify-content-between mb-5\">
                       <h5 class=\"text-uppercase\">Total price</h5>
                       <h5 id=\"finalPrice\">{{ totalPrice }} DT</h5>
                     </div>
-                    <span class=\"checkout\"></span>
                     {% for commande in commandes %}
+                    <a id=\"payment-link\" href=\"#\"
+                    data-commande-id=\"{{ commande.id }}\">
+                      <span class=\"checkout\"></span>
+                    </a>
                     <a href=\"{{ path('commande_invoice', {'id': commande.id}) }}\">
                       <span class=\"export\"></span>
                     </a>
@@ -644,19 +794,73 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
 <script>
 document.addEventListener(\"DOMContentLoaded\", function() {
-    let totalPrice = {{ totalPrice }}; // Get total price from Twig
+    let totalPrice = {{ totalPrice }}; // Initial price from Twig
     let shippingSelect = document.getElementById(\"shippingMethod\");
     let finalPriceElement = document.getElementById(\"finalPrice\");
+    let paymentLink = document.getElementById(\"payment-link\");
+
+    // Get the commande ID from the <a> data attribute
+    let commandeId = paymentLink.getAttribute(\"data-commande-id\");
 
     function updateFinalPrice() {
         let shippingCost = parseFloat(shippingSelect.value);
         let finalPrice = totalPrice + shippingCost;
+
+        // Update displayed total price
         finalPriceElement.innerText = finalPrice + \" DT\";
+
+        // Update payment link with price and commande ID
+        paymentLink.href = \"{{ path('payment', {'price': 'PRICE', 'id': 'ID'}) }}\"
+            .replace('PRICE', finalPrice) // Replace PRICE placeholder with actual finalPrice
+            .replace('ID', commandeId); // Replace ID placeholder with actual commandeId
     }
 
     // Update price on shipping change
     shippingSelect.addEventListener(\"change\", updateFinalPrice);
-    updateFinalPrice();
+    updateFinalPrice(); // Set initial price
+});
+</script>
+
+
+
+<script>
+document.addEventListener(\"DOMContentLoaded\", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/\${commandeId}/\${productId}/\${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-\${commandeId}-\${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert(\"Error updating quantity\");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(\".plus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"increase\");
+        });
+    });
+
+    document.querySelectorAll(\".minus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"decrease\");
+        });
+    });
 });
 </script>
 
@@ -699,6 +903,48 @@ document.addEventListener(\"DOMContentLoaded\", function() {
         background-size: contain;
     }
 </style>
+
+<script>
+document.addEventListener(\"DOMContentLoaded\", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/\${commandeId}/\${productId}/\${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-\${commandeId}-\${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert(\"Error updating quantity\");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(\".plus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"increase\");
+        });
+    });
+
+    document.querySelectorAll(\".minus-btn\").forEach(button => {
+        button.addEventListener(\"click\", function() {
+            let commandeId = this.getAttribute(\"data-commande-id\");
+            let productId = this.getAttribute(\"data-product-id\");
+            updateQuantity(commandeId, productId, \"decrease\");
+        });
+    });
+});
+</script>
+
 
 {% endblock %}
 ", "frontend/order.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\frontend\\order.html.twig");

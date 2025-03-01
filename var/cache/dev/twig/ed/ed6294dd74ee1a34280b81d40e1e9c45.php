@@ -140,7 +140,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 yield "</td>
                 <td>";
                 // line 27
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 27) * CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 27)), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 27), "html", null, true);
                 yield "</td>
                 ";
             }
@@ -158,7 +158,9 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                     <a href=\"";
             // line 33
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 33)]), "html", null, true);
-            yield "\" class=\"btn btn-primary\">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+            yield "\">
+                        <span class=\"edit\"></span>
+                    </a>
                 </td>
             </tr>
         ";
@@ -172,9 +174,9 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 $context['loop']['last'] = 0 === $context['loop']['revindex0'];
             }
         }
-        // line 40
+        // line 42
         if (!$context['_iterated']) {
-            // line 37
+            // line 39
             yield "            <tr>
                 <td colspan=\"8\">no records found</td>
             </tr>
@@ -183,8 +185,29 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 41
+        // line 43
         yield "        </tbody>
+
+        <style>
+    .edit {
+        width: 40px;
+        height: 40px;
+        background: url(\"";
+        // line 49
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/edit.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .edit:hover {
+        background: url(\"";
+        // line 55
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/edit-hover.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+    }
+</style>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -208,7 +231,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  187 => 41,  178 => 37,  176 => 40,  160 => 33,  154 => 30,  151 => 29,  143 => 27,  138 => 26,  134 => 25,  130 => 24,  126 => 23,  122 => 22,  118 => 21,  114 => 20,  110 => 19,  107 => 18,  89 => 17,  72 => 2,  49 => 1,);
+        return array (  206 => 55,  197 => 49,  189 => 43,  180 => 39,  178 => 42,  160 => 33,  154 => 30,  151 => 29,  143 => 27,  138 => 26,  134 => 25,  130 => 24,  126 => 23,  122 => 22,  118 => 21,  114 => 20,  110 => 19,  107 => 18,  89 => 17,  72 => 2,  49 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -239,13 +262,15 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 <td>{{ commande.modePaiement }}</td>
                 {% for produit in commande.produits %}
                 <td>{{ produit.nom }}</td>
-                <td>{{ produit.prix * produit.quantity }}</td>
+                <td>{{ produit.quantity }}</td>
                 {% endfor %}
                 <td>
                     {{ include('/commande/_delete_form.html.twig') }}
                 </td>
                 <td>
-                    <a href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\" class=\"btn btn-primary\">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+                    <a href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\">
+                        <span class=\"edit\"></span>
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -254,6 +279,21 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
             </tr>
         {% endfor %}
         </tbody>
+
+        <style>
+    .edit {
+        width: 40px;
+        height: 40px;
+        background: url(\"{{ asset('icons/edit.png') }}\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .edit:hover {
+        background: url(\"{{ asset('icons/edit-hover.png') }}\") no-repeat center;
+        background-size: contain;
+    }
+</style>
 {% endblock %}
 ", "commande/index.html.twig", "C:\\Users\\User\\Desktop\\projet_pi\\templates\\commande\\index.html.twig");
     }

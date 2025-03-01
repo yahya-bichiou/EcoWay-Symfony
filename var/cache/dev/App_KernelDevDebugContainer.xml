@@ -401,6 +401,13 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\PageController"/>
       </call>
     </service>
+    <service id="App\Controller\PaymentController" class="App\Controller\PaymentController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\PaymentController"/>
+      </call>
+    </service>
     <service id="App\Controller\PhaseController" class="App\Controller\PhaseController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -558,7 +565,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.fZ817RZ"/>
+      <argument type="service" id=".service_locator.CJNp.QZ"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3456,7 +3463,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.fZ817RZ"/>
+      <argument type="service" id=".service_locator.CJNp.QZ"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7212,6 +7219,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PageController" class="App\Controller\PageController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PageController" class="App\Controller\PageController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PageController" class="App\Controller\PageController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PaymentController" class="App\Controller\PaymentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PaymentController" class="App\Controller\PaymentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\PaymentController" class="App\Controller\PaymentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PhaseController" class="App\Controller\PhaseController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PhaseController" class="App\Controller\PhaseController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PhaseController" class="App\Controller\PhaseController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7831,6 +7841,13 @@
         <argument key="livraison" type="service_closure" id=".errored..service_locator.XA7Hpe0.App\Entity\Livraison"/>
       </argument>
     </service>
+    <service id=".service_locator.rYHLj.R" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="commandeRepository" type="service_closure" id="App\Repository\CommandeRepository"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.Yj1iae4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7855,18 +7872,18 @@
         <argument key="livraisonRepository" type="service_closure" id="App\Repository\LivraisonRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.A0j0hWd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="commandeRepo" type="service_closure" id="App\Repository\CommandeRepository"/>
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.ANdtk7r" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="commande" type="service_closure" id=".errored..service_locator.ANdtk7r.App\Entity\Commande"/>
         <argument key="pdfGeneratorService" type="service_closure" id="App\Service\PdfGeneratorService"/>
-      </argument>
-    </service>
-    <service id=".service_locator.rYHLj.R" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="commandeRepository" type="service_closure" id="App\Repository\CommandeRepository"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.rvSyk07" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7995,7 +8012,7 @@
         <argument key="utilisateur" type="service_closure" id=".errored..service_locator.5iifHkm.App\Entity\Utilisateur"/>
       </argument>
     </service>
-    <service id=".service_locator.fZ817RZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CJNp.QZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CategorieController::delete" type="service_closure" id=".service_locator.aw9RHlF"/>
@@ -8035,9 +8052,12 @@
         <argument key="App\Controller\PageController::generateInvoice" type="service_closure" id=".service_locator.ANdtk7r"/>
         <argument key="App\Controller\PageController::indexd" type="service_closure" id=".service_locator.4On6pjV"/>
         <argument key="App\Controller\PageController::indexdf" type="service_closure" id=".service_locator.YFg.RHl"/>
-        <argument key="App\Controller\PageController::indexo" type="service_closure" id=".service_locator.Yj1iae4"/>
+        <argument key="App\Controller\PageController::indexoc" type="service_closure" id=".service_locator.rYHLj.R"/>
         <argument key="App\Controller\PageController::indexof" type="service_closure" id=".service_locator.9TEhHiJ"/>
+        <argument key="App\Controller\PageController::indexol" type="service_closure" id=".service_locator.Yj1iae4"/>
         <argument key="App\Controller\PageController::removeProduct" type="service_closure" id=".service_locator.rYHLj.R"/>
+        <argument key="App\Controller\PageController::updateQuantity" type="service_closure" id=".service_locator.A0j0hWd"/>
+        <argument key="App\Controller\PaymentController::confirmOrder" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PhaseController::delete" type="service_closure" id=".service_locator.6DOGBG1"/>
         <argument key="App\Controller\PhaseController::edit" type="service_closure" id=".service_locator.6DOGBG1"/>
         <argument key="App\Controller\PhaseController::index" type="service_closure" id=".service_locator.rvSyk07"/>
@@ -8109,9 +8129,12 @@
         <argument key="App\Controller\PageController:generateInvoice" type="service_closure" id=".service_locator.ANdtk7r"/>
         <argument key="App\Controller\PageController:indexd" type="service_closure" id=".service_locator.4On6pjV"/>
         <argument key="App\Controller\PageController:indexdf" type="service_closure" id=".service_locator.YFg.RHl"/>
-        <argument key="App\Controller\PageController:indexo" type="service_closure" id=".service_locator.Yj1iae4"/>
+        <argument key="App\Controller\PageController:indexoc" type="service_closure" id=".service_locator.rYHLj.R"/>
         <argument key="App\Controller\PageController:indexof" type="service_closure" id=".service_locator.9TEhHiJ"/>
+        <argument key="App\Controller\PageController:indexol" type="service_closure" id=".service_locator.Yj1iae4"/>
         <argument key="App\Controller\PageController:removeProduct" type="service_closure" id=".service_locator.rYHLj.R"/>
+        <argument key="App\Controller\PageController:updateQuantity" type="service_closure" id=".service_locator.A0j0hWd"/>
+        <argument key="App\Controller\PaymentController:confirmOrder" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PhaseController:delete" type="service_closure" id=".service_locator.6DOGBG1"/>
         <argument key="App\Controller\PhaseController:edit" type="service_closure" id=".service_locator.6DOGBG1"/>
         <argument key="App\Controller\PhaseController:index" type="service_closure" id=".service_locator.rvSyk07"/>
@@ -8818,6 +8841,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\PaymentController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\PaymentController"/>
+      <argument>App\Controller\PaymentController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\PhaseController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PhaseController"/>
       <argument>App\Controller\PhaseController</argument>
@@ -9035,6 +9064,7 @@
           <argument>App\Controller\DepotController</argument>
           <argument>App\Controller\LivraisonController</argument>
           <argument>App\Controller\PageController</argument>
+          <argument>App\Controller\PaymentController</argument>
           <argument>App\Controller\PhaseController</argument>
           <argument>App\Controller\PlannigController</argument>
           <argument>App\Controller\ProduitconController</argument>
@@ -10501,7 +10531,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.fZ817RZ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.CJNp.QZ"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10538,7 +10568,7 @@
     <service id=".service_locator.2u1gU1h" alias=".service_locator.DblVUus"/>
     <service id=".service_locator.kOY4K5E" alias=".service_locator.zbQO62h"/>
     <service id=".service_locator.RA4wN4W" alias=".service_locator.5iifHkm"/>
-    <service id=".service_locator.xrfck1d" alias=".service_locator.fZ817RZ"/>
+    <service id=".service_locator._.6VNAq" alias=".service_locator.CJNp.QZ"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.qMSDuuf" alias=".service_locator.dbM9zAP"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -10583,11 +10613,12 @@
     <service id=".service_locator..Id11mC" alias=".service_locator.W.TDhCz"/>
     <service id=".service_locator.Za9s0hK" alias=".service_locator.jaZM74n"/>
     <service id=".service_locator.JkEDQ.J" alias=".service_locator.XA7Hpe0"/>
+    <service id=".service_locator.ugTWoCm" alias=".service_locator.rYHLj.R"/>
     <service id=".service_locator.rIO3l1B" alias=".service_locator.Yj1iae4"/>
     <service id=".service_locator.1H_YFWK" alias=".service_locator.4On6pjV"/>
     <service id=".service_locator.uNMsjdH" alias=".service_locator.9TEhHiJ"/>
+    <service id=".service_locator.viCTM34" alias=".service_locator.A0j0hWd"/>
     <service id=".service_locator.Yk_D_.e" alias=".service_locator.ANdtk7r"/>
-    <service id=".service_locator.ugTWoCm" alias=".service_locator.rYHLj.R"/>
     <service id=".service_locator.8J4_XKB" alias=".service_locator.rvSyk07"/>
     <service id=".service_locator.QcZqsrZ" alias=".service_locator..dhLCXq"/>
     <service id=".service_locator.Ihl.NTx" alias=".service_locator.6DOGBG1"/>

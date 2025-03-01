@@ -40,7 +40,7 @@ class Depot
     /**
      * @var Collection<int, Collecte>
      */
-    #[ORM\OneToMany(targetEntity: Collecte::class, mappedBy: 'depot')]
+    #[ORM\OneToMany(targetEntity: Collecte::class, mappedBy: 'depot', cascade: ["remove"]   )]
     private Collection $collectes;
 
     public function __construct()

@@ -24,13 +24,15 @@
                 <td>{{ commande.modePaiement }}</td>
                 {% for produit in commande.produits %}
                 <td>{{ produit.nom }}</td>
-                <td>{{ produit.prix * produit.quantity }}</td>
+                <td>{{ produit.quantity }}</td>
                 {% endfor %}
                 <td>
                     {{ include('/commande/_delete_form.html.twig') }}
                 </td>
                 <td>
-                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">
+                        <span class="edit"></span>
+                    </a>
                 </td>
             </tr>
         {% else %}
@@ -39,4 +41,19 @@
             </tr>
         {% endfor %}
         </tbody>
+
+        <style>
+    .edit {
+        width: 40px;
+        height: 40px;
+        background: url("{{ asset('icons/edit.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .edit:hover {
+        background: url("{{ asset('icons/edit-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+</style>
 {% endblock %}

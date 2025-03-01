@@ -7,3 +7,20 @@
     color: white;
     font-weight: bold;
 }
+
+li.open{
+    background-color: #523974 !important;
+    padding-left: 30px;
+}
+
+li.open span{
+    color: #ffff !important;
+}
+
+li.open i{
+    color: #ffff !important;
+}
+
+li.closed{
+    padding-left: 30px;
+}

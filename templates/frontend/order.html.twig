@@ -77,8 +77,19 @@
                           <div class="col-md-3 col-lg-3 col-xl-3">
                             <h6 class="mb-0">{{ produit.nom }}</h6>
                           </div>
-                          <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <span class="form-control form-control-sm">{{ produit.quantity }}</span>
+                          <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
+                            <li>
+                            <button class="btn" data-commande-id="{{ commande.id }}" data-product-id="{{ produit.id }}">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                            </li>
+                            <span class="form-control form-control-sm text-center quantity" id="quantity-{{ commande.id }}-{{ produit.id }}">{{ produit.quantity }}</span>
+                            <li>
+                            <button class="btn" data-commande-id="{{ commande.id }}" data-product-id="{{ produit.id }}">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                            </li>
+
                           </div>
                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                             <h6 class="mb-0">{{ produit.prix * produit.quantity }} DT</h6>
@@ -131,13 +142,17 @@
                       <input type="text" id="discountCode" class="form-control form-control-lg" />
                     </div>
 
+                    <input type="hidden" id="finalPriceInput" name="finalPrice" value="{{ totalPrice }}">
                     <hr class="my-4">
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total price</h5>
                       <h5 id="finalPrice">{{ totalPrice }} DT</h5>
                     </div>
-                    <span class="checkout"></span>
                     {% for commande in commandes %}
+                    <a id="payment-link" href="#"
+                    data-commande-id="{{ commande.id }}">
+                      <span class="checkout"></span>
+                    </a>
                     <a href="{{ path('commande_invoice', {'id': commande.id}) }}">
                       <span class="export"></span>
                     </a>
@@ -157,19 +172,73 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    let totalPrice = {{ totalPrice }}; // Get total price from Twig
+    let totalPrice = {{ totalPrice }}; // Initial price from Twig
     let shippingSelect = document.getElementById("shippingMethod");
     let finalPriceElement = document.getElementById("finalPrice");
+    let paymentLink = document.getElementById("payment-link");
+
+    // Get the commande ID from the <a> data attribute
+    let commandeId = paymentLink.getAttribute("data-commande-id");
 
     function updateFinalPrice() {
         let shippingCost = parseFloat(shippingSelect.value);
         let finalPrice = totalPrice + shippingCost;
+
+        // Update displayed total price
         finalPriceElement.innerText = finalPrice + " DT";
+
+        // Update payment link with price and commande ID
+        paymentLink.href = "{{ path('payment', {'price': 'PRICE', 'id': 'ID'}) }}"
+            .replace('PRICE', finalPrice) // Replace PRICE placeholder with actual finalPrice
+            .replace('ID', commandeId); // Replace ID placeholder with actual commandeId
     }
 
     // Update price on shipping change
     shippingSelect.addEventListener("change", updateFinalPrice);
-    updateFinalPrice();
+    updateFinalPrice(); // Set initial price
+});
+</script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/${commandeId}/${productId}/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-${commandeId}-${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert("Error updating quantity");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(".plus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "increase");
+        });
+    });
+
+    document.querySelectorAll(".minus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "decrease");
+        });
+    });
 });
 </script>
 
@@ -212,5 +281,47 @@ document.addEventListener("DOMContentLoaded", function() {
         background-size: contain;
     }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/${commandeId}/${productId}/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-${commandeId}-${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert("Error updating quantity");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(".plus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "increase");
+        });
+    });
+
+    document.querySelectorAll(".minus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "decrease");
+        });
+    });
+});
+</script>
+
 
 {% endblock %}

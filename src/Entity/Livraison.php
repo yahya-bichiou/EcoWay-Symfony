@@ -34,6 +34,7 @@ class Livraison
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
     #[Assert\Type(\DateTimeInterface::class)]
+    #[Assert\LessThanOrEqual("today", message: "La date doit être au futur")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
@@ -47,7 +48,7 @@ class Livraison
 
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Commande $commande = null;
 
     public function getId(): ?int
