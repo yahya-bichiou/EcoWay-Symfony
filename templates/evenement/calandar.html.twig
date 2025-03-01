@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier des Événements{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }} {# Appelle le contenu du bloc "stylesheets" du template parent #}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/main.min.css">
+{% endblock %}
+
+{% block body %}
+    <div id="calendar"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }} {# Appelle le contenu du bloc "javascripts" du template parent #}
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.9/main.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const calendarEl = document.getElementById('calendar');
+
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
+                initialView: 'dayGridMonth',
+                evenements: '{{ path('api_evenements') }}',
+                dateClick: function(info) {
+                    alert('Date clicked: ' + info.dateStr);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

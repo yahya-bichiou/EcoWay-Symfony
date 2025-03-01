@@ -1,0 +1,38 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<table class="table">
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.titre, "Titre de l'événement") }}</label></td>
+        <td>{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.titre) }}</div></td>
+    </tr>
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.description, "Détails") }}</label></td>
+        <td>{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.description) }}</div></td>
+    </tr>
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.localisation, "Adresse") }}</label></td>
+        <td>{{ form_widget(form.localisation, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.localisation) }}</div></td>
+    </tr>
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.contact, "Contact") }}</label></td>
+        <td>{{ form_widget(form.contact, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.contact) }}</div></td>
+    </tr>
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.date_d, "Date de l'evenement") }}</label></td>
+        <td>{{ form_widget(form.date_d, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.date_d) }}</div></td>
+    </tr>
+    <tr>
+        <td><label class="form-label fw-bold">{{ form_label(form.recomponse, "recomponse") }}</label></td>
+        <td>{{ form_widget(form.recomponse, {'attr': {'class': 'form-control'}}) }}</td>
+        <td><div class="text-danger">{{ form_errors(form.recomponse) }}</div></td>
+    </tr>
+</table>
+
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}

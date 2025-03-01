@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}participant{% endblock %}
+
+{% block body %}
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+          <form id="contact" action="" method="post" novalidate>
+            <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                  <h6>Evenement</h6>
+                  <h2> participant </h2>
+                </div>
+              </div>
+
+    
+
+  <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ participant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ participant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ participant.age }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ participant.num }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ participant.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ participant.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evenement_index') }}">back to list</a>
+    {{ include('participant/_delete_form.html.twig') }}
+
+
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
