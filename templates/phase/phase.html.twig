@@ -1,0 +1,62 @@
+
+{% block body %}
+
+    <h1>Créer un nouveau phase</h1>
+
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+        <div>
+            {{ form_row(form.num_p) }}
+        </div>
+        <div>
+            {{ form_label(form.date_p) }}
+            {{ form_widget(form.date_p) }}
+            {{ form_errors(form.date_p) }}
+        </div>
+        <div>
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div>
+            {{ form_label(form.status) }}
+            {{ form_widget(form.status) }}
+            {{ form_errors(form.status) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+
+    <h2 class="mt-4">Liste des phase</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>description</th>           
+                <th>status</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for phase in phases %}
+                <tr>
+                    <td>{{ phase.id }}</td>
+                    <td>{{ phase.description }}</td>
+                    <td>{{ phase.status }}</td>
+                    <td>
+                        <a href="{{ path('phase_edit', { id: phase.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('phase_delete', { id: phase.id }) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce phase ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ phase.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun phase trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

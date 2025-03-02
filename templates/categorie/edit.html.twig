@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la catégorie{% endblock %}
+
+{% block body %}
+<div id="contact" class="contact-us section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+                <form id="contact" action="" method="post">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="section-heading">
+                                <h2>Modifier la catégorie</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            {{ include('categorie/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+                            <form action="{{ path('app_categorie_index') }}">
+                                <button class="btn">Retour</button>
+                                {{ include('categorie/_delete_form.html.twig') }}
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

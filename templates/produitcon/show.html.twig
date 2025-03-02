@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+
+<!-- Section pour l'image et les détails du produit -->
+<section class="product-section mt-10" style="margin-top: 140px;">
+    <div class="container">
+        <div class="row">
+            <!-- Colonne pour l'image (à gauche) -->
+            <div class="col-md-6">
+                <div class="single-product-image">
+                    <!-- Affichage de l'image du produit -->
+                    <div class="product-image">
+                        {% if produit.image %}
+                            <img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="Image du produit" class="img-fluid rounded" style="max-width: 80%;">
+                        {% else %}
+                            <em>Aucune image disponible</em>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne pour les détails du produit (à droite) -->
+            <div class="col-md-6">
+                <div class="single-product-details">
+                    <h2>{{ produit.nom }}</h2>
+                    <p class="product-price">{{ produit.prix|number_format(2, ',', ' ') }} DT</p>
+
+                    <p class="product-description mt-20">
+                        {{ produit.description }}
+                    </p>
+                    <p>Qualité: {{ produit.qualite }}</p>
+                    <div class="product-quantity">
+                        <span>En Stock: {{ produit.quantiteDisponible }}</span>
+                    </div>
+                    <p>Date d'ajout: {{ produit.dateAjout ? produit.dateAjout|date('Y-m-d H:i:s') : '' }}</p>
+                    <p class="category" style="color: #FF5733;">
+                        Catégorie : {{ produit.categorie.nom }}
+                    </p>
+                </div>
+                
+                <!-- Bouton retour aligné en bas -->
+                <div class="col-lg-4 offset-lg-4 mt-4">
+                    <div class="action-buttons">
+                        <form action="{{ path('front_products') }}">
+                            <button class="btn btn-primary">Retour</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

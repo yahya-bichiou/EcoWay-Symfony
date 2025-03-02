@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Catégories{% endblock %}
+
+{% block body %}
+<div>
+    <img src="{{ asset('bg1.png')}}" alt="background">
+</div>
+<div style="position: relative; display: inline-block;">
+    <!-- Liste des notifications (cachée par défaut) -->
+    <div id="notif-list" style="
+        display: none;
+        position: absolute;
+        top: 0; /* Aligné en haut par rapport à l'icône */
+        left: 100%; /* Place la liste à droite de l'icône */
+        background: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 200px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        z-index: 100;">
+        <p id="no-notif-message">Aucune notification</p>
+    </div>
+
+    <!-- Icône de la cloche de notification -->
+    <img src="/uploads/images/notif.png" alt="Notifications" width="50" height="50" 
+         id="notif-icon" style="cursor: pointer;left: 100%; ">
+
+    <!-- Badge pour le nombre de notifications -->
+    <span id="notif-count" style="
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: red;
+        color: white;
+        border-radius: 50%;
+        padding: 3px 3px;
+        display: none;">
+        0
+    </span>
+</div>
+
+<div id="services" class="our-services section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <h2>Nos Catégories</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Liste des catégories -->
+   <div class="row justify-content-center">
+    {% for categorie in categories %}
+        <div class="col-md-2 mb-3"> <!-- 6 boutons par ligne -->
+            <button class="btn btn-custom btn-block filter-category" data-id="{{ categorie.id }}">
+                {{ categorie.nom }}
+            </button>
+        </div>
+    {% endfor %}
+</div>
+
+
+    <!-- Conteneur pour les produits filtrés -->
+    <div id="products-container" class="row mt-4"></div>
+</div>
+
+<!-- JavaScript pour charger les produits dynamiquement -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".filter-category").forEach(button => {
+            button.addEventListener("click", function() {
+                let categoryId = this.getAttribute("data-id");
+
+                fetch(`/front/products/categorie/${categoryId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("products-container").innerHTML = html;
+                    })
+                    .catch(error => console.error("Erreur:", error));
+            });
+        });
+    });
+</script>
+<style>
+/* Personnalisation des boutons */
+.btn-custom {
+    background-color: white;  /* Fond blanc */
+    color: #007bff;  /* Texte bleu */
+    border: 2px solid #007bff;  /* Bordure bleue */
+    border-radius: 5px;  /* Bords légèrement arrondis */
+    font-size: 16px;
+    padding: 8px 16px;  /* Padding réduit */
+    transition: all 0.3s ease;
+    margin: 5px;  /* Marge réduite entre les boutons */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Ombre légère */
+}
+
+.btn-custom:hover {
+    background-color: #007bff;  /* Fond bleu au survol */
+    color: white;  /* Texte blanc au survol */
+    border-color: #0056b3;  /* Bordure plus foncée au survol */
+    transform: translateY(-1px);  /* Légère élévation au survol */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);  /* Ombre plus prononcée au survol */
+}
+
+/* Espacement et alignement des boutons */
+.row.justify-content-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;  /* Espacement réduit entre les boutons */
+}
+
+.col-md-3 {
+    margin-bottom: 10px;  /* Marge réduite en bas */
+}
+
+.section-heading h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;  /* Marge réduite en bas */
+    color: #333;  /* Couleur de texte plus foncée */
+}
+</style>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('c130cb53b4b3749fb0f9', {
+        cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('notifications');
+
+    // Ajout d'une nouvelle notification
+    channel.bind('nouvelle-categorie', function(data) {
+        let badge = document.getElementById("notif-count");
+        let notifList = document.getElementById("notif-list");
+        let noNotifMessage = document.getElementById("no-notif-message");
+
+        // Ajouter la notification à la liste
+        let newNotif = document.createElement("p");
+        newNotif.innerText = data.message;
+        notifList.appendChild(newNotif);
+
+        // Mettre à jour le compteur de notifications
+        let currentCount = parseInt(badge.innerText) || 0;
+        badge.innerText = currentCount + 1;
+        badge.style.display = "block";  // Afficher le badge
+
+        // Supprimer "Aucune notification" si de nouvelles notifications existent
+        if (notifList.children.length > 1) {  // Plus d'un enfant (le message "Aucune notification" doit être supprimé)
+            noNotifMessage.style.display = "none";
+        }
+    });
+
+    // Afficher/Masquer la liste des notifications en cliquant sur l'icône
+    document.getElementById("notif-icon").addEventListener("click", function() {
+        let notifList = document.getElementById("notif-list");
+        let badge = document.getElementById("notif-count");
+        let noNotifMessage = document.getElementById("no-notif-message");
+
+        // Afficher ou masquer la liste des notifications
+        if (notifList.style.display === "block") {
+            notifList.style.display = "none";  // Masquer la liste
+        } else {
+            notifList.style.display = "block";  // Afficher la liste
+        }
+
+        // Si des notifications existent, réinitialiser le compteur et masquer le badge
+        if (parseInt(badge.innerText) > 0) {
+            badge.innerText = 0;
+            badge.style.display = "none";  // Masquer le badge après affichage
+        }
+
+        // Si la liste est vide après le clic, réajouter le message "Aucune notification"
+        if (notifList.children.length === 1) {  // Seulement le message "Aucune notification"
+            noNotifMessage.style.display = "block";
+        }
+    });
+</script>
+
+
+
+
+
+{% endblock %}
+
+ 

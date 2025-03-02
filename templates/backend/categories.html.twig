@@ -1,0 +1,117 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Gestion des Catégories{% endblock %}
+
+{% block body %}
+<body>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-default">
+      <div class="card-header">
+        <h2>Liste des Catégories</h2>
+      </div>
+      <div class="card-body">
+        <table id="categoriesTable" class="table table-hover table-product" style="width:100%">
+          {% include "categorie/backindex.html.twig" %}
+        </table>
+        <a href="#" class="btn btn-primary btn-pill" data-toggle="modal" data-target="#categorie-modal">Ajout Catégorie</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Catégorie Modal -->
+<div class="modal fade" id="categorie-modal" aria-labelledby="categorie-modal" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered d-flex justify-content-center" style="max-width: 50vw;">
+    <form method="post" action="{{ path('back_categories') }}" enctype="multipart/form-data"novalidate>
+      <input type="hidden" name="form_type" value="categorie">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Ajouter une Catégorie</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+          <div class="form-group">
+            {{ form_label(form.nom, "Nom de la Catégorie") }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.nom) }}
+          </div>
+
+          <div class="form-group">
+            {{ form_label(form.description, "Description") }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description) }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+         <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+        {{ form_end(form) }}
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-default">
+      <div class="card-header">
+        <h2>Statistiques des Catégories</h2>
+      </div>
+      <div class="card-body">
+        <canvas id="categoriesChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+    {% if not form.vars.valid %}
+        $('#categorie-modal').modal('show'); // Open modal if form has errors
+    {% endif %}
+});
+</script>
+
+<!-- Script pour afficher le graphique -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var ctx = document.getElementById('categoriesChart').getContext('2d');
+    var categoriesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for category in categoriesWithStats %}"{{ category.nom }}",{% endfor %}],
+            datasets: [{
+                label: 'Nombre de Produits',
+                data: [{% for category in categoriesWithStats %}{{ category.product_count }},{% endfor %}],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(235, 54, 202, 0.6)',
+                    'rgba(255, 86, 86, 0.72)',
+                    'rgba(231, 76, 60, 0.6)',
+                    'rgba(155, 89, 182, 0.6)',
+                    'rgba(30, 19, 186, 0.6)',
+                    'rgba(46, 204, 113, 0.6)'
+                ],
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+</script>
+</body>
+{% endblock %}

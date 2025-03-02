@@ -1,0 +1,10 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+    # Dans config/routes.yaml ou annotations dans le contrôleur
+app_categorie_produits:
+    path: /categorie/{id}/produits
+    controller: App\Controller\CategorieController::showCategoryProducts
+

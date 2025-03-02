@@ -1,0 +1,31 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Date</th>
+                <th>Responsable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+                <td>{{ collecte.quantite }}</td>
+                <td>{{ collecte.date ? collecte.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ collecte.responsable }}</td>
+                <td>
+                    <a href="{{ path('app_collecte_show', {'id': collecte.id}) }}">show</a>
+                    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Gestion des Produits{% endblock %}
+
+{% block body %}
+<body>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-default">
+      <div class="card-header">
+        <h2>Liste des Produits</h2>
+      </div>
+      <div class="card-body">
+        <table id="productsTable" class="table table-hover table-product" style="width:100%">
+          {% include "produitcon/backindex.html.twig" %}
+        </table>
+        <a href="#" class="btn btn-primary btn-pill" data-toggle="modal" data-target="#produit-modal">Ajout Produit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Produit Modal -->
+<div class="modal fade" id="produit-modal" aria-labelledby="produit-modal" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered d-flex justify-content-center" style="max-width: 80vw;">
+    <form method="post" action="{{ path('back_products') }}" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="form_type" value="produit">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Ajouter un Produit</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_label(form.nom, "Nom du Produit") }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'required': 'required', 'maxlength': '255'}}) }}
+                {{ form_errors(form.nom) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.description, "Description") }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'required': 'required', 'minlength': '10'}}) }}
+                {{ form_errors(form.description) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.qualite, "Qualité") }}
+                {{ form_widget(form.qualite, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+                {{ form_errors(form.qualite) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.quantiteDisponible, "Quantité Disponible") }}
+                {{ form_widget(form.quantiteDisponible, {'attr': {'class': 'form-control', 'required': 'required', 'type': 'number', 'min': '1'}}) }}
+                {{ form_errors(form.quantiteDisponible) }}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_label(form.prix, "Prix") }}
+                {{ form_widget(form.prix, {'attr': {'class': 'form-control', 'required': 'required', 'type': 'number', 'min': '0.1', 'step': '0.01'}}) }}
+                {{ form_errors(form.prix) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.dateAjout, "Date d'Ajout") }}
+                {{ form_widget(form.dateAjout, {'attr': {'class': 'form-control', 'required': 'required', 'type': 'date'}}) }}
+                {{ form_errors(form.dateAjout) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.categorie, "Catégorie") }}
+                {{ form_widget(form.categorie, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+                {{ form_errors(form.categorie) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(form.image, "Image du Produit") }}
+                {{ form_widget(form.image, {'attr': {'class': 'form-control-file', 'accept': 'image/*'}}) }}
+                {{ form_errors(form.image) }}
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        </div>
+        {{ form_end(form) }}
+      </div>
+    </form>
+  </div>
+</div>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+    {% if not form.vars.valid %}
+        $('#produit-modal').modal('show'); // Open modal if form has errors
+    {% endif %}
+});
+</script>
+</body>
+{% endblock %}
+

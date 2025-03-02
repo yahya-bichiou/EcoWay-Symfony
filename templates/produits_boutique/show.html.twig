@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitsBoutique{% endblock %}
+
+{% block body %}
+<section class="single-product">
+	<div class="container">
+<div class="row mt-20">
+			<div class="col-md-5">
+				<div class="single-product-slider">
+					<div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+								<div class='item active'>
+									<img src={{ produits_boutique.productImage }} alt='' data-zoom-image="images/shop/single-products/product-1.jpg" />
+								</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="single-product-details">
+					<h2>{{ produits_boutique.productName }}</h2>
+                    <pre>
+
+                    </pre>
+					<p class="product-price">{{ produits_boutique.productPrice }} DT</p>
+
+					<p class="product-description mt-20">
+						{{ produits_boutique.productName }}
+					</p>
+					<p>Category: {{ produits_boutique.productCategory }}</p>
+					<div class="product-quantity">
+						<span>En Stock: {{ produits_boutique.productStock }}</span>
+					</div>
+                    <pre>
+
+
+
+
+
+
+                    </pre>
+                    <div class="col-lg-4 offset-lg-4">
+                    <table>
+                    <tr>
+                    <td>
+                    <form action="{{ path('app_produits_boutique_index') }}">
+                    <button class="btn">Retour</button>
+                    </form>
+                    </td>
+                    <td>
+                    <form action="{{ path('app_produits_boutique_edit', {'id': produits_boutique.id}) }}">
+                    <button class="btn">Modifier</button>
+                    </form>
+                    </td>
+                    <td>
+                    {{ include('produits_boutique/_delete_form.html.twig') }}
+                    </td>
+                    </tr>
+                    </table>
+              </div>
+				</div>
+			</div>
+		</div>
+{% endblock %}

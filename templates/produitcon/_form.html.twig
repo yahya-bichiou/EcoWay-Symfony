@@ -1,0 +1,48 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+
+<table>
+    <tr>
+        <td>{{ form_label(form.nom, "Nom du Produit") }}</td>
+        <td>{{ form_widget(form.nom) }}</td>
+        <td>{{ form_errors(form.nom) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.description, "Description") }}</td>
+        <td>{{ form_widget(form.description) }}</td>
+        <td>{{ form_errors(form.description) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.qualite, "Qualité") }}</td>
+        <td>{{ form_widget(form.qualite) }}</td>
+        <td>{{ form_errors(form.qualite) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.quantiteDisponible, "Quantité Disponible") }}</td>
+        <td>{{ form_widget(form.quantiteDisponible) }}</td>
+        <td>{{ form_errors(form.quantiteDisponible) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.prix, "Prix") }}</td>
+        <td>{{ form_widget(form.prix) }}</td>
+        <td>{{ form_errors(form.prix) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.dateAjout, "Date d'Ajout") }}</td>
+        <td>{{ form_widget(form.dateAjout) }}</td>
+        <td>{{ form_errors(form.dateAjout) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.categorie, "Catégorie") }}</td>
+        <td>{{ form_widget(form.categorie) }}</td>
+        <td>{{ form_errors(form.categorie) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.image, "Image du Produit") }}</td>
+        <td>{{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}</td>
+        <td>{{ form_errors(form.image) }}</td>
+    </tr>
+</table>
+
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
