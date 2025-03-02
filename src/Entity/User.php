@@ -30,6 +30,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: "Name is required.")]
     private ?string $name = null;
 
+    #[ORM\Column(name: "profile_picture", type: "string", length: 255, nullable: true)]
+    private ?string $profilePicture = null;
+
+
     /**
      * @var list<string> The user roles
      */
@@ -48,6 +52,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getProfilePicture(): ?string
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?string $profilePicture): static
+    {
+        $this->profilePicture = $profilePicture;
+        return $this;
     }
 
     public function getName(): ?string

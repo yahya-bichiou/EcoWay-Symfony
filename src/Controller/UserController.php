@@ -28,7 +28,7 @@ class UserController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route('/user/{id}', name: 'app_user_show')]
+    #[Route('/user/show/{id}', name: 'app_user_show')]
     public function show(User $user): Response
     {
         return $this->render('backend/user_show.html.twig', [
@@ -36,7 +36,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{id}/edit', name: 'app_user_edit')]
+    #[Route('/user/edit/{id}', name: 'app_user_edit')]
     public function edit(User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -54,7 +54,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/{id}/delete', name: 'app_user_delete', methods: ['POST'])]
+    #[Route('/user/delete/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/user/create', name: 'app_user_new')]
+    #[Route('/user/new', name: 'app_user_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -86,5 +86,24 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/profile', name: 'admin-profile')]
+    public function adminProfile(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $admin = $this->getUser(); // Get the logged-in admin
+
+        $form = $this->createForm(UserType::class, $admin);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Profile updated successfully!');
+            return $this->redirectToRoute('admin-profile');
+        }
+
+        return $this->render('backend/admin-profile.html.twig', [
+            'form' => $form->createView(),
+            'admin' => $admin
+        ]);
+    }
 
 }
