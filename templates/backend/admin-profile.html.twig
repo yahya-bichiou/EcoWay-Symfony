@@ -1,0 +1,78 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Admin Profile{% endblock %}
+
+{% block body %}
+<div class="page-wrapper">
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <!-- Admin Sidebar -->
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h2>Admin Settings</h2>
+                            </div>
+                            <div class="card-body pt-0">
+                                <ul class="nav nav-settings">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="{{ path('admin-profile') }}">
+                                            <i class="mdi mdi-account-outline mr-1"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('app_user') }}">
+                                            <i class="mdi mdi-account-group-outline mr-1"></i> Manage Users
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9">
+                        <!-- Admin Profile Details -->
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h2>Admin Profile</h2>
+                            </div>
+                            <div class="card-body">
+                                {{ user.profilePicture }}
+                                {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                                    {% if user is defined %}
+                                        <img src="{{ user.profilePicture ? asset('uploads/profile_pictures/' ~ user.profilePicture) : asset('uploads/profile_pictures/default-user.png') }}"
+                                            class="user-image rounded-circle mb-3"
+                                            alt="User Image" width="120" height="120">
+                                    {% else %}
+                                        <p>User not found</p>
+                                    {% endif %}
+                                    <div class="form-group mb-4">
+                                        {{ form_label(form.profilePicture, 'Profile Picture') }}
+                                        {{ form_widget(form.profilePicture, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        {{ form_label(form.name, 'Full Name') }}
+                                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        {{ form_label(form.email, 'Email') }}
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        {{ form_label(form.password, 'New Password') }}
+                                        {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-6">
+                                        <button type="submit" class="btn btn-primary mb-2 btn-pill">Save Changes</button>
+                                    </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

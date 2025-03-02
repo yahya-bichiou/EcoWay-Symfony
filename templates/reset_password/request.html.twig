@@ -1,0 +1,36 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{{ asset('uploads/logo.png') }}" alt="ecoway">
+        </div>
+        <div class="text-center mt-4 name">
+            ECOWAY
+        </div>
+
+        <form class="p-3 mt-3" method="post">
+            <h1>Reset Password</h1>
+
+            {% for message in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+
+            {# Render the email input field #}
+            <div class="form-field d-flex align-items-center">
+                {{ form_label(requestForm.email) }}
+                {{ form_widget(requestForm.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(requestForm.email) }}
+            </div>
+
+            {# Include CSRF Token and any other hidden fields #}
+            {{ form_rest(requestForm) }}
+
+           
+        </form>
+    </div>
+</div>
+{% endblock %}

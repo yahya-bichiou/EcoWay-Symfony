@@ -1,206 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_login.html.twig' %}
 
 {% block title %}Créer un Compte{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+{% endblock %}
+
 {% block body %}
 
-<style>
-    body {
-        background: #ffffff;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .register-container {
-        background-color: white;
-        border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 420px;
-        text-align: center;
-        animation: fadeIn 0.5s ease-in-out;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .logo img {
-        max-width: 120px;
-        height: auto;
-    }
-
-    h1 {
-        font-size: 22px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 15px;
-    }
-
-    .form-group {
-        margin-bottom: 18px;
-        text-align: center;
-        width: 100%;
-    }
-
-    .form-field {
-        display: flex;
-        align-items: center;
-        border-radius: 8px;
-        background: #f9f9f9;
-        padding: 12px;
-        border: 2px solid #ddd;
-        transition: all 0.3s ease-in-out;
-        width: 100%;
-    }
-
-    .form-field:focus-within {
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
-    }
-
-    .form-field span {
-        font-size: 18px;
-        color: #007bff;
-        margin-right: 10px;
-    }
-
-    input {
-        width: 100%;
-        border: none;
-        font-size: 16px;
-        background: transparent;
-        outline: none;
-        text-align: center;
-    }
-
-    .terms-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-        font-size: 14px;
-    }
-
-    .terms-container input {
-        margin-right: 8px;
-    }
-
-    .terms-container a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .btn-primary {
-        width: 100%;
-        padding: 12px;
-        background: #007bff;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 10px;
-    }
-
-    .btn-primary:hover {
-        background: #0056b3;
-        box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-    }
-
-    .text-center {
-        margin-top: 15px;
-        font-size: 14px;
-    }
-
-    .text-center a {
-        color: #007bff;
-        font-weight: bold;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .text-center a:hover {
-        color: #0056b3;
-    }
-
-    small.text-danger {
-        font-size: 13px;
-        color: #d9534f;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
-
 <div class="register-container">
-    <div class="logo">
-        <img src="{{ asset('uploads/logo.png') }}" alt="Ecoway">
-    </div>
-
-    <h1>Créer un compte</h1>
-
-    {{ form_start(registrationForm, {'attr': {'id': 'registerForm', 'novalidate': 'novalidate'}}) }}
-
-    <div class="form-group">
-        <div class="form-field">
-            <span class="far fa-envelope"></span>
-            {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'id': 'registerEmail'}}) }}
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{{ asset('uploads/logo.png') }}" alt="Ecoway">
         </div>
-        <small class="text-danger">{{ form_errors(registrationForm.email) }}</small>
-    </div>
 
-    <div class="form-group">
-        <div class="form-field">
-            <span class="far fa-user"></span>
-            {{ form_widget(registrationForm.name, {'attr': {'placeholder': 'Nom', 'id': 'registerName'}}) }}
+        <h1>Créer un compte</h1>
+
+        {{ form_start(registrationForm, {'attr': {'id': 'registerForm', 'novalidate': 'novalidate'}}) }}
+
+            <div class="form-field">
+                <span class="far fa-envelope"></span>
+                {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'id': 'registerEmail'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.email) }}</small>
+            </div>
+
+            <div class="form-field">
+                <span class="far fa-user"></span>
+                {{ form_widget(registrationForm.name, {'attr': {'placeholder': 'Nom', 'id': 'registerName'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.name) }}</small>
+            </div>
+
+            <div class="form-field">
+                <span class="fas fa-lock"></span>
+                {{ form_widget(registrationForm.password, {'attr': {'placeholder': 'Mot de passe', 'id': 'registerPassword'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.password) }}</small>
+            </div>
+
+        <div class="terms-container">
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'id': 'agreeTerms'}}) }}
+            <label for="agreeTerms">J'accepte les <a href="#">termes et conditions</a></label>
         </div>
-        <small class="text-danger">{{ form_errors(registrationForm.name) }}</small>
-    </div>
+        <small class="text-danger">{{ form_errors(registrationForm.agreeTerms) }}</small>
 
-    <div class="form-group">
-        <div class="form-field">
-            <span class="fas fa-lock"></span>
-            {{ form_widget(registrationForm.password, {'attr': {'placeholder': 'Mot de passe', 'id': 'registerPassword'}}) }}
+
+        <button type="submit" class="btn mt-3">S'inscrire</button>
+
+        {{ form_end(registrationForm) }}
+
+        <div class="text-center">
+            Déjà un compte? <a href="{{ path('app_login') }}">Se connecter</a>
         </div>
-        <small class="text-danger">{{ form_errors(registrationForm.password) }}</small>
-    </div>
-
-    <div class="terms-container">
-        {{ form_widget(registrationForm.agreeTerms, {'attr': {'id': 'agreeTerms'}}) }}
-        <label for="agreeTerms">J'accepte les <a href="#">termes et conditions</a></label>
-    </div>
-    <small class="text-danger">{{ form_errors(registrationForm.agreeTerms) }}</small>
-
-
-    <button type="submit" class="btn-primary">S'inscrire</button>
-
-    {{ form_end(registrationForm) }}
-
-    <div class="text-center">
-        Déjà un compte? <a href="{{ path('app_login') }}">Se connecter</a>
     </div>
 </div>
 

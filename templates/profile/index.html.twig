@@ -3,6 +3,9 @@
 {% block title %}My Profile{% endblock %}
 
 {% block body %}
-    <h1>Welcome, {{ user.name }}!</h1>
-    <p>Email: {{ user.email }}</p>
+    <div class="container mt-5" style="margin-top: 120px;">
+        <h1>Welcome, {{ user.name }}!</h1>
+        <p>Email: {{ user.email }}</p>
+        <a href="{{ path('app_profile_edit') }}" class="btn btn-warning">Modifier le Profil</a>
+    </div>
 {% endblock %}
