@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Commentaire{% endblock %}
+
+{% block body %}
+<div class="card shadow-lg p-4 border border-primary rounded col-12 col-md-8 mx-auto">
+    <h2 class="text-center text-primary">Commentaire</h2>
+    
+    <h4>ID :</h4>
+    <p>{{ commentaire.id }}</p>
+    
+    <h4>Message :</h4>
+    <p>{{ commentaire.message }}</p>
+    
+    <h4>Auteur :</h4>
+    <p>{{ commentaire.auteur }}</p>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{{ path('app_commentaire_index') }}" class="btn btn-secondary">⬅ Retour</a>
+        <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}" class="btn btn-warning">✏ Modifier</a>
+
+        <form method="post" action="{{ path('app_commentaire_delete', {'id': commentaire.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+            <button type="submit" class="btn btn-danger">🗑 Supprimer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("details-container")?.classList.add("show");
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Gestion des Commentaires{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-header">
+          <h2>Liste des Commentaires</h2>
+        </div>
+        <div class="card-body table-responsive">
+          <table id="commentairesTable" class="table table-hover table-product" style="width:100%">
+            {% include "commentaire/backindex.html.twig" %}
+          </table>
+          <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#commentaire-modal">Ajouter un Commentaire</a>
+            <a href="{{ path('back_commentaires_stats_page') }}" class="btn btn-info ml-2">Voir les statistiques</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commentaire Modal -->
+  <div class="modal fade" id="commentaire-modal" aria-labelledby="commentaire-modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width: 80vw;">
+      <form method="post" action="{{ path('back_commentaires') }}" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="form_type" value="commentaire">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Ajouter un Commentaire</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="form-group">
+              {{ form_label(form.auteur, "Auteur") }}
+              {{ form_widget(form.auteur, {'attr': {'class': 'form-control'}}) }}
+              {{ form_errors(form.auteur) }}
+            </div>
+            <div class="form-group">
+              {{ form_label(form.message, "Message") }}
+              {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+              {{ form_errors(form.message) }}
+            </div>
+            <div class="form-group">
+              {{ form_label(form.post, "Post associé") }}
+              {{ form_widget(form.post, {'attr': {'class': 'form-control'}}) }}
+              {{ form_errors(form.post) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            {{ form_end(form) }}
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      {% if not form.vars.valid %}
+          $('#commentaire-modal').modal('show'); // Open modal if form has errors
+      {% endif %}
+  });
+  </script>
+{% endblock %}

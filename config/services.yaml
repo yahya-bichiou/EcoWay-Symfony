@@ -1,0 +1,25 @@
+parameters:
+    uploads_directory: '%kernel.project_dir%/public/uploads/images'
+    images_directory: '%kernel.project_dir%/public/uploads/images'
+#    ////////edit image////////////////////////////////
+    edited_posts_directory: '%kernel.project_dir%/public/uploads/images'
+
+    sightengine_user: '%env(SIGHTENGINE_USER)%'
+    sightengine_secret: '%env(SIGHTENGINE_SECRET)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '%kernel.project_dir%/src/'
+        exclude:
+            - '%kernel.project_dir%/src/DependencyInjection/'
+            - '%kernel.project_dir%/src/Entity/'
+            - '%kernel.project_dir%/src/Kernel.php'
+
+    App\Controller\CommentaireController:
+        arguments:
+            $sightengineUser: '%env(SIGHTENGINE_USER)%'
+            $sightengineSecret: '%env(SIGHTENGINE_SECRET)%'

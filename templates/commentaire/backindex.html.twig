@@ -1,0 +1,56 @@
+<table class="table table-bordered table-striped text-center" style="table-layout: fixed; width: 100%;">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Auteur</th>
+            <th>Message</th>
+            <th>Post associé</th>
+            <th>État</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for commentaire in commentaires %}
+           <tr class="{% if commentaire.isInappropriate %}table-danger{% else %}table-success{% endif %}">
+    <td>{{ commentaire.id }}</td>
+    <td>{{ commentaire.auteur }}</td>
+    <td style="white-space: pre-line; word-wrap: break-word; max-width: 200px; overflow-wrap: break-word;">
+        <span title="{{ commentaire.message }}">
+            {{ commentaire.message|length > 50 ? commentaire.message|slice(0, 50) ~ '...' : commentaire.message }}
+        </span>
+    </td>
+    <td>
+        {% if commentaire.post %}
+            {{ commentaire.post.titre }}
+        {% else %}
+            <span class="text-muted">Aucun post</span>
+        {% endif %}
+    </td>
+    <td>
+        {% if commentaire.isInappropriate is same as(true) %}
+            <span class="badge badge-danger">Bloqué</span>
+        {% else %}
+            <span class="badge badge-success">Validé</span>
+        {% endif %}
+    </td>
+    <td>
+        <form action="{{ path('back_commentaire_edit', {'id': commentaire.id}) }}" method="POST" style="display:inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ commentaire.id) }}">
+            <button type="submit" class="btn btn-warning btn-sm">Modifier</button>
+        </form>
+        <form action="{{ path('back_commentaire_delete', {'id': commentaire.id}) }}" method="POST" style="display:inline;">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
+                Supprimer
+            </button>
+        </form>
+    </td>
+</tr>
+
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Aucun commentaire disponible.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

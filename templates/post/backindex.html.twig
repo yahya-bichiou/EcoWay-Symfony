@@ -1,0 +1,49 @@
+
+    <table class="table table-bordered table-striped text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Créateur</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.titre }}</td>
+                    <td>{{ post.description }}</td>
+                    <td>{{ post.createur }}</td>
+                    <td>
+                        {% if post.image %}
+                            <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Image de {{ post.titre }}" class="img-thumbnail" width="60">
+                        {% else %}
+                            <span class="text-muted">Aucune image</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Formulaire de Modification -->
+                        <form action="{{ path('back_post_edit', {'id': post.id}) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ post.id) }}">
+                            <button type="submit" class="btn btn-warning btn-sm">Modifier</button>
+                        </form>
+
+                        <!-- Formulaire de Suppression -->
+                        <form action="{{ path('back_post_delete', {'id': post.id}) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer ce post ?');">Supprimer</button>
+                        </form> 
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">Aucun post disponible.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+

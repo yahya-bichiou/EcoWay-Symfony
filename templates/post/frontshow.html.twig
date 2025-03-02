@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Post{% endblock %}
+
+{% block body %}
+<section class="single-product mt-10" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row mt-20">
+            <div class="col-md-5">
+                <div class="single-product-slider">
+                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                        <!-- Ajouter ici un carrousel d'images si nécessaire -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-details">
+                    <h2>{{ post.titre }}</h2>
+                    
+                    <p class="product-description mt-20">
+                        {{ post.description }}
+                    </p>
+                    <p>Créateur: {{ post.createur }}</p>
+
+                    <!-- Affichage de l'image du Post -->
+                    <div class="product-image">
+                        {% if post.image %}
+                            <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Image du post" class="img-fluid rounded" style="max-width: 300px;">
+                        {% else %}
+                            <em>Aucune image disponible</em>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="action-buttons">
+                            <a href="{{ path('app_post_index') }}" class="btn btn-primary">⬅ Retour à la liste</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

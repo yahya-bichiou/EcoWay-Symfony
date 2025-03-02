@@ -1,0 +1,15 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+<div class="section-heading">
+  <h2>Modifier Commentaire</h2>                             
+</div>
+
+<div class="col-lg-4 offset-lg-4">
+  {{ include('commentaire/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+  <form action="{{ path('back_posts') }}">
+    <a href="{{ path('back_posts') }}" class="btn btn-secondary">Annuler</a>
+  </form>
+</div>
+{% endblock %}
