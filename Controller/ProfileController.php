@@ -75,14 +75,18 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/edit.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
 
     #[Route('/admin/profile', name: 'admin-profile')]
     #[IsGranted('ROLE_ADMIN')]
-    public function adminProfile(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function adminProfile(
+        Request $request, 
+        EntityManagerInterface $entityManager, 
+        #[Autowire('%profile_pictures_directory%')] string $imageDir
+    ): Response {
         $user = $this->getUser(); // ✅ Get the logged-in user
 
         if (!$user) {
@@ -93,14 +97,38 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('profilePicture')->getData();
+            
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move($imageDir, $newFilename);
+
+                    if ($user->getProfilePicture() && $user->getProfilePicture() !== 'default-user.png') {
+                        $oldImagePath = $imageDir . '/' . $user->getProfilePicture();
+
+                        if (is_file($oldImagePath) && file_exists($oldImagePath)) {
+                            unlink($oldImagePath);
+                        }
+                    }
+
+                    $user->setProfilePicture($newFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Failed to upload profile picture.');
+                }
+            }
+
             $entityManager->flush();
             $this->addFlash('success', 'Profile updated successfully!');
             return $this->redirectToRoute('admin-profile'); // ✅ Stay on the same page
         }
 
         return $this->render('backend/admin-profile.html.twig', [
-            'user' => $user,  // ✅ Pass user variable
-            'form' => $form->createView(),  // ✅ Pass form variable
+            'user' => $user,  
+            'form' => $form->createView(),
         ]);
     }
+
+
 }
