@@ -15,16 +15,16 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/participant')]
 final class ParticipantController extends AbstractController{
 //////////////////////////////////index////////////////////////////////////////////////////////////////////
-        #[Route('/list' ,name: 'app_participant_indexback', methods: ['GET'])]
-        public function indexback(ParticipantRepository $participantRepository,Request $request, EntityManagerInterface $entityManager): Response{
-        $participant = new Participant();
-        $form = $this->createForm(ParticipantType::class, $participant);
-        $form->handleRequest($request);
+    #[Route('/list' ,name: 'app_participant_indexback', methods: ['GET'])]
+    public function indexback(ParticipantRepository $participantRepository,Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $nom = $request->query->get('nom', '');
+        $participants = $nom ? $participantRepository->findByNom($nom) : $participantRepository->findAll();
+    
         return $this->render('participant/listp.html.twig', [
-            'participants' => $participantRepository->findAll(),
-            'form' => $form->createView(),
+            'participants' => $participants,
+            'nom' => $nom, 
         ]);
-
     }
 /////////////////////////////////////////////add//////////////////////////////////////////////////////
 #[Route('/new/{id}', name: 'participant_new')]
@@ -45,7 +45,7 @@ public function new(Request $request, EvenementRepository $evenementRepository, 
         $entityManager->persist($participant);
         $entityManager->flush();
 
-       // return $this->redirectToRoute('evenement_index'); // Redirection après enregistrement
+        return $this->redirectToRoute('app_evenement_index'); // Redirection après enregistrement
     }
 
     return $this->render('participant/new.html.twig', [

@@ -8,6 +8,9 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Evenement>
+ * 
+     * @param string $titre
+     * @return Evenement[]
  */
 class EvenementRepository extends ServiceEntityRepository
 {
@@ -15,6 +18,17 @@ class EvenementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Evenement::class);
     }
+    public function findByTitre(string $titre): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.titre LIKE :titre')
+            ->setParameter('titre', '%' . $titre . '%')
+            ->orderBy('e.titre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
 //    /**
 //     * @return Evenement[] Returns an array of Evenement objects

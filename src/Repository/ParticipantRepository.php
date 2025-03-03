@@ -5,6 +5,12 @@ namespace App\Repository;
 use App\Entity\Participant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+/**
+ * @extends ServiceEntityRepository<Participant>
+ * 
+     * @param string $nom
+     * @return Participant[]
+ */
 
 
 class ParticipantRepository extends ServiceEntityRepository
@@ -14,14 +20,16 @@ class ParticipantRepository extends ServiceEntityRepository
         parent::__construct($registry, Participant::class);
     }
 
-    /*public function findByNom(string $nom): array
+
+
+    public function findByNom(string $nom): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.nom LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
             ->getQuery()
             ->getResult();
-    }*/
+    }
 
 //    /**
 //     * @return Participant[] Returns an array of Participant objects

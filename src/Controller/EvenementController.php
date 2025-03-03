@@ -21,19 +21,22 @@ final class EvenementController extends AbstractController
             'evenements' => $evenementRepository->findAll(),
         ]);
     }
+#[Route('/back/event', name: 'app_backevenement_index', methods: ['GET'])]
+public function indexback(EvenementRepository $evenementRepository, Request $request, EntityManagerInterface $entityManager): Response
+{
+    // Récupérer le paramètre "titre" de la requête (s'il existe)
+    $titre = $request->query->get('titre', '');
 
-    #[Route('/back/event', name: 'app_backevenement_index', methods: ['GET'])]
-    public function indexback(EvenementRepository $evenementRepository, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $evenement = new Evenement();
-        $form = $this->createForm(EvenementType::class, $evenement);
-        $form->handleRequest($request);
+    // Si un titre est fourni, effectuer la recherche
+    $evenements = $titre ? $evenementRepository->findByTitre($titre) : $evenementRepository->findAll();
 
-        return $this->render('backend/event.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
-        ]);
-    }
+    return $this->render('backend/event.html.twig', [
+        'evenements' => $evenements,
+        'titre' => $titre, // Toujours passer la variable "titre"
+    ]);
+}
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -132,6 +135,20 @@ final class EvenementController extends AbstractController
         return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
     }
 
+///////////////////////////////////////////recherche et API//////////////////////////////////////////////////////////////////////////////////
+
+    /*#[Route('/evenement/recherche', name: 'evenement_recherche', methods: ['GET'])]
+    public function recherche(Request $request, EvenementRepository $evenementRepository): Response
+    {
+        $titre = $request->query->get('titre', '');
+
+        $evenements = $evenementRepository->findByTitre($titre);
+
+        return $this->render('backend/event.html.twig', [
+            'evenements' => $evenements,
+            'titre' => $titre,
+        ]);
+    }*/
     #[Route('/api/evenements', name: 'api_evenements', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getEvenements(EvenementRepository $evenementRepository): JsonResponse
     {
@@ -140,12 +157,8 @@ final class EvenementController extends AbstractController
 
         foreach ($evenements as $evenement) {
             $data[] = [
-                //'id' => $evenement->getId(),
                 'title' => $evenement->getTitre(),
                 'start' => $evenement->getDateD()->format('Y-m-d'),
-                //'description' => $evenement->getDescription(),
-                //'location' => $evenement->getLocalisation(),
-                //'contact' => $evenement->getContact(),
             ];
         }
 

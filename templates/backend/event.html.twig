@@ -947,7 +947,11 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                
+<form action="{{ path('app_backevenement_index') }}" method="get">
+<div class="form-group">
+<input type="text" name="titre" value="{{ titre }}" class="form-control" placeholder="Rechercher par titre...">
+ </div>
                                     {% for evenement in evenements %}
                                         <tr>
                                             <td>{{ evenement.id }}</td>

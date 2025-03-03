@@ -952,6 +952,11 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
+                                    <form action="{{ path('app_participant_indexback') }}" method="get">
+<div class="form-group">
+<input type="text" name="nom" value="{{ nom }}" class="form-control" placeholder="Rechercher par nom...">
+ </div>
+
                                         {% for participant in participants %}
                                             <tr>
                                                 <td>{{ participant.id }}</td>
