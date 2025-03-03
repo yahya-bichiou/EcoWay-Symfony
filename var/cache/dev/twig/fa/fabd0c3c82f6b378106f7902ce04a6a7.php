@@ -138,7 +138,7 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
       <div class=\"row mt-5\">
         <!-- Image Section -->
         <div class=\"col-md-5\">
-          <div class=\"single-product-slider\" style=\"height: 100%;\">
+          <div class=\"single-product-slider\" style=\"height: 50%;\">
             <div id=\"carousel-custom\" class=\"carousel slide h-100\" data-ride=\"carousel\">
               <div class=\"carousel-item active h-100\">
                 <img src=\"";
@@ -176,14 +176,46 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
                   </tr>
                 </tbody>
               </table>
+              <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet/dist/leaflet.css\" />
+              <script src=\"https://unpkg.com/leaflet/dist/leaflet.js\"></script>
+              <div id=\"map\" style=\"height: 500px;\"></div>
+              <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            fetch(`/depot/api/";
+        // line 75
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depot"]) || array_key_exists("depot", $context) ? $context["depot"] : (function () { throw new RuntimeError('Variable "depot" does not exist.', 75, $this->source); })()), "id", [], "any", false, false, false, 75), "html", null, true);
+        yield "`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    // Initialize the map with depot coordinates
+                    var map = L.map('map').setView([data.latitude, data.longitude], 13);
+
+                    // Add OpenStreetMap tiles
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    // Add a marker for the depot
+                    L.marker([data.latitude, data.longitude]).addTo(map)
+                        .bindPopup(`<b>\${data.name}</b><br>Status: \${data.status}`)
+                        .openPopup();
+                })
+                .catch(error => console.error(\"Error fetching depot data:\", error));
+        });
+    </script>
             </div>
 
             <!-- Form Section -->
             <div class=\"collection-form\">
               ";
-        // line 74
-        yield from $this->loadTemplate("/collecte/new.html.twig", "depot/show.html.twig", 74)->unwrap()->yield($context);
-        // line 75
+        // line 103
+        yield from $this->loadTemplate("/collecte/new.html.twig", "depot/show.html.twig", 103)->unwrap()->yield($context);
+        // line 104
         yield "            </div>
           </div>
         </div>
@@ -232,7 +264,7 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  187 => 75,  185 => 74,  174 => 66,  167 => 62,  158 => 56,  146 => 47,  110 => 14,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  219 => 104,  217 => 103,  186 => 75,  174 => 66,  167 => 62,  158 => 56,  146 => 47,  110 => 14,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -280,7 +312,7 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
       <div class=\"row mt-5\">
         <!-- Image Section -->
         <div class=\"col-md-5\">
-          <div class=\"single-product-slider\" style=\"height: 100%;\">
+          <div class=\"single-product-slider\" style=\"height: 50%;\">
             <div id=\"carousel-custom\" class=\"carousel slide h-100\" data-ride=\"carousel\">
               <div class=\"carousel-item active h-100\">
                 <img src=\"{{ asset('uploads/' ~ depot.image) }}\" alt=\"Depot Image\" class=\"img-fluid rounded shadow h-100 w-100\" style=\"object-fit: cover;\">
@@ -306,6 +338,35 @@ class __TwigTemplate_6993f3573aed1144784786a991548a12 extends Template
                   </tr>
                 </tbody>
               </table>
+              <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet/dist/leaflet.css\" />
+              <script src=\"https://unpkg.com/leaflet/dist/leaflet.js\"></script>
+              <div id=\"map\" style=\"height: 500px;\"></div>
+              <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            fetch(`/depot/api/{{ depot.id }}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    // Initialize the map with depot coordinates
+                    var map = L.map('map').setView([data.latitude, data.longitude], 13);
+
+                    // Add OpenStreetMap tiles
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    // Add a marker for the depot
+                    L.marker([data.latitude, data.longitude]).addTo(map)
+                        .bindPopup(`<b>\${data.name}</b><br>Status: \${data.status}`)
+                        .openPopup();
+                })
+                .catch(error => console.error(\"Error fetching depot data:\", error));
+        });
+    </script>
             </div>
 
             <!-- Form Section -->

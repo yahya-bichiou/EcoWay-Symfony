@@ -14,11 +14,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Service\PdfGeneratorService;
 use App\Entity\Collecte;
 use App\Entity\Depot;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Exception\TransportExceptionInterface;
 use App\Entity\Commande;
 use App\Form\CommandeType;
+use Twilio\Rest\Client;
 use App\Form\CollecteType;
 use App\Form\DepotType;
 use Doctrine\ORM\Mapping\Id;
@@ -26,6 +32,7 @@ use Doctrine\ORM\Mapping\Id;
 final class PageController extends AbstractController
 {
     //-------------- ORDER ------------------//
+
     //Back Commande
     #[Route('/back/order/commandes', name: 'back_order_commandes')]
     public function indexoc(
@@ -71,11 +78,20 @@ final class PageController extends AbstractController
 
     //Back Livraison
     #[Route('/back/order/livraisons', name: 'back_order_livraisons')]
-    public function indexol(
+    public function indexol(LivraisonRepository $livraisonRepository): Response {
+        return $this->render('backend/livraisons.html.twig', [
+            'controller_name' => 'PageController',
+            'livraisons' => $livraisonRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/back/order/add/livraisons', name: 'back_add_livraisons')]
+    public function back_add_livraisons(
         CommandeRepository $commandeRepository,
         LivraisonRepository $livraisonRepository,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        NotifierInterface $notifier
     ): Response {
         // Handling Livraison Form
         $livraison = new Livraison();
@@ -97,16 +113,29 @@ final class PageController extends AbstractController
                 throw new \Exception('Type of delivery must be selected');
             }
 
-            // Calculate price
+            $livraison->setStatus('en route');
             $livraison->calculatePrix();
 
             $entityManager->persist($livraison);
             $entityManager->flush();
 
+            //SMS Bundle
+            // ✅ SEND SMS AFTER DELIVERY CREATION
+        $sid = 'AC4d8bf08758159a52a98d245462941f18';
+        $token = 'e1bf36cc4e824523f3917c844f8f8415';
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages->create(
+            "+21628615095",
+            [
+                "messagingServiceSid" => "MG7311126451454432e332e33e94dd896b",
+                "body" => "Your order is being delivered!"
+            ]
+        );
             return $this->redirectToRoute('back_order_livraisons', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('backend/livraisons.html.twig', [
+        return $this->render('livraison/add.html.twig', [
             'controller_name' => 'PageController',
             'livraisons' => $livraisonRepository->findAll(),
             'livraisonForm' => $livraisonForm->createView(),
@@ -145,7 +174,7 @@ final class PageController extends AbstractController
 
     //-------------- DROPOFF ------------------//
     #[Route('/back/dropoff', name: 'back_dropoff')]
-public function indexd(
+    public function indexd(
     CollecteRepository $collecteRepository,
     DepotRepository $depotRepository,
     Request $request,
@@ -214,6 +243,42 @@ public function indexd(
     ]);
 }
 
+    #[Route('depot/api/{id}', name: 'get_depot')]
+    public function getDepot(int $id, CollecteRepository $collecteRepository, DepotRepository $depotRepository): JsonResponse
+    {
+        $depot = $depotRepository->find($id);
+
+        if (!$depot) {
+            return $this->json(['error' => 'Depot not found'], 404);
+        }
+
+        $collectes = $collecteRepository->findAll();
+        $totalQuantite = 0;
+        foreach ($collectes as $collecte) {
+            if ($collecte->getDepot() === $depot) {
+                $totalQuantite += $collecte->getQuantite();
+            }
+        }
+        $depot->remainingSpace = $depot->getCapacite() - $totalQuantite;
+        $status = $depot->remainingSpace == 0 ? 'inactif' : 'actif';
+        $adresse = $depot->getAdresse();
+        $coordinates = explode(',', $adresse);
+
+        if (count($coordinates) == 2) {
+        $latitude = trim($coordinates[0]);
+        $longitude = trim($coordinates[1]);
+        } else {
+        return $this->json(['error' => 'Invalid address format'], 400);
+        }
+
+        return $this->json([
+        'name' => $depot->getNom(),
+        'status' => $status,
+        'latitude' => (float) $latitude,
+        'longitude' => (float) $longitude,
+        ]);
+    }
+
     #[Route('/rmd/{id}', name: 'depot_delete', methods: ['POST'])]
     public function deleted(Request $request, Depot $depot, EntityManagerInterface $entityManager): Response
     {
@@ -275,25 +340,15 @@ public function indexd(
 
     //front
     #[Route('/front/order', name: 'front_order')]
-    public function indexof(CommandeRepository $commandeRepository, LivraisonRepository $livraisonRepository): Response
+    public function indexof(CommandeRepository $commandeRepository): Response
     {
-        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-
-        $paymentIntent = \Stripe\PaymentIntent::create([
-            'amount' => 10000, // Amount in cents (10 USD)
-            'currency' => 'usd',
-        ]);
-
-        // Fetch commandes with userId = 0 and status = 'non_confirmée'
-        $commandes = $commandeRepository->findBy([
+            $commandes = $commandeRepository->findBy([
             'clientId' => 1,
             'status' => "non_confirmée"
         ]);
 
         return $this->render('frontend/order.html.twig', [
             'commandes' => $commandes,
-            'clientSecret' => $paymentIntent->client_secret,
-            'publicKey' => $_ENV['STRIPE_PUBLIC_KEY'],
         ]);
 
     }
@@ -328,7 +383,8 @@ public function updateQuantity($commandeId, $productId, $action, CommandeReposit
 }
 
     #[Route('/commande/{id}/invoice', name: 'commande_invoice')]
-    public function generateInvoice( Commande $commande, PdfGeneratorService $pdfGeneratorService ): Response {
+    public function generateInvoice( Commande $commande, PdfGeneratorService $pdfGeneratorService ): Response
+    {
         // Convert Commande to an array format for the PDF
         $commandeData = [
             'id' => $commande->getId(),
@@ -344,6 +400,7 @@ public function updateQuantity($commandeId, $productId, $action, CommandeReposit
         // Return a downloadable response
         return $this->file($this->getParameter('kernel.project_dir') . '/public/' . $pdfPath);
     }
+
     #[Route('/front/order/remove-product/{commandeId}/{productId}', name: 'front_order_remove_product')]
     public function removeProduct(
         int $commandeId,

@@ -34,7 +34,7 @@ class Livraison
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
     #[Assert\Type(\DateTimeInterface::class)]
-    #[Assert\LessThanOrEqual("today", message: "La date doit être au futur")]
+    #[Assert\GreaterThanOrEqual("today", message: "La date doit être au futur")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]

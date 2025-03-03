@@ -18,3 +18,13 @@
     .card-registration .select-arrow {
     top: 13px;
     }
+
+    nav {
+        position: relative;
+        z-index: 1000; /* Ensures navbar is above the map */
+    }
+
+    #map {
+        position: relative;
+        z-index: 1; /* Keeps the map below other elements */
+    }

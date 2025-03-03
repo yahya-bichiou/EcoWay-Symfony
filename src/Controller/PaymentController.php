@@ -40,8 +40,22 @@ final class PaymentController extends AbstractController
             $entityManager->flush();
         }
 
+        // Correct redirect to the invoice route with the commande id
         return $this->redirectToRoute('front_order');
     }
 
+    #[Route('/order/cash/{id}', name: 'order_cash')]
+    public function cash(int $id, EntityManagerInterface $entityManager)
+    {
+        $commande = $entityManager->getRepository(Commande::class)->find($id);
+
+        if ($commande) {
+            $commande->setStatus('confirmée');
+            $entityManager->flush();
+        }
+
+        // Correct redirect to the invoice route with the commande id
+        return $this->redirectToRoute('front_order');
+    }
 
 }

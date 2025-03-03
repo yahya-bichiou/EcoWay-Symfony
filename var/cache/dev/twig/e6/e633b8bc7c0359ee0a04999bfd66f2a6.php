@@ -208,7 +208,6 @@ class __TwigTemplate_8d094351942ecacb9d471070d330b775 extends Template
         yield "  </div>
 </div>
 
-
   <footer>
     <div class=\"container\">
       <div class=\"row\">
@@ -330,7 +329,6 @@ class __TwigTemplate_8d094351942ecacb9d471070d330b775 extends Template
     {% endfor %}
   </div>
 </div>
-
 
   <footer>
     <div class=\"container\">

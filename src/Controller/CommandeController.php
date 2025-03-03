@@ -56,21 +56,44 @@ final class CommandeController extends AbstractController
     #[Route('/{id}/edit', name: 'app_commande_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
+        // Create the form using the Commande entity
         $form = $this->createForm(CommandeType::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $commande = $form->getData();
-            $entityManager->flush();
+            // Handle produits field manually to re-process the data (like in add)
+            $produitsData = [];
 
+            foreach ($form->get('produits')->getData() as $produitEntry) {
+                if (!isset($produitEntry['produit'])) {
+                    dump($produitEntry); // Debug the keys in the form data
+                    die();
+                }
+                $produit = $produitEntry['produit'];
+                $produitsData[] = [
+                    'id' => $produit->getId(),
+                    'nom' => $produit->getNom(),
+                    'prix' => $produit->getPrix(),
+                    'image' => $produit->getImage(), // Default image fallback
+                    'quantity' => $produitEntry['quantity'],
+                ];
+            }
+
+            // Now you can set the updated 'produits' data
+            $commande->setProduits($produitsData);
+            $commande->calculateTotalPrice(); // Ensure total is recalculated
+            $entityManager->flush(); // Save changes
+
+            // Redirect to the orders list
             return $this->redirectToRoute('back_order_commandes', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('commande/edit.html.twig', [
             'commande' => $commande,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_commande_delete', methods: ['POST'])]
     public function delete(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response

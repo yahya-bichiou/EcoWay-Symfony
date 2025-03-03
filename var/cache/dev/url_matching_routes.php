@@ -24,10 +24,12 @@ return [
         '/commandes/boutique/new' => [[['_route' => 'app_commandes_boutique_new', '_controller' => 'App\\Controller\\CommandesBoutiqueController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/depot' => [[['_route' => 'app_depot_index', '_controller' => 'App\\Controller\\DepotController::index'], null, ['GET' => 0], null, false, false, null]],
         '/depot/new' => [[['_route' => 'app_depot_new', '_controller' => 'App\\Controller\\DepotController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/depot/depot/export' => [[['_route' => 'depot_export', '_controller' => 'App\\Controller\\DepotController::exportDepots'], null, null, null, false, false, null]],
         '/livraison' => [[['_route' => 'app_livraison_index', '_controller' => 'App\\Controller\\LivraisonController::index'], null, ['GET' => 0], null, false, false, null]],
         '/livraison/new' => [[['_route' => 'app_livraison_new', '_controller' => 'App\\Controller\\LivraisonController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/back/order/commandes' => [[['_route' => 'back_order_commandes', '_controller' => 'App\\Controller\\PageController::indexoc'], null, null, null, false, false, null]],
         '/back/order/livraisons' => [[['_route' => 'back_order_livraisons', '_controller' => 'App\\Controller\\PageController::indexol'], null, null, null, false, false, null]],
+        '/back/order/add/livraisons' => [[['_route' => 'back_add_livraisons', '_controller' => 'App\\Controller\\PageController::back_add_livraisons'], null, null, null, false, false, null]],
         '/back/dropoff' => [[['_route' => 'back_dropoff', '_controller' => 'App\\Controller\\PageController::indexd'], null, null, null, false, false, null]],
         '/back/blog' => [[['_route' => 'back_blog', '_controller' => 'App\\Controller\\PageController::indexb'], null, null, null, false, false, null]],
         '/back/event' => [[['_route' => 'back_event', '_controller' => 'App\\Controller\\PageController::indexe'], null, null, null, false, false, null]],
@@ -103,61 +105,67 @@ return [
                     .')'
                     .'|/([^/]++)(*:490)'
                 .')'
-                .'|/depot/([^/]++)(?'
-                    .'|(*:517)'
-                    .'|/edit(*:530)'
-                    .'|(*:538)'
+                .'|/depot/(?'
+                    .'|([^/]++)(?'
+                        .'|(*:520)'
+                        .'|/edit(*:533)'
+                        .'|(*:541)'
+                    .')'
+                    .'|api/([^/]++)(*:562)'
                 .')'
                 .'|/l(?'
                     .'|ivraison/([^/]++)(?'
-                        .'|(*:572)'
-                        .'|/edit(*:585)'
-                        .'|(*:593)'
+                        .'|(*:596)'
+                        .'|/edit(*:609)'
+                        .'|(*:617)'
                     .')'
-                    .'|/([^/]++)(*:611)'
+                    .'|/([^/]++)(*:635)'
                 .')'
                 .'|/r(?'
                     .'|m(?'
-                        .'|d/([^/]++)(*:639)'
-                        .'|c/([^/]++)(*:657)'
+                        .'|d/([^/]++)(*:663)'
+                        .'|c/([^/]++)(*:681)'
                     .')'
                     .'|ole/([^/]++)(?'
-                        .'|(*:681)'
-                        .'|/edit(*:694)'
-                        .'|(*:702)'
+                        .'|(*:705)'
+                        .'|/edit(*:718)'
+                        .'|(*:726)'
                     .')'
                 .')'
-                .'|/front/order/remove\\-product/([^/]++)/([^/]++)(*:758)'
+                .'|/front/order/remove\\-product/([^/]++)/([^/]++)(*:782)'
                 .'|/p(?'
-                    .'|ay/([^/]++)/([^/]++)(*:791)'
+                    .'|ay/([^/]++)/([^/]++)(*:815)'
                     .'|hase/([^/]++)(?'
-                        .'|(*:815)'
-                        .'|/edit(*:828)'
-                        .'|(*:836)'
+                        .'|(*:839)'
+                        .'|/edit(*:852)'
+                        .'|(*:860)'
                     .')'
                     .'|lannig/([^/]++)(?'
-                        .'|(*:863)'
-                        .'|/edit(*:876)'
-                        .'|(*:884)'
+                        .'|(*:887)'
+                        .'|/edit(*:900)'
+                        .'|(*:908)'
                     .')'
                     .'|roduit(?'
                         .'|con/([^/]++)(?'
-                            .'|(*:917)'
-                            .'|/edit(*:930)'
-                            .'|(*:938)'
+                            .'|(*:941)'
+                            .'|/edit(*:954)'
+                            .'|(*:962)'
                         .')'
                         .'|s/boutique/([^/]++)(?'
-                            .'|(*:969)'
-                            .'|/edit(*:982)'
-                            .'|(*:990)'
+                            .'|(*:993)'
+                            .'|/edit(*:1006)'
+                            .'|(*:1015)'
                         .')'
                     .')'
                 .')'
-                .'|/order/confirm/([^/]++)(*:1024)'
+                .'|/order/c(?'
+                    .'|onfirm/([^/]++)(*:1053)'
+                    .'|ash/([^/]++)(*:1074)'
+                .')'
                 .'|/utilisateur/([^/]++)(?'
-                    .'|(*:1057)'
-                    .'|/edit(*:1071)'
-                    .'|(*:1080)'
+                    .'|(*:1108)'
+                    .'|/edit(*:1122)'
+                    .'|(*:1131)'
                 .')'
             .')/?$}sDu',
     ],
@@ -185,36 +193,38 @@ return [
         462 => [[['_route' => 'app_commandes_boutique_edit', '_controller' => 'App\\Controller\\CommandesBoutiqueController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         470 => [[['_route' => 'app_commandes_boutique_delete', '_controller' => 'App\\Controller\\CommandesBoutiqueController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
         490 => [[['_route' => 'commande_delete', '_controller' => 'App\\Controller\\PageController::deletec'], ['id'], ['POST' => 0], null, false, true, null]],
-        517 => [[['_route' => 'app_depot_show', '_controller' => 'App\\Controller\\DepotController::show'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        530 => [[['_route' => 'app_depot_edit', '_controller' => 'App\\Controller\\DepotController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        538 => [[['_route' => 'app_depot_delete', '_controller' => 'App\\Controller\\DepotController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        572 => [[['_route' => 'app_livraison_show', '_controller' => 'App\\Controller\\LivraisonController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        585 => [[['_route' => 'app_livraison_edit', '_controller' => 'App\\Controller\\LivraisonController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        593 => [[['_route' => 'app_livraison_delete', '_controller' => 'App\\Controller\\LivraisonController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        611 => [[['_route' => 'livraison_delete', '_controller' => 'App\\Controller\\PageController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        639 => [[['_route' => 'depot_delete', '_controller' => 'App\\Controller\\PageController::deleted'], ['id'], ['POST' => 0], null, false, true, null]],
-        657 => [[['_route' => 'collecte_delete', '_controller' => 'App\\Controller\\PageController::deletep'], ['id'], ['POST' => 0], null, false, true, null]],
-        681 => [[['_route' => 'app_role_show', '_controller' => 'App\\Controller\\RoleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        694 => [[['_route' => 'app_role_edit', '_controller' => 'App\\Controller\\RoleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        702 => [[['_route' => 'app_role_delete', '_controller' => 'App\\Controller\\RoleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        758 => [[['_route' => 'front_order_remove_product', '_controller' => 'App\\Controller\\PageController::removeProduct'], ['commandeId', 'productId'], null, null, false, true, null]],
-        791 => [[['_route' => 'payment', '_controller' => 'App\\Controller\\PaymentController::pay'], ['price', 'id'], null, null, false, true, null]],
-        815 => [[['_route' => 'app_phase_show', '_controller' => 'App\\Controller\\PhaseController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        828 => [[['_route' => 'app_phase_edit', '_controller' => 'App\\Controller\\PhaseController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        836 => [[['_route' => 'app_phase_delete', '_controller' => 'App\\Controller\\PhaseController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        863 => [[['_route' => 'app_plannig_show', '_controller' => 'App\\Controller\\PlannigController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        876 => [[['_route' => 'app_plannig_edit', '_controller' => 'App\\Controller\\PlannigController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        884 => [[['_route' => 'app_plannig_delete', '_controller' => 'App\\Controller\\PlannigController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        917 => [[['_route' => 'app_produitcon_show', '_controller' => 'App\\Controller\\ProduitconController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        930 => [[['_route' => 'app_produitcon_edit', '_controller' => 'App\\Controller\\ProduitconController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        938 => [[['_route' => 'app_produitcon_delete', '_controller' => 'App\\Controller\\ProduitconController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        969 => [[['_route' => 'app_produits_boutique_show', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        982 => [[['_route' => 'app_produits_boutique_edit', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        990 => [[['_route' => 'app_produits_boutique_delete', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1024 => [[['_route' => 'order_confirm', '_controller' => 'App\\Controller\\PaymentController::confirmOrder'], ['id'], null, null, false, true, null]],
-        1057 => [[['_route' => 'app_utilisateur_show', '_controller' => 'App\\Controller\\UtilisateurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1071 => [[['_route' => 'app_utilisateur_edit', '_controller' => 'App\\Controller\\UtilisateurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1080 => [
+        520 => [[['_route' => 'app_depot_show', '_controller' => 'App\\Controller\\DepotController::show'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        533 => [[['_route' => 'app_depot_edit', '_controller' => 'App\\Controller\\DepotController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        541 => [[['_route' => 'app_depot_delete', '_controller' => 'App\\Controller\\DepotController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        562 => [[['_route' => 'get_depot', '_controller' => 'App\\Controller\\PageController::getDepot'], ['id'], null, null, false, true, null]],
+        596 => [[['_route' => 'app_livraison_show', '_controller' => 'App\\Controller\\LivraisonController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        609 => [[['_route' => 'app_livraison_edit', '_controller' => 'App\\Controller\\LivraisonController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        617 => [[['_route' => 'app_livraison_delete', '_controller' => 'App\\Controller\\LivraisonController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        635 => [[['_route' => 'livraison_delete', '_controller' => 'App\\Controller\\PageController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        663 => [[['_route' => 'depot_delete', '_controller' => 'App\\Controller\\PageController::deleted'], ['id'], ['POST' => 0], null, false, true, null]],
+        681 => [[['_route' => 'collecte_delete', '_controller' => 'App\\Controller\\PageController::deletep'], ['id'], ['POST' => 0], null, false, true, null]],
+        705 => [[['_route' => 'app_role_show', '_controller' => 'App\\Controller\\RoleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        718 => [[['_route' => 'app_role_edit', '_controller' => 'App\\Controller\\RoleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        726 => [[['_route' => 'app_role_delete', '_controller' => 'App\\Controller\\RoleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        782 => [[['_route' => 'front_order_remove_product', '_controller' => 'App\\Controller\\PageController::removeProduct'], ['commandeId', 'productId'], null, null, false, true, null]],
+        815 => [[['_route' => 'payment', '_controller' => 'App\\Controller\\PaymentController::pay'], ['price', 'id'], null, null, false, true, null]],
+        839 => [[['_route' => 'app_phase_show', '_controller' => 'App\\Controller\\PhaseController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        852 => [[['_route' => 'app_phase_edit', '_controller' => 'App\\Controller\\PhaseController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        860 => [[['_route' => 'app_phase_delete', '_controller' => 'App\\Controller\\PhaseController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        887 => [[['_route' => 'app_plannig_show', '_controller' => 'App\\Controller\\PlannigController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        900 => [[['_route' => 'app_plannig_edit', '_controller' => 'App\\Controller\\PlannigController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        908 => [[['_route' => 'app_plannig_delete', '_controller' => 'App\\Controller\\PlannigController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        941 => [[['_route' => 'app_produitcon_show', '_controller' => 'App\\Controller\\ProduitconController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        954 => [[['_route' => 'app_produitcon_edit', '_controller' => 'App\\Controller\\ProduitconController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        962 => [[['_route' => 'app_produitcon_delete', '_controller' => 'App\\Controller\\ProduitconController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        993 => [[['_route' => 'app_produits_boutique_show', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1006 => [[['_route' => 'app_produits_boutique_edit', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1015 => [[['_route' => 'app_produits_boutique_delete', '_controller' => 'App\\Controller\\ProduitsBoutiqueController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1053 => [[['_route' => 'order_confirm', '_controller' => 'App\\Controller\\PaymentController::confirmOrder'], ['id'], null, null, false, true, null]],
+        1074 => [[['_route' => 'order_cash', '_controller' => 'App\\Controller\\PaymentController::cash'], ['id'], null, null, false, true, null]],
+        1108 => [[['_route' => 'app_utilisateur_show', '_controller' => 'App\\Controller\\UtilisateurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1122 => [[['_route' => 'app_utilisateur_edit', '_controller' => 'App\\Controller\\UtilisateurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1131 => [
             [['_route' => 'app_utilisateur_delete', '_controller' => 'App\\Controller\\UtilisateurController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

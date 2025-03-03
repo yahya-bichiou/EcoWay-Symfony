@@ -1233,6 +1233,10 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
         // line 1106
         yield "                        </table>
                         <a href=\"#\" class=\"btn btn-primary btn-pill\" data-toggle=\"modal\" data-target=\"#depot-modal\">Add Depot</a>
+                        <a href=\"";
+        // line 1108
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("depot_export");
+        yield "\" class=\"btn btn-primary btn-pill\">Export to Excel</a>
                       </div>
                     </div>
                   </div>
@@ -1258,9 +1262,9 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                       <div class=\"card-body\">
                         <table id=\"productsTable\" class=\"table table-hover table-product\" style=\"width:100%\">
                           ";
-        // line 1132
-        yield from $this->loadTemplate("collecte/index.html.twig", "backend/dropoff.html.twig", 1132)->unwrap()->yield($context);
         // line 1133
+        yield from $this->loadTemplate("collecte/index.html.twig", "backend/dropoff.html.twig", 1133)->unwrap()->yield($context);
+        // line 1134
         yield "                        </table>
                         <a href=\"#\" class=\"btn btn-primary btn-pill\" data-toggle=\"modal\" data-target=\"#collecte-modal\">Add Collecte</a>
                       </div>
@@ -1282,54 +1286,54 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                 </div>
                 <div class=\"modal-body\">
                     ";
-        // line 1153
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1153, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
+        // line 1154
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1154, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         yield "
 
                     <div class=\"row\">
                         <div class=\"col-md-6\">
                             <div class=\"form-group\">
                                 ";
-        // line 1158
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1158, $this->source); })()), "nom", [], "any", false, false, false, 1158), 'label');
-        yield "
-                                ";
         // line 1159
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1159, $this->source); })()), "nom", [], "any", false, false, false, 1159), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1159, $this->source); })()), "nom", [], "any", false, false, false, 1159), 'label');
         yield "
                                 ";
         // line 1160
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1160, $this->source); })()), "nom", [], "any", false, false, false, 1160), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1160, $this->source); })()), "nom", [], "any", false, false, false, 1160), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1161
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1161, $this->source); })()), "nom", [], "any", false, false, false, 1161), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1164
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1164, $this->source); })()), "adresse", [], "any", false, false, false, 1164), 'label');
-        yield "
-                                ";
         // line 1165
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1165, $this->source); })()), "adresse", [], "any", false, false, false, 1165), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1165, $this->source); })()), "adresse", [], "any", false, false, false, 1165), 'label');
         yield "
                                 ";
         // line 1166
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1166, $this->source); })()), "adresse", [], "any", false, false, false, 1166), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1166, $this->source); })()), "adresse", [], "any", false, false, false, 1166), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1167
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1167, $this->source); })()), "adresse", [], "any", false, false, false, 1167), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1170
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1170, $this->source); })()), "capacite", [], "any", false, false, false, 1170), 'label');
-        yield "
-                                ";
         // line 1171
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1171, $this->source); })()), "capacite", [], "any", false, false, false, 1171), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1171, $this->source); })()), "capacite", [], "any", false, false, false, 1171), 'label');
         yield "
                                 ";
         // line 1172
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1172, $this->source); })()), "capacite", [], "any", false, false, false, 1172), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1172, $this->source); })()), "capacite", [], "any", false, false, false, 1172), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1173
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1173, $this->source); })()), "capacite", [], "any", false, false, false, 1173), 'errors');
         yield "
                             </div>
                         </div>
@@ -1337,20 +1341,20 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                         <div class=\"col-md-6\">
                         <div class=\"custom-file\">
                           ";
-        // line 1178
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1178, $this->source); })()), "image", [], "any", false, false, false, 1178), 'widget', ["attr" => ["class" => "form-control"]]);
+        // line 1179
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1179, $this->source); })()), "image", [], "any", false, false, false, 1179), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
                           <span class=\"upload-image\">Click here to <span class=\"text-primary\">add product image.</span> </span>
                         </div>
                         </div>
                     </div>
                     ";
-        // line 1183
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1183, $this->source); })()), "save", [], "any", false, false, false, 1183), 'widget', ["attr" => ["style" => "display: none;"]]);
+        // line 1184
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1184, $this->source); })()), "save", [], "any", false, false, false, 1184), 'widget', ["attr" => ["style" => "display: none;"]]);
         yield "
                     ";
-        // line 1184
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1184, $this->source); })()), 'form_end');
+        // line 1185
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["depotForm"]) || array_key_exists("depotForm", $context) ? $context["depotForm"] : (function () { throw new RuntimeError('Variable "depotForm" does not exist.', 1185, $this->source); })()), 'form_end');
         yield "
                 </div>
                 <div class=\"modal-footer\">
@@ -1376,69 +1380,69 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                 </div>
                 <div class=\"modal-body\">
                     ";
-        // line 1208
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1208, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
+        // line 1209
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1209, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         yield "
 
                     <div class=\"row\">
                         <div class=\"col-md-12\">
                             <div class=\"form-group\">
                                 ";
-        // line 1213
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1213, $this->source); })()), "quantite", [], "any", false, false, false, 1213), 'label');
-        yield "
-                                ";
         // line 1214
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1214, $this->source); })()), "quantite", [], "any", false, false, false, 1214), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1214, $this->source); })()), "quantite", [], "any", false, false, false, 1214), 'label');
         yield "
                                 ";
         // line 1215
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1215, $this->source); })()), "quantite", [], "any", false, false, false, 1215), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1215, $this->source); })()), "quantite", [], "any", false, false, false, 1215), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1216
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1216, $this->source); })()), "quantite", [], "any", false, false, false, 1216), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1219
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1219, $this->source); })()), "date", [], "any", false, false, false, 1219), 'label');
-        yield "
-                                ";
         // line 1220
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1220, $this->source); })()), "date", [], "any", false, false, false, 1220), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1220, $this->source); })()), "date", [], "any", false, false, false, 1220), 'label');
         yield "
                                 ";
         // line 1221
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1221, $this->source); })()), "date", [], "any", false, false, false, 1221), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1221, $this->source); })()), "date", [], "any", false, false, false, 1221), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1222
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1222, $this->source); })()), "date", [], "any", false, false, false, 1222), 'errors');
         yield "
                             </div>
 
                             <div class=\"form-group\">
                                 ";
-        // line 1225
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1225, $this->source); })()), "responsable", [], "any", false, false, false, 1225), 'label');
-        yield "
-                                ";
         // line 1226
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1226, $this->source); })()), "responsable", [], "any", false, false, false, 1226), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1226, $this->source); })()), "responsable", [], "any", false, false, false, 1226), 'label');
         yield "
                                 ";
         // line 1227
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1227, $this->source); })()), "responsable", [], "any", false, false, false, 1227), 'errors');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1227, $this->source); })()), "responsable", [], "any", false, false, false, 1227), 'widget', ["attr" => ["class" => "form-control"]]);
+        yield "
+                                ";
+        // line 1228
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1228, $this->source); })()), "responsable", [], "any", false, false, false, 1228), 'errors');
         yield "
                             </div>
                         </div>
                     </div>
                     ";
-        // line 1231
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1231, $this->source); })()), "depot", [], "any", false, false, false, 1231), 'widget', ["attr" => ["style" => "display: none;"]]);
-        yield "
-                    ";
         // line 1232
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1232, $this->source); })()), "save", [], "any", false, false, false, 1232), 'widget', ["attr" => ["style" => "display: none;"]]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1232, $this->source); })()), "depot", [], "any", false, false, false, 1232), 'widget', ["attr" => ["style" => "display: none;"]]);
         yield "
                     ";
         // line 1233
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1233, $this->source); })()), 'form_end');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1233, $this->source); })()), "save", [], "any", false, false, false, 1233), 'widget', ["attr" => ["style" => "display: none;"]]);
+        yield "
+                    ";
+        // line 1234
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["collecteForm"]) || array_key_exists("collecteForm", $context) ? $context["collecteForm"] : (function () { throw new RuntimeError('Variable "collecteForm" does not exist.', 1234, $this->source); })()), 'form_end');
         yield "
                 </div>
                 <div class=\"modal-footer\">
@@ -1490,7 +1494,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1283
+        // line 1284
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-01.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1508,7 +1512,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1298
+        // line 1299
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-02.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1526,7 +1530,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1313
+        // line 1314
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-03.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                             </a>
@@ -1543,7 +1547,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1327
+        // line 1328
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-04.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                             </a>
@@ -1561,7 +1565,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1342
+        // line 1343
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-05.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-danger\"></span>
@@ -1579,7 +1583,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           <div class=\"media-sm-wrapper\">
                             <a href=\"user-profile.html\">
                               <img src=\"";
-        // line 1357
+        // line 1358
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("backend/images/user/user-sm-06.jpg"), "html", null, true);
         yield "\" alt=\"User Image\">
                               <span class=\"active bg-primary\"></span>
@@ -1627,7 +1631,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  1583 => 1357,  1565 => 1342,  1547 => 1327,  1530 => 1313,  1512 => 1298,  1494 => 1283,  1441 => 1233,  1437 => 1232,  1433 => 1231,  1426 => 1227,  1422 => 1226,  1418 => 1225,  1411 => 1221,  1407 => 1220,  1403 => 1219,  1396 => 1215,  1392 => 1214,  1388 => 1213,  1380 => 1208,  1353 => 1184,  1349 => 1183,  1341 => 1178,  1332 => 1172,  1328 => 1171,  1324 => 1170,  1317 => 1166,  1313 => 1165,  1309 => 1164,  1302 => 1160,  1298 => 1159,  1294 => 1158,  1286 => 1153,  1264 => 1133,  1262 => 1132,  1234 => 1106,  1232 => 1105,  1163 => 1039,  1145 => 1023,  1134 => 1017,  1132 => 1022,  1120 => 1009,  1109 => 1000,  1104 => 999,  1094 => 992,  1086 => 987,  126 => 30,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  1587 => 1358,  1569 => 1343,  1551 => 1328,  1534 => 1314,  1516 => 1299,  1498 => 1284,  1445 => 1234,  1441 => 1233,  1437 => 1232,  1430 => 1228,  1426 => 1227,  1422 => 1226,  1415 => 1222,  1411 => 1221,  1407 => 1220,  1400 => 1216,  1396 => 1215,  1392 => 1214,  1384 => 1209,  1357 => 1185,  1353 => 1184,  1345 => 1179,  1336 => 1173,  1332 => 1172,  1328 => 1171,  1321 => 1167,  1317 => 1166,  1313 => 1165,  1306 => 1161,  1302 => 1160,  1298 => 1159,  1290 => 1154,  1268 => 1134,  1266 => 1133,  1238 => 1108,  1234 => 1106,  1232 => 1105,  1163 => 1039,  1145 => 1023,  1134 => 1017,  1132 => 1022,  1120 => 1009,  1109 => 1000,  1104 => 999,  1094 => 992,  1086 => 987,  126 => 30,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -2739,6 +2743,7 @@ class __TwigTemplate_04ca82ad6c4296851bb38f0aa4105ac1 extends Template
                           {% include \"depot/index.html.twig\" %}
                         </table>
                         <a href=\"#\" class=\"btn btn-primary btn-pill\" data-toggle=\"modal\" data-target=\"#depot-modal\">Add Depot</a>
+                        <a href=\"{{ path('depot_export') }}\" class=\"btn btn-primary btn-pill\">Export to Excel</a>
                       </div>
                     </div>
                   </div>

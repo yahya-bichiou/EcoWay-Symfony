@@ -77,10 +77,10 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 <th>Status</th>
                 <th>Prix</th>
                 <th>ModePaiement</th>
-                <th>Produits Nom</th>
-                <th>Produits Quantity</th>
-                <th></th>
-                <th></th>
+                <th>Produits</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Livrer</th>
             </tr>
         </thead>
         <tbody>
@@ -129,38 +129,44 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
             // line 24
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "modePaiement", [], "any", false, false, false, 24), "html", null, true);
             yield "</td>
+                <td>
                 ";
-            // line 25
+            // line 26
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "produits", [], "any", false, false, false, 25));
+            $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "produits", [], "any", false, false, false, 26));
             foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-                // line 26
-                yield "                <td>";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 26), "html", null, true);
-                yield "</td>
-                <td>";
                 // line 27
+                yield "                ";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 27), "html", null, true);
+                yield "x";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantity", [], "any", false, false, false, 27), "html", null, true);
-                yield "</td>
+                yield "
                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['produit'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 29
-            yield "                <td>
+            yield "                </td>
+                <td>
                     ";
-            // line 30
+            // line 31
             yield Twig\Extension\CoreExtension::include($this->env, $context, "/commande/_delete_form.html.twig");
             yield "
                 </td>
                 <td>
                     <a href=\"";
-            // line 33
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 33)]), "html", null, true);
+            // line 34
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 34)]), "html", null, true);
             yield "\">
                         <span class=\"edit\"></span>
                     </a>
+                </td>
+                <td>
+                    <a href=\"";
+            // line 39
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("back_add_livraisons");
+            yield "\" class=\"btn btn-primary btn-pill\">Livrer</a>
                 </td>
             </tr>
         ";
@@ -174,9 +180,9 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 $context['loop']['last'] = 0 === $context['loop']['revindex0'];
             }
         }
-        // line 42
+        // line 46
         if (!$context['_iterated']) {
-            // line 39
+            // line 43
             yield "            <tr>
                 <td colspan=\"8\">no records found</td>
             </tr>
@@ -185,7 +191,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent'], $context['_iterated'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
+        // line 47
         yield "        </tbody>
 
         <style>
@@ -193,7 +199,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
         width: 40px;
         height: 40px;
         background: url(\"";
-        // line 49
+        // line 53
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/edit.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -202,7 +208,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
 
     .edit:hover {
         background: url(\"";
-        // line 55
+        // line 59
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/edit-hover.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -231,7 +237,7 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  206 => 55,  197 => 49,  189 => 43,  180 => 39,  178 => 42,  160 => 33,  154 => 30,  151 => 29,  143 => 27,  138 => 26,  134 => 25,  130 => 24,  126 => 23,  122 => 22,  118 => 21,  114 => 20,  110 => 19,  107 => 18,  89 => 17,  72 => 2,  49 => 1,);
+        return array (  212 => 59,  203 => 53,  195 => 47,  186 => 43,  184 => 46,  168 => 39,  160 => 34,  154 => 31,  150 => 29,  139 => 27,  135 => 26,  130 => 24,  126 => 23,  122 => 22,  118 => 21,  114 => 20,  110 => 19,  107 => 18,  89 => 17,  72 => 2,  49 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -245,10 +251,10 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 <th>Status</th>
                 <th>Prix</th>
                 <th>ModePaiement</th>
-                <th>Produits Nom</th>
-                <th>Produits Quantity</th>
-                <th></th>
-                <th></th>
+                <th>Produits</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Livrer</th>
             </tr>
         </thead>
         <tbody>
@@ -260,10 +266,11 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                 <td>{{ commande.status }}</td>
                 <td>{{ commande.prix }}</td>
                 <td>{{ commande.modePaiement }}</td>
+                <td>
                 {% for produit in commande.produits %}
-                <td>{{ produit.nom }}</td>
-                <td>{{ produit.quantity }}</td>
+                {{ produit.nom }}x{{ produit.quantity }}
                 {% endfor %}
+                </td>
                 <td>
                     {{ include('/commande/_delete_form.html.twig') }}
                 </td>
@@ -271,6 +278,9 @@ class __TwigTemplate_e2eebbc0f0281cac93e361091c8207e6 extends Template
                     <a href=\"{{ path('app_commande_edit', {'id': commande.id}) }}\">
                         <span class=\"edit\"></span>
                     </a>
+                </td>
+                <td>
+                    <a href=\"{{path('back_add_livraisons')}}\" class=\"btn btn-primary btn-pill\">Livrer</a>
                 </td>
             </tr>
         {% else %}

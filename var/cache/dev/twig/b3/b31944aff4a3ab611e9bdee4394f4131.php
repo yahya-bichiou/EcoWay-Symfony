@@ -380,16 +380,21 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
         $context['_seq'] = CoreExtension::ensureTraversable((isset($context["commandes"]) || array_key_exists("commandes", $context) ? $context["commandes"] : (function () { throw new RuntimeError('Variable "commandes" does not exist.', 151, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["commande"]) {
             // line 152
-            yield "                    <a id=\"payment-link\" href=\"#\"
+            yield "                    <a href=\"";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("order_cash", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 152)]), "html", null, true);
+            yield "\">
+                      <span class=\"cash\"></span>
+                    </a>
+                    <a id=\"payment-link\" href=\"#\"
                     data-commande-id=\"";
-            // line 153
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 153), "html", null, true);
+            // line 156
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 156), "html", null, true);
             yield "\">
                       <span class=\"checkout\"></span>
                     </a>
                     <a href=\"";
-            // line 156
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("commande_invoice", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 156)]), "html", null, true);
+            // line 159
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("commande_invoice", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["commande"], "id", [], "any", false, false, false, 159)]), "html", null, true);
             yield "\">
                       <span class=\"export\"></span>
                     </a>
@@ -398,7 +403,7 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['commande'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 160
+        // line 163
         yield "
 
                   </div>
@@ -415,8 +420,8 @@ class __TwigTemplate_50c76cca9414a32420aca0ea921c2270 extends Template
 <script>
 document.addEventListener(\"DOMContentLoaded\", function() {
     let totalPrice = ";
-        // line 175
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 175, $this->source); })()), "html", null, true);
+        // line 178
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["totalPrice"]) || array_key_exists("totalPrice", $context) ? $context["totalPrice"] : (function () { throw new RuntimeError('Variable "totalPrice" does not exist.', 178, $this->source); })()), "html", null, true);
         yield "; // Initial price from Twig
     let shippingSelect = document.getElementById(\"shippingMethod\");
     let finalPriceElement = document.getElementById(\"finalPrice\");
@@ -434,7 +439,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
         // Update payment link with price and commande ID
         paymentLink.href = \"";
-        // line 191
+        // line 194
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("payment", ["price" => "PRICE", "id" => "ID"]), "html", null, true);
         yield "\"
             .replace('PRICE', finalPrice) // Replace PRICE placeholder with actual finalPrice
@@ -507,8 +512,8 @@ document.addEventListener(\"DOMContentLoaded\", function() {
         width: 50px;
         height: 50px;
         background: url(\"";
-        // line 261
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out.png"), "html", null, true);
+        // line 264
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/card.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
         display: inline-block;
@@ -516,8 +521,27 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
     .checkout:hover {
         background: url(\"";
-        // line 267
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/check-out-hover.png"), "html", null, true);
+        // line 270
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/card-hover.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+    }
+
+    .cash {
+        width: 50px;
+        height: 50px;
+        background: url(\"";
+        // line 277
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/cash.png"), "html", null, true);
+        yield "\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .cash:hover {
+        background: url(\"";
+        // line 283
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/cash-hover.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
     }
@@ -526,7 +550,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
         width: 50px;
         height: 50px;
         background: url(\"";
-        // line 274
+        // line 290
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -535,7 +559,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
 
     .export:hover {
         background: url(\"";
-        // line 280
+        // line 296
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("icons/export-hover.png"), "html", null, true);
         yield "\") no-repeat center;
         background-size: contain;
@@ -615,7 +639,7 @@ document.addEventListener(\"DOMContentLoaded\", function() {
      */
     public function getDebugInfo(): array
     {
-        return array (  539 => 280,  530 => 274,  520 => 267,  511 => 261,  438 => 191,  419 => 175,  402 => 160,  392 => 156,  386 => 153,  383 => 152,  379 => 151,  374 => 149,  367 => 145,  347 => 128,  343 => 127,  339 => 125,  333 => 124,  330 => 123,  325 => 122,  323 => 121,  305 => 105,  298 => 103,  296 => 104,  292 => 102,  282 => 98,  276 => 95,  264 => 88,  255 => 86,  246 => 82,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  563 => 296,  554 => 290,  544 => 283,  535 => 277,  525 => 270,  516 => 264,  443 => 194,  424 => 178,  407 => 163,  397 => 159,  391 => 156,  383 => 152,  379 => 151,  374 => 149,  367 => 145,  347 => 128,  343 => 127,  339 => 125,  333 => 124,  330 => 123,  325 => 122,  323 => 121,  305 => 105,  298 => 103,  296 => 104,  292 => 102,  282 => 98,  276 => 95,  264 => 88,  255 => 86,  246 => 82,  239 => 78,  232 => 74,  225 => 69,  220 => 68,  215 => 67,  208 => 64,  202 => 63,  196 => 62,  193 => 61,  188 => 60,  183 => 59,  181 => 58,  139 => 19,  128 => 10,  115 => 9,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -771,6 +795,9 @@ document.addEventListener(\"DOMContentLoaded\", function() {
                       <h5 id=\"finalPrice\">{{ totalPrice }} DT</h5>
                     </div>
                     {% for commande in commandes %}
+                    <a href=\"{{ path('order_cash', {'id': commande.id}) }}\">
+                      <span class=\"cash\"></span>
+                    </a>
                     <a id=\"payment-link\" href=\"#\"
                     data-commande-id=\"{{ commande.id }}\">
                       <span class=\"checkout\"></span>
@@ -880,13 +907,26 @@ document.addEventListener(\"DOMContentLoaded\", function() {
     .checkout {
         width: 50px;
         height: 50px;
-        background: url(\"{{ asset('icons/check-out.png') }}\") no-repeat center;
+        background: url(\"{{ asset('icons/card.png') }}\") no-repeat center;
         background-size: contain;
         display: inline-block;
     }
 
     .checkout:hover {
-        background: url(\"{{ asset('icons/check-out-hover.png') }}\") no-repeat center;
+        background: url(\"{{ asset('icons/card-hover.png') }}\") no-repeat center;
+        background-size: contain;
+    }
+
+    .cash {
+        width: 50px;
+        height: 50px;
+        background: url(\"{{ asset('icons/cash.png') }}\") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .cash:hover {
+        background: url(\"{{ asset('icons/cash-hover.png') }}\") no-repeat center;
         background-size: contain;
     }
 

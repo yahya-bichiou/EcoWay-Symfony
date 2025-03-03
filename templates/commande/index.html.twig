@@ -7,10 +7,10 @@
                 <th>Status</th>
                 <th>Prix</th>
                 <th>ModePaiement</th>
-                <th>Produits Nom</th>
-                <th>Produits Quantity</th>
-                <th></th>
-                <th></th>
+                <th>Produits</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Livrer</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +22,11 @@
                 <td>{{ commande.status }}</td>
                 <td>{{ commande.prix }}</td>
                 <td>{{ commande.modePaiement }}</td>
+                <td>
                 {% for produit in commande.produits %}
-                <td>{{ produit.nom }}</td>
-                <td>{{ produit.quantity }}</td>
+                {{ produit.nom }}x{{ produit.quantity }}
                 {% endfor %}
+                </td>
                 <td>
                     {{ include('/commande/_delete_form.html.twig') }}
                 </td>
@@ -33,6 +34,9 @@
                     <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">
                         <span class="edit"></span>
                     </a>
+                </td>
+                <td>
+                    <a href="{{path('back_add_livraisons')}}" class="btn btn-primary btn-pill">Livrer</a>
                 </td>
             </tr>
         {% else %}

@@ -149,6 +149,9 @@
                       <h5 id="finalPrice">{{ totalPrice }} DT</h5>
                     </div>
                     {% for commande in commandes %}
+                    <a href="{{ path('order_cash', {'id': commande.id}) }}">
+                      <span class="cash"></span>
+                    </a>
                     <a id="payment-link" href="#"
                     data-commande-id="{{ commande.id }}">
                       <span class="checkout"></span>
@@ -258,13 +261,26 @@ document.addEventListener("DOMContentLoaded", function() {
     .checkout {
         width: 50px;
         height: 50px;
-        background: url("{{ asset('icons/check-out.png') }}") no-repeat center;
+        background: url("{{ asset('icons/card.png') }}") no-repeat center;
         background-size: contain;
         display: inline-block;
     }
 
     .checkout:hover {
-        background: url("{{ asset('icons/check-out-hover.png') }}") no-repeat center;
+        background: url("{{ asset('icons/card-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+
+    .cash {
+        width: 50px;
+        height: 50px;
+        background: url("{{ asset('icons/cash.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .cash:hover {
+        background: url("{{ asset('icons/cash-hover.png') }}") no-repeat center;
         background-size: contain;
     }
 

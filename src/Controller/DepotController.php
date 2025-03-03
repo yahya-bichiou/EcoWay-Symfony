@@ -6,6 +6,7 @@ use App\Entity\Depot;
 use App\Form\DepotType;
 use App\Entity\Collecte;
 use App\Form\CollecteType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Repository\CollecteRepository;
 use App\Repository\DepotRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Service\ExcelExportService;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/depot')]
@@ -125,4 +127,11 @@ public function show(Depot $depot, Request $request, EntityManagerInterface $ent
 
         return $this->redirectToRoute('back_dropoff', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/depot/export', name: 'depot_export')]
+    public function exportDepots(ExcelExportService $excelExportService): Response
+    {
+        return $excelExportService->exportDepots();
+    }
+
 }
