@@ -1,6 +1,10 @@
 import './bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import 'bootstrap'; // Import Bootstrap JavaScript (for dropdowns, modals, etc.)
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -10,3 +14,15 @@ import 'bootstrap'; // Import Bootstrap JavaScript (for dropdowns, modals, etc.)
 import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+
+document.addEventListener('DOMContentLoaded', function () {
+    let calendarEl = document.getElementById('calendar');
+
+    if (calendarEl) {
+        let calendar = new Calendar(calendarEl, {
+            plugins: [dayGridPlugin, interactionPlugin],
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    }
+});
