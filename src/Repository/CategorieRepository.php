@@ -16,6 +16,21 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    /**
+     * Récupère les catégories avec le nombre de produits associés.
+     *
+     * @return array
+     */
+    public function findCategoriesWithProductCount(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.produits', 'p') // 'produits' est le nom de la relation dans l'entité Categorie
+            ->select('c.id, c.nom, COUNT(p.id) as product_count')
+            ->groupBy('c.id')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Categorie[] Returns an array of Categorie objects
     //     */

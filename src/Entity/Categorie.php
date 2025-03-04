@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -38,8 +38,9 @@ class Categorie
     /**
      * @var Collection<int, Produit>
      */
-    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'catégorie')]
+    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: "categorie", cascade: ["remove"])]
     private Collection $produits;
+    
 
     public function __construct()
     {
@@ -87,7 +88,7 @@ class Categorie
     {
         if (!$this->produits->contains($produit)) {
             $this->produits->add($produit);
-            $produit->setCatégorie($this);
+            $produit->setCategorie($this);
         }
 
         return $this;
@@ -97,8 +98,8 @@ class Categorie
     {
         if ($this->produits->removeElement($produit)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getCatégorie() === $this) {
-                $produit->setCatégorie(null);
+            if ($produit->getCategorie() === $this) {
+                $produit->setCategorie(null);
             }
         }
 

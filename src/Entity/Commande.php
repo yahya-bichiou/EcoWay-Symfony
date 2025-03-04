@@ -25,6 +25,7 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Assert\NotNull]
     #[Assert\Type(\DateTimeInterface::class)]
+    #[Assert\LessThanOrEqual("today", message: "La date doit être au passé")]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]

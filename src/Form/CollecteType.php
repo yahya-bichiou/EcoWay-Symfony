@@ -23,8 +23,7 @@ class CollecteType extends AbstractType
             ->add('responsable')
             ->add('depot', EntityType::class, [
                 'class' => Depot::class,
-                'choice_label' => 'id', // Use the depot's ID as the choice label
-                'attr' => ['style' => 'display: none;'], // Hide the field
+                'choice_label' => 'id',
             ])
             ->add('save', SubmitType::class)
         ;

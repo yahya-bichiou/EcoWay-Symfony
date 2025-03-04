@@ -33,7 +33,7 @@ final class CategorieController extends AbstractController
             $entityManager->persist($categorie);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_produitcon_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('categorie/new.html.twig', [
@@ -61,11 +61,11 @@ final class CategorieController extends AbstractController
 
             return $this->redirectToRoute('app_produitcon_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->render('categorie/edit.html.twig', [
+     return $this->render('categorie/edit.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
-        ]);
+     
+      ]);
     }
 
     #[Route('/{id}', name: 'app_categorie_delete', methods: ['POST'])]
@@ -78,4 +78,5 @@ final class CategorieController extends AbstractController
 
         return $this->redirectToRoute('app_produitcon_index', [], Response::HTTP_SEE_OTHER);
     }
-}
+
+}    

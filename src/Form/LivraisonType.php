@@ -22,15 +22,6 @@ class LivraisonType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('status', ChoiceType::class, [
-                'choices'  => [
-                    'Non Livrée' => 'non_livrée',
-                    'Livrée' => 'livrée',
-                    'En route' => 'en_route',
-                ],
-                'expanded' => false,
-                'multiple' => false,
-            ])
             ->add('mode', ChoiceType::class, [
                 'choices'  => [
                     'Same Day' => 'same_day',
@@ -39,10 +30,6 @@ class LivraisonType extends AbstractType
                 ],
                 'expanded' => false,
                 'multiple' => false,
-            ])
-            ->add('prix', NumberType::class, [
-                'label' => 'Prix',
-                'scale' => 2,
             ])
             ->add('commande', EntityType::class, [
                 'class' => commande::class,

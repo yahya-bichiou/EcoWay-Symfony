@@ -59,7 +59,7 @@ final class LivraisonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('back_order', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('back_order_livraisons', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('livraison/edit.html.twig', [
