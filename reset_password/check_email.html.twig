@@ -1,0 +1,22 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Check Your Email{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{{ asset('uploads/logo.png') }}" alt="ecoway">
+        </div>
+        <div class="text-center mt-4 name">
+            ECOWAY
+        </div>
+
+        <div class="p-3 mt-3 text-center">
+            <h1>Check Your Email</h1>
+            <p>A password reset link has been sent to your email. Please check your inbox.</p>
+            <a href="{{ path('app_login') }}" class="btn btn-lg btn-primary">Back to Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

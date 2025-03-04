@@ -1,0 +1,112 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Créer un Compte{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+{% endblock %}
+
+{% block body %}
+
+<div class="register-container">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{{ asset('uploads/logo.png') }}" alt="Ecoway">
+        </div>
+
+        <h1>Créer un compte</h1>
+
+        {{ form_start(registrationForm, {'attr': {'id': 'registerForm', 'novalidate': 'novalidate'}}) }}
+
+            <div class="form-field">
+                <span class="far fa-envelope"></span>
+                {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'id': 'registerEmail'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.email) }}</small>
+            </div>
+
+            <div class="form-field">
+                <span class="far fa-user"></span>
+                {{ form_widget(registrationForm.name, {'attr': {'placeholder': 'Nom', 'id': 'registerName'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.name) }}</small>
+            </div>
+
+            <div class="form-field">
+                <span class="fas fa-lock"></span>
+                {{ form_widget(registrationForm.password, {'attr': {'placeholder': 'Mot de passe', 'id': 'registerPassword'}}) }}
+                <small class="text-danger">{{ form_errors(registrationForm.password) }}</small>
+            </div>
+
+        <div class="terms-container">
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'id': 'agreeTerms'}}) }}
+            <label for="agreeTerms">J'accepte les <a href="#">termes et conditions</a></label>
+        </div>
+        <small class="text-danger">{{ form_errors(registrationForm.agreeTerms) }}</small>
+
+
+        <button type="submit" class="btn mt-3">S'inscrire</button>
+
+        {{ form_end(registrationForm) }}
+
+        <div class="text-center">
+            Déjà un compte? <a href="{{ path('app_login') }}">Se connecter</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        let name = document.getElementById("registerName");
+        let email = document.getElementById("registerEmail");
+        let password = document.getElementById("registerPassword");
+        let agreeTerms = document.getElementById("agreeTerms");
+        let nameError = name.nextElementSibling;
+        let emailError = email.nextElementSibling;
+        let passwordError = password.nextElementSibling;
+        let termsError = document.getElementById("termsError");
+        let hasError = false;
+
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        nameError.textContent = "";
+        termsError.textContent = "";
+
+        if (email.value.trim() === "") {
+            emailError.textContent = "Veuillez entrer votre email.";
+            hasError = true;
+        } else if (!email.value.includes("@") || !email.value.includes(".")) {
+            emailError.textContent = "Format de l'email invalide.";
+            hasError = true;
+        }
+
+        if (name.value.trim() === "") {
+            nameError.textContent = "Veuillez entrer votre nom.";
+            hasError = true;
+        } else if (name.value.length < 3) {
+            nameError.textContent = "Le nom doit contenir au moins 3 caractères.";
+            hasError = true;
+        }
+
+        if (password.value.trim() === "") {
+            passwordError.textContent = "Veuillez entrer votre mot de passe.";
+            hasError = true;
+        } else if (password.value.length < 6) {
+            passwordError.textContent = "Le mot de passe doit contenir au moins 6 caractères.";
+            hasError = true;
+        }
+
+        if (!agreeTerms.checked) {
+            termsError.textContent = "Vous devez accepter les termes et conditions.";
+            hasError = true;
+        }
+
+        if (hasError) {
+            event.preventDefault();
+        }
+    });
+});
+</script>
+
+{% endblock %}

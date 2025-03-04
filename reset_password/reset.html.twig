@@ -1,0 +1,30 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}New Password{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{{ asset('uploads/logo.png') }}" alt="ecoway">
+        </div>
+        <div class="text-center mt-4 name">
+            ECOWAY
+        </div>
+
+        <form class="p-3 mt-3" method="post">
+            <h1>Enter New Password</h1>
+
+            {% if error is defined and error %}
+                <div class="alert">{{ error.message }}</div>
+            {% endif %}
+
+
+            {{ form_start(resetForm) }}
+            {{ form_widget(resetForm) }}
+            <button class="btn btn-lg btn-primary" type="submit">Reset Password</button>
+            {{ form_end(resetForm) }}
+        </form>
+    </div>
+</div>
+{% endblock %}
