@@ -1,0 +1,78 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Gestion des Posts{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-header">
+          <h2>Liste des Posts</h2>
+        </div>
+        <div class="card-body table-responsive">
+          <table id="postsTable" class="table table-hover table-product" style="width:100%">
+            {% include "post/backindex.html.twig" %}
+          </table>
+          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#post-modal">Ajouter un Post</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Modal -->
+  <div class="modal fade" id="post-modal" aria-labelledby="post-modal" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" style="max-width: 80vw;">
+      <form method="post" action="{{ path('back_posts') }}" enctype="multipart/form-data"novalidate>
+        <input type="hidden" name="form_type" value="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Ajouter un Post</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.titre, "Titre du Post") }}
+                  {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.titre) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.description, "Description") }}
+                  {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.description) }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.createur, "Créateur") }}
+                  {{ form_widget(form.createur, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.createur) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.image, "Image du Post") }}
+                  {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+                  {{ form_errors(form.image) }}
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            {{ form_end(form) }}
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      {% if not form.vars.valid %}
+          $('#post-modal').modal('show'); // Open modal if form has errors
+      {% endif %}
+  });
+  </script>
+{% endblock %}

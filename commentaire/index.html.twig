@@ -1,0 +1,46 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+   <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+        <h2>LISTE DES COMMENTAIRES</h2>
+   </div>
+   
+    <div class="row">
+        {% for commentaire in commentaires %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg p-4 border border-primary rounded">
+                    <h5 class="card-title text-center">Auteur : {{ commentaire.auteur }}</h5>
+                    <p class="text-center"><strong>Message :</strong> {{ commentaire.message|slice(0, 50) ~ '...' }}</p>
+                    <button class="btn btn-info show-details" data-id="{{ commentaire.id }}">
+                        <i class="fas fa-info-circle"></i> Voir les détails
+                    </button>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12 text-center">
+                <p>Aucun commentaire disponible.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="details-container" class="mt-4"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".show-details").forEach(button => {
+            button.addEventListener("click", function() {
+                let commentaireId = this.getAttribute("data-id");
+
+                fetch(`/commentaire/${commentaireId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("details-container").innerHTML = html;
+                    })
+                    .catch(error => console.error("Erreur:", error));
+            });
+        });
+    });
+</script>
+{% endblock %}

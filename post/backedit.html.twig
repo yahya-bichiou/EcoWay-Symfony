@@ -1,0 +1,57 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Modifier le Post{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-default">
+        <div class="card-header">
+          <h2>Modifier le Post</h2>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{{ path('back_post_edit', {'id': post.id}) }}" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="edit">
+            {{ form_start(form) }}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.titre, "Titre du Post") }}
+                  {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.titre) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.description, "Description") }}
+                  {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.description) }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.createur, "Créateur") }}
+                  {{ form_widget(form.createur, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_errors(form.createur) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.image, "Image du Post") }}
+                  {{ form_widget(form.image, {'attr': {'class': 'form-control-file'}}) }}
+                  {{ form_errors(form.image) }}
+                  
+                  {% if post.image %}
+                    <div class="mt-2">
+                      <p>Image actuelle :</p>
+                      <img src="{{ asset('uploads/edited_posts/' ~ post.image) }}" alt="Image du post" style="max-width: 200px; height: auto;">
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+            {{ form_end(form) }}
+            <a href="{{ path('back_posts') }}" class="btn btn-secondary">Annuler</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

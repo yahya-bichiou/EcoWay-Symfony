@@ -2,97 +2,301 @@
 
 {% block title %}Depot index{% endblock %}
 
+{% block css %}
+<link href="{{ asset('frontend/cart.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
+<br>
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
-    <div class="container">
-      <div class="row">
+</br>
+<br>
+
+</br>
+<section class="h-100 h-custom" style="background-color:rgb(199, 255, 169);">
+  <div class="container py-5 h-100">
+    <div class="margiini">
+      <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
-              <img src="{{ asset('logo.png') }}" alt="">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html">Home</a></li>
-              <li class="scroll-to-section"><a href="/front/dropoff">Dépots</a></li>
-              <li class="scroll-to-section"><a href="/front/product">Produits</a></li>
-              <li class="scroll-to-section"><a href="/front/product">Boutique</a></li>
-              <li class="scroll-to-section"><a href="/front/blog">Blog</a></li>
-              <li class="scroll-to-section"><a href="/front/event">Event</a></li>
-              <li class="scroll-to-section"><a href="/front/user">Users</a></li>
-              <li><a href="/front/order" class="active"><i class="fas fa-shopping-cart"></i></a></li>
-            </ul>
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-  <div>
-    <img src="{{ asset('bg1.png')}}" >
-  </div>
-  <div id="services" class="our-services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
-            <h6>Vos Commandes</h6>
-            <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>User ID</th>
-            <th>Status</th>
-            <th>Prix</th>
-            <th>Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for commande in commandes %}
-            <tr>
-                <td>{{ commande.id }}</td>
-                <td>{{ commande.clientId }}</td>
-                <td>{{ commande.status }}</td>
-                <td>{{ commande.prix }}</td>
-                <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                  <form method="post" action="{{ path('app_commande_delete', {'id': commande.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
-                    <button class="btn btn-primary">Anuler</button>
-                  </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">No commandes found.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0">Shopping Cart</h1>
 
+                      <!-- Compute total items count -->
+                      {% set totalItems = 0 %}
+                      {% for commande in commandes %}
+                        {% for produit in commande.produits %}
+                          {% set totalItems = totalItems + produit.quantity %}
+                        {% endfor %}
+                      {% endfor %}
+                      <h6 class="mb-0 text-muted">{{ totalItems }} Items</h6>
+                    </div>
+
+                    {% for commande in commandes %}
+                      {% for produit in commande.produits %}
+                        <hr class="my-4">
+
+                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                          <div class="col-md-2 col-lg-2 col-xl-2">
+                            <img
+                              src={{ produit.image }}
+                              class="img-fluid rounded-3" alt="Product Image">
+                          </div>
+                          <div class="col-md-3 col-lg-3 col-xl-3">
+                            <h6 class="mb-0">{{ produit.nom }}</h6>
+                          </div>
+                          <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
+                            <li>
+                            <button class="btn" data-commande-id="{{ commande.id }}" data-product-id="{{ produit.id }}">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                            </li>
+                            <span class="form-control form-control-sm text-center quantity" id="quantity-{{ commande.id }}-{{ produit.id }}">{{ produit.quantity }}</span>
+                            <li>
+                            <button class="btn" data-commande-id="{{ commande.id }}" data-product-id="{{ produit.id }}">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                            </li>
+
+                          </div>
+                          <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                            <h6 class="mb-0">{{ produit.prix * produit.quantity }} DT</h6>
+                          </div>
+                          <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                            <a href="{{ path('front_order_remove_product', {'commandeId': commande.id, 'productId': produit.id}) }}" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p>The Cart is empty</p>
+                    {% endfor %}
+
+                    <hr class="my-4">
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="/front/products" class="text-body">
+                        <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 bg-body-tertiary">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+
+                    <!-- Compute total price -->
+                    {% set totalPrice = 0 %}
+                    {% for commande in commandes %}
+                      {% set totalPrice = commande.prix %}
+                    {% endfor %}
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Items {{ totalItems }}</h5>
+                      <h5>{{ totalPrice }} DT</h5>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+                    <div class="mb-4 pb-2">
+                      <select id="shippingMethod" class="form-control">
+                        <option value="20">Same-Day - 20DT</option>
+                        <option value="10">Fast - 10DT</option>
+                        <option value="5">Normal - 5DT</option>
+                      </select>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Give code</h5>
+                    <div class="mb-5">
+                      <input type="text" id="discountCode" class="form-control form-control-lg" />
+                    </div>
+
+                    <input type="hidden" id="finalPriceInput" name="finalPrice" value="{{ totalPrice }}">
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5 id="finalPrice">{{ totalPrice }} DT</h5>
+                    </div>
+                    {% for commande in commandes %}
+                    <a href="{{ path('order_cash', {'id': commande.id}) }}">
+                      <span class="cash"></span>
+                    </a>
+                    <a id="payment-link" href="#"
+                    data-commande-id="{{ commande.id }}">
+                      <span class="checkout"></span>
+                    </a>
+                    <a href="{{ path('commande_invoice', {'id': commande.id}) }}">
+                      <span class="export"></span>
+                    </a>
+                    {% endfor %}
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let totalPrice = {{ totalPrice }}; // Initial price from Twig
+    let shippingSelect = document.getElementById("shippingMethod");
+    let finalPriceElement = document.getElementById("finalPrice");
+    let paymentLink = document.getElementById("payment-link");
+
+    // Get the commande ID from the <a> data attribute
+    let commandeId = paymentLink.getAttribute("data-commande-id");
+
+    function updateFinalPrice() {
+        let shippingCost = parseFloat(shippingSelect.value);
+        let finalPrice = totalPrice + shippingCost;
+
+        // Update displayed total price
+        finalPriceElement.innerText = finalPrice + " DT";
+
+        // Update payment link with price and commande ID
+        paymentLink.href = "{{ path('payment', {'price': 'PRICE', 'id': 'ID'}) }}"
+            .replace('PRICE', finalPrice) // Replace PRICE placeholder with actual finalPrice
+            .replace('ID', commandeId); // Replace ID placeholder with actual commandeId
+    }
+
+    // Update price on shipping change
+    shippingSelect.addEventListener("change", updateFinalPrice);
+    updateFinalPrice(); // Set initial price
+});
+</script>
 
 
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>Copyright © 2025 ECOWAY. All Rights Reserved</p>
-        </div>
-      </div>
-    </div>
-  </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/${commandeId}/${productId}/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-${commandeId}-${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert("Error updating quantity");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(".plus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "increase");
+        });
+    });
+
+    document.querySelectorAll(".minus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "decrease");
+        });
+    });
+});
+</script>
+  <style>
+    .checkout {
+        width: 50px;
+        height: 50px;
+        background: url("{{ asset('icons/card.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .checkout:hover {
+        background: url("{{ asset('icons/card-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+
+    .cash {
+        width: 50px;
+        height: 50px;
+        background: url("{{ asset('icons/cash.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .cash:hover {
+        background: url("{{ asset('icons/cash-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+
+        .export {
+        width: 50px;
+        height: 50px;
+        background: url("{{ asset('icons/export.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .export:hover {
+        background: url("{{ asset('icons/export-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function updateQuantity(commandeId, productId, action) {
+        fetch(`/cart/update/${commandeId}/${productId}/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let quantityElement = document.getElementById(`quantity-${commandeId}-${productId}`);
+                quantityElement.innerText = data.newQuantity;
+                location.reload(); // Refresh the page to update the total price
+            } else {
+                alert("Error updating quantity");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll(".plus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "increase");
+        });
+    });
+
+    document.querySelectorAll(".minus-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let commandeId = this.getAttribute("data-commande-id");
+            let productId = this.getAttribute("data-product-id");
+            updateQuantity(commandeId, productId, "decrease");
+        });
+    });
+});
+</script>
+
+
 {% endblock %}

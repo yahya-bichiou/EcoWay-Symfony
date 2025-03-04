@@ -1,0 +1,50 @@
+{% block title %}Calendrier des Événements{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/main.min.css">
+     {{ encore_entry_link_tags('app') }}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+      <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+      <!-- Additional CSS Files -->
+      <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{ asset('frontend/assets/css/templatemo-seo-dream.css')}}">
+      <link rel="stylesheet" href="{{ asset('frontend/assets/css/animated.css')}}">
+     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.css')}}">
+{% endblock %}
+
+{% block body %}
+    <div id="calendar"></div>
+{% endblock %}
+
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+          <!-- Scripts -->
+         <script src="{{ asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
+         <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+         <script src="{{ asset('frontend/assets/js/owl-carousel.js')}}"></script>
+         <script src="{{ asset('frontend/assets/js/animation.js')}}"></script>
+          <script src="{{ asset('frontend/assets/js/imagesloaded.js')}}"></script>
+         <script src="{{ asset('frontend/assets/js/custom.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.9/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.9/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.9/main.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const calendarEl = document.getElementById('calendar');
+
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
+                initialView: 'dayGridMonth',
+                evenements: '{{ path('api_evenements') }}',
+                dateClick: function(info) {
+                    alert('Date clicked: ' + info.dateStr);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+{% endblock %}

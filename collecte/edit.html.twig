@@ -1283,22 +1283,22 @@
           </header>
 
 
-<!-- Livraison Modal -->
+<!-- Collecte Modal -->
 <div class="modal fade" id="livraison-modal" aria-labelledby="livraison-modal" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered d-flex justify-content-center" style="max-width: 80vw;">
         <form method="post" novalidate>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">Edit Depot</h2>
-                    <a href="/back/dropoff/depots" type="button" class="close">
+                    <h2 class="modal-title">Edit Collecte</h2>
+                    <a href="/back/dropoff/collectes" type="button" class="close">
                         <span aria-hidden="true">&times;</span>
                     </a>
                 </div>
                 <div class="modal-body">
-                    {{ include('depot/_form.html.twig', {'button_label': 'Update'}) }}
+                    {{ include('collecte/_form.html.twig', {'button_label': 'Update'}) }}
                 </div>
                 <div class="modal-footer">
-                    <a href="/back/dropoff/depots" class="btn btn-secondary">Cancel</a>
+                    <a href="/back/dropoff/collectes" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>

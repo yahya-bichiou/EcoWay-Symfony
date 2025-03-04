@@ -1,0 +1,65 @@
+<table class="table table-bordered table-striped text-center" style="table-layout: fixed; width: 100%;">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Qualité</th>
+            <th>Quantité Disponible</th>
+            <th>Prix (€)</th>
+            <th>Image</th>
+            <th>Catégorie</th>
+            <th>Date d'ajout</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.nom }}</td>
+                <td style="white-space: pre-line; word-wrap: break-word; max-width: 200px; overflow-wrap: break-word;">{{ produit.description }}</td>
+                <td>
+                    <span class="badge 
+                        {% if produit.qualite == 'Premium' %} bg-warning 
+                        {% elseif produit.qualite == 'Bio' %} bg-success 
+                        {% else %} bg-secondary {% endif %}">
+                        {{ produit.qualite }}
+                    </span>
+                </td>
+                <td>{{ produit.quantiteDisponible }}</td>
+                <td>{{ produit.prix }} €</td>
+                <td>
+                    {% if produit.image %}
+                        <img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="Image de {{ produit.nom }}" class="img-thumbnail" width="60">
+                    {% else %}
+                        <span class="text-muted">Aucune image</span>
+                    {% endif %}
+                </td>
+                <td>{{ produit.categorie.nom }}</td>
+                <td>{{ produit.dateAjout ? produit.dateAjout|date('d/m/Y H:i') : '-' }}</td>
+     <td class="text-center">
+ <form action="{{ path('back_produit_edit', {'id': produit.id}) }}" method="POST" style="display:inline;">
+        <input type="hidden" name="_token" value="{{ csrf_token('edit' ~ produit.id) }}">
+        <button type="submit" class="btn btn-warning btn-sm d-flex align-items-center justify-content-center" style="width: 100px;">
+            <i class="fas fa-edit mr-2"></i> Modifier
+        </button>
+    </form>
+
+    <form action="{{ path('back_produit_delete', {'id': produit.id}) }}" method="POST" style="display:inline;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 100px;" onclick="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
+            <i class="fas fa-trash-alt mr-2"></i> Supprimer
+        </button>
+    </form>
+</td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10" class="text-center">Aucun produit disponible.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

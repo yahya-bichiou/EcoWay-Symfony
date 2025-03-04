@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Posts et Commentaires{% endblock %}
+
+{% block body %}
+  <div>
+    <img src="{{ asset('bg1.png')}}" alt="background">
+</div>
+<div id="services" class="our-services section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading text-center wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <h2 class="fw-bold text-dark">Blogs</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-lg-6 mb-4">
+                    <!-- Carte du post -->
+                    <div class="card shadow-lg rounded border-0">
+                        <div class="card-header bg-dark text-white text-center">
+                            <h5 class="mb-0">{{ post.titre }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted">{{ post.description|length > 80 ? post.description|slice(0, 80) ~ '...' : post.description }}</p>
+                            <p><strong>Créateur :</strong> {{ post.createur }}</p>
+                            <div class="text-center">
+                                {% if post.image %}
+                                    <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Image" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+                                {% else %}
+                                    <div class="text-muted py-3 border rounded bg-light">Aucune image disponible</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <a href="{{ path('app_post_show', {'id': post.id}) }}" class="btn btn-info btn-sm">Afficher</a>
+                        </div>
+                    </div>
+
+                  <!-- Section des commentaires -->
+<div class="mt-3 p-3 border rounded shadow-sm bg-white">
+    <h6 class="fw-bold">Commentaires :</h6>
+    <div class="overflow-auto" style="max-height: 200px;">
+        {% if commentaires is defined and commentaires|length > 0 %}
+            {% for commentaire in commentaires %}
+                <div class="mb-2 p-2 border-bottom">
+                    <strong class="text-primary">{{ commentaire.auteur }}</strong>
+                    <p class="mb-1">{{ commentaire.message }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">Aucun commentaire pour ce post.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+                        <!-- Formulaire d'ajout de commentaire -->
+                        <form action="{{ path('app_commentaire_new', {'postId': post.id}) }}" method="post" class="mt-3">
+                            <button type="submit" class="btn btn-success w-100">Envoyer commentaire</button>
+                        </form>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+            {% if posts is empty %}
+                <div class="col-12 text-center text-muted">Aucun post trouvé.</div>
+            {% endif %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('app_post_new') }}" class="btn btn-primary btn-lg shadow">+ Nouveau Post</a>
+        </div>
+    </div>
+</div>
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright © 2025 ECOWAY. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+<form method="post" action="{{ path('commande_delete', {'id': commande.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
+    <button class="delete"></button>
+</form>
+
+<style>
+.delete {
+        width: 40px;
+        height: 40px;
+        background: url("{{ asset('icons/delete.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .delete:hover {
+        background: url("{{ asset('icons/delete-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+</style>

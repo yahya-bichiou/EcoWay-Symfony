@@ -1,0 +1,170 @@
+{# {% extends 'back.html.twig' %}
+
+{% block title %}Statistiques des Commentaires{% endblock %}
+
+{% block body %}
+  <h2>📊 Statistiques des Commentaires</h2>
+
+  <div class="mb-3">
+    <a href="{{ path('back_commentaires') }}" class="btn btn-secondary">
+      ⬅️ Retour à la Liste des Commentaires
+    </a>
+  </div>
+
+  <canvas id="topPostsChart"></canvas>
+  <canvas id="commentRatioChart"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("{{ path('back_commentaires_stats') }}")
+            .then(response => response.json())
+            .then(data => {
+                // Ajouter console.log ici pour voir les données dans la console
+                console.log(data);  // Affiche les données reçues pour les inspecter
+
+                // Créer le graphique pour les posts les plus commentés
+                new Chart(document.getElementById("topPostsChart"), {
+                    type: "bar",
+                    data: {
+                        labels: data.topPosts.map(post => post.titre),
+                        datasets: [{
+                            label: "Nombre de Commentaires",
+                            data: data.topPosts.map(post => post.nbCommentaires),
+                            backgroundColor: "rgba(75, 192, 192, 0.6)"
+                        }]
+                    },
+                    options: { responsive: true }
+                });
+
+                // Créer le graphique pour le ratio des commentaires valides/inappropriés
+                new Chart(document.getElementById("commentRatioChart"), {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Valides", "Inappropriés"],
+                        datasets: [{
+                            data: [data.validComments, data.invalidComments],
+                            backgroundColor: ["#28a745", "#dc3545"]
+                        }]
+                    },
+                    options: { responsive: true }
+                });
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des données :", error);
+            });
+    });
+  </script>
+{% endblock %} #}
+{% extends 'back.html.twig' %}
+
+{% block title %}Statistiques des Commentaires{% endblock %}
+
+{% block body %}
+  <div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">📊 Statistiques des Commentaires</h2>
+
+    <div class="mb-4 text-center">
+      <a href="{{ path('back_commentaires') }}" class="btn btn-outline-dark btn-lg">
+        ⬅️ Retour à la Liste des Commentaires
+      </a>
+    </div>
+
+    <div class="row">
+      <!-- Graphique des posts les plus commentés -->
+      <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white text-center">
+            <h5>Posts les plus commentés</h5>
+          </div>
+          <div class="card-body">
+            <canvas id="topPostsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphique du ratio des commentaires valides/inappropriés -->
+      <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white text-center">
+            <h5>Ratio des Commentaires Valides/Inappropriés</h5>
+          </div>
+          <div class="card-body">
+            <canvas id="commentRatioChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("{{ path('back_commentaires_stats') }}")
+            .then(response => response.json())
+            .then(data => {
+                // Vérification des données dans la console pour le débogage
+                console.log(data); 
+
+                // Graphique des posts les plus commentés
+                new Chart(document.getElementById("topPostsChart"), {
+                    type: "bar",
+                    data: {
+                        labels: data.topPosts.map(post => post.titre),
+                        datasets: [{
+                            label: "Nombre de Commentaires",
+                            data: data.topPosts.map(post => post.nbCommentaires),
+                            backgroundColor: "rgba(54, 162, 235, 0.6)",
+                            borderColor: "rgba(54, 162, 235, 1)",
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.raw + ' commentaires';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Graphique du ratio des commentaires valides/inappropriés
+                new Chart(document.getElementById("commentRatioChart"), {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Valides", "Inappropriés"],
+                        datasets: [{
+                            data: [data.validComments, data.invalidComments],
+                            backgroundColor: ["#28a745", "#dc3545"],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.raw + ' commentaires';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération des données :", error);
+            });
+    });
+  </script>
+{% endblock %}
+

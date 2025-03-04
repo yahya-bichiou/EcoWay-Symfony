@@ -1,0 +1,63 @@
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ClientId</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Prix</th>
+                <th>ModePaiement</th>
+                <th>Produits</th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Livrer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.clientId }}</td>
+                <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commande.status }}</td>
+                <td>{{ commande.prix }}</td>
+                <td>{{ commande.modePaiement }}</td>
+                <td>
+                {% for produit in commande.produits %}
+                {{ produit.nom }}x{{ produit.quantity }}
+                {% endfor %}
+                </td>
+                <td>
+                    {{ include('/commande/_delete_form.html.twig') }}
+                </td>
+                <td>
+                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">
+                        <span class="edit"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{path('back_add_livraisons')}}" class="btn btn-primary btn-pill">Livrer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <style>
+    .edit {
+        width: 40px;
+        height: 40px;
+        background: url("{{ asset('icons/edit.png') }}") no-repeat center;
+        background-size: contain;
+        display: inline-block;
+    }
+
+    .edit:hover {
+        background: url("{{ asset('icons/edit-hover.png') }}") no-repeat center;
+        background-size: contain;
+    }
+</style>
+{% endblock %}

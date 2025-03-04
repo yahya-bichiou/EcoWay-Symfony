@@ -1,0 +1,36 @@
+{% block title %}{% endblock %}
+
+{% block body %}
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Date</th>
+                <th>Responsable</th>
+                <th>Depot</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+                <td>{{ collecte.quantite }}</td>
+                <td>{{ collecte.date ? collecte.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ collecte.responsable }}</td>
+                <td>{{ collecte.depot }}</td>
+                <td>
+                    {{ include('/collecte/_delete_form.html.twig') }}
+                </td>
+                <td>
+                    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+{% endblock %}

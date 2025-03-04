@@ -40,13 +40,24 @@
                     Dashboards
                   </li>
 
-                  <li
-                   class="active"
-                   >
-                    <a class="sidenav-item-link" href="/back/order">
-                      <i class="mdi mdi-package-variant-closed"></i>
-                      <span class="nav-text">Order Dashboard</span>
+                  <li class="active">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                    <i class="mdi mdi-package-variant-closed"></i>
+                    <span class="nav-text">Order Dashboard</span>
+                    <i class="mdi mdi-chevron-down"></i> <!-- Arrow for dropdown -->
                     </a>
+                    <li class="open">
+                      <a href="/back/order/commandes">
+                        <i class="mdi mdi-cart"></i>
+                        <span class="nav-text">Commandes</span>
+                      </a>
+                    </li>
+                    <li class="closed">
+                      <a href="/back/order/livraisons">
+                        <i class="mdi mdi-truck-delivery"></i>
+                        <span class="nav-text">Livraisons</span>
+                      </a>
+                    </li>
                   </li>
 
                   <li>
@@ -1289,16 +1300,51 @@
         <form method="post" novalidate>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">Edit Depot</h2>
-                    <a href="/back/dropoff/depots" type="button" class="close">
+                    <h2 class="modal-title">Add Livraison</h2>
+                    <a href="{{ path('back_order_commandes') }}" type="button" class="close">
                         <span aria-hidden="true">&times;</span>
                     </a>
                 </div>
                 <div class="modal-body">
-                    {{ include('depot/_form.html.twig', {'button_label': 'Update'}) }}
+                    {{ form_start(livraisonForm, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(livraisonForm.livreur) }}
+                                {{ form_widget(livraisonForm.livreur, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(livraisonForm.livreur) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(livraisonForm.adresse) }}
+                                {{ form_widget(livraisonForm.adresse, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(livraisonForm.adresse) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(livraisonForm.date) }}
+                                {{ form_widget(livraisonForm.date, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(livraisonForm.date) }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form_label(livraisonForm.mode) }}
+                                {{ form_widget(livraisonForm.mode, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(livraisonForm.commande) }}
+                                {{ form_widget(livraisonForm.commande, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_widget(livraisonForm.save, {'attr': {'style': 'display: none;'}}) }}
+                    {{ form_end(livraisonForm) }}
                 </div>
                 <div class="modal-footer">
-                    <a href="/back/dropoff/depots" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ path('back_order_commandes') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>

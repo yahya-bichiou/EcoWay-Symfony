@@ -1,0 +1,48 @@
+{% block body %}
+<div class="container mt-5">
+    <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+        <h2>LISTE DES CATÉGORIES</h2>
+    </div>
+    <div class="row">
+        {% for categorie in categories %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg p-4 border border-primary rounded text-center">
+                    <h5 class="card-title">{{ categorie.nom }}</h5>
+                    <button class="btn btn-info show-products" data-id="{{ categorie.id }}">
+    <i class="fas fa-info-circle"></i> Voir les produits
+</button>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="produits-container" class="mt-4"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".show-products").forEach(button => {
+            button.addEventListener("click", function() {
+                let categorieId = this.getAttribute("data-id");
+
+                fetch(`/front/products/categorie/${categorieId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erreur HTTP: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.getElementById("produits-container").innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error("Erreur lors de la récupération des produits :", error);
+                        alert("Impossible de charger les produits. Vérifiez la console.");
+                    });
+            });
+        });
+    });
+</script>
+
+{% endblock %}

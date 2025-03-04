@@ -1,0 +1,197 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block body %}
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <img src="{{ asset('logo.png') }}" alt="">
+                    </a>
+                    <ul class="nav">
+                        <li><a href="/front/products" class="active">Produits</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div id="services" class="our-services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <h2>Nos Produits</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for produit in produits %}
+                <div class="col-md-4 product-item" data-category-id="{{ produit.categorie.id }}">
+                    <div class="card shadow-lg">
+                        <div class="product-thumb">
+                            <img class="img-responsive" src="{{ asset('uploads/images/' ~ produit.image) }}" alt="product-img" />
+                            <div class="preview-meta">
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('app_produitcon_show', {'id': produit.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a href="{{ path('front_order_add_product', {'productId': produit.id}) }}">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ produit.nom }}</h5>
+    <p class="price">{{ produit.prix }}€</p>
+    <p><b>Catégorie :</b> {{ produit.categorie.nom }}</p>
+</div>
+
+
+
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center">Aucun produit disponible.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+<div class="navigation mt-4" style="display: flex; justify-content: center;">
+    {{ knp_pagination_render(produits) }}
+</div>
+    </div>
+</div>
+
+<style>
+    .product-thumb {
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #f8f8f8;
+    }
+    .product-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+
+
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block body %}
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <img src="{{ asset('logo.png') }}" alt="">
+                    </a>
+                    <ul class="nav">
+                        <li><a href="/front/products" class="active">Produits</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div id="services" class="our-services section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <h2>Nos Produits</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for produit in produits %}
+            <div class="col-md-4 product-item" data-category-id="{{ produit.categorie.id }}">
+                <div class="card shadow-lg">
+                    <div class="product-thumb">
+                <span class="bage">Nouveau</span>
+                <img class="img-responsive" src="{{ asset('uploads/images/' ~ produit.image) }}" alt="product-img" />
+                <div class="preview-meta">
+                    <ul>
+                        <li>
+                            <a href="{{ path('app_produitcon_show', {'id': produit.id}) }}">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="price">{{ produit.prix }}€</p>
+                        <p><b>Catégorie :</b> {{ produit.categorie.nom }}</p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Aucun produit disponible.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .product-thumb {
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #f8f8f8;
+    }
+    .product-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>
+
+{% endblock %} #}

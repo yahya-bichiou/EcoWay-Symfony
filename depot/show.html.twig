@@ -41,7 +41,7 @@
       <div class="row mt-5">
         <!-- Image Section -->
         <div class="col-md-5">
-          <div class="single-product-slider" style="height: 100%;">
+          <div class="single-product-slider" style="height: 50%;">
             <div id="carousel-custom" class="carousel slide h-100" data-ride="carousel">
               <div class="carousel-item active h-100">
                 <img src="{{ asset('uploads/' ~ depot.image) }}" alt="Depot Image" class="img-fluid rounded shadow h-100 w-100" style="object-fit: cover;">
@@ -67,6 +67,35 @@
                   </tr>
                 </tbody>
               </table>
+              <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+              <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+              <div id="map" style="height: 500px;"></div>
+              <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch(`/depot/api/{{ depot.id }}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    // Initialize the map with depot coordinates
+                    var map = L.map('map').setView([data.latitude, data.longitude], 13);
+
+                    // Add OpenStreetMap tiles
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    // Add a marker for the depot
+                    L.marker([data.latitude, data.longitude]).addTo(map)
+                        .bindPopup(`<b>${data.name}</b><br>Status: ${data.status}`)
+                        .openPopup();
+                })
+                .catch(error => console.error("Error fetching depot data:", error));
+        });
+    </script>
             </div>
 
             <!-- Form Section -->

@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Profil{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 12px;">
+        <div class="text-center">
+            <h2 class="mb-3">Modifier le Profil</h2>
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">{{ message }}</div>
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'id': 'editProfileForm', 'novalidate': 'novalidate'}}) }}
+
+        <div class="form-group mb-3">
+            <label for="editProfileName" class="form-label fw-bold">Nom</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                {{ form_widget(form.name, {'attr': {'placeholder': 'Nom', 'id': 'editProfileName', 'class': 'form-control'}}) }}
+            </div>
+            <small class="text-danger" id="nameError">{{ form_errors(form.name) }}</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+        <a href="{{ path('profile') }}" class="btn btn-secondary w-100 mt-2">Annuler</a>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .form-control:focus {
+        border-color: #ff758c;
+        box-shadow: 0 0 8px rgba(255, 117, 140, 0.5);
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        border: none;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(to right, #ff7eb3, #ff758c);
+    }
+
+    .btn-secondary {
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .input-group-text {
+        background: #ff758c;
+        color: white;
+        border-radius: 8px 0 0 8px;
+    }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let form = document.getElementById("editProfileForm");
+
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            let nameField = document.getElementById("editProfileName");
+            let nameError = document.getElementById("nameError");
+            let hasError = false;
+
+            nameError.textContent = "";
+
+            if (nameField.value.trim() === "") {
+                nameError.textContent = "Veuillez entrer votre nom.";
+                hasError = true;
+            } else if (nameField.value.length < 3) {
+                nameError.textContent = "Le nom doit contenir au moins 3 caractères.";
+                hasError = true;
+            }
+
+            if (hasError) {
+                event.preventDefault();
+            }
+        });
+    }
+});
+</script>
+
+{% endblock %}
