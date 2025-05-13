@@ -33,6 +33,7 @@ Intégrations : Stripe, Mailer, et autres APIs via .env
 Frontend & Backend dans le même projet Symfony
 
 ⚙️ Installation & Configuration
+
 1. Cloner le dépôt :
 git clone https://github.com/votre-utilisateur/EcoWay-Symfony.git
 cd ecoway
@@ -50,15 +51,21 @@ php bin/console doctrine:migrations:migrate
 symfony server:start
 
 👥 Rôles Utilisateurs
+
 Administrateur : Gère les posts, produits, commandes, dépots, événements et utilisateurs.
 
 Utilisateur : Peut consulter les articles, réagir, participer aux événements, consulter points de dépots et passer des commandes.
 
 📁 Structure du Projet (Parties Clés)
+
 src/Entity – Entités Doctrine
+
 src/Controller – Contrôleurs Symfony
+
 templates/ – Vues Twig
+
 public/uploads/images/ – Images uploadées pour les publications
+
 config/packages/ – Fichiers de configuration (Stripe, Mailer…)
 
 🤝 Contribution
