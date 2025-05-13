@@ -69,8 +69,11 @@ public/uploads/images/ – Images uploadées pour les publications
 config/packages/ – Fichiers de configuration (Stripe, Mailer…)
 
 🤝 Contribution
+
 Les contributions sont les bienvenues ! Forkez le projet, proposez des idées, corrigez des bugs, ou ajoutez de nouvelles fonctionnalités via une Pull Request.
 
 📄 Licence
+
 Ce projet est sous licence MIT.
+
 Vous pouvez l’utiliser, le modifier et le partager librement avec attribution.
