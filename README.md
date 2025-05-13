@@ -1,4 +1,5 @@
 ♻️ EcoWay
+
 EcoWay est une plateforme web moderne qui gère une entreprise de recyclage des déchets ménagers en engrais naturels pour la terre. Le site permet aux utilisateurs de découvrir des conseils écologiques, de passer des commandes, et de réagir à des publications de sensibilisation, tout en offrant aux administrateurs une gestion complète des contenus, utilisateurs et opérations.
 
 🚀 Fonctionnalités
@@ -33,7 +34,7 @@ Frontend & Backend dans le même projet Symfony
 
 ⚙️ Installation & Configuration
 1. Cloner le dépôt :
-git clone https://github.com/votre-utilisateur/ecoway.git
+git clone https://github.com/votre-utilisateur/EcoWay-Symfony.git
 cd ecoway
 2. Installer les dépendances :
 composer install
